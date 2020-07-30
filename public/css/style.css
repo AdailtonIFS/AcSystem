@@ -1,0 +1,30 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0px;
+    display: grid;
+    grid-template-areas: 
+            "header header"
+            "menu main"
+            "menu main ";
+    grid-template-rows: 70px 1fr;
+    grid-template-columns: 160px 1fr;
+}
+
+
+.header{
+    grid-area: header;
+    background-color: #C4C4C4;
+}
+#main {
+    grid-area: main;
+    min-height: calc(100vh - 70px);
+    background-color: #FFFFFF;
+    margin: 0px;
+}
+#menu{
+    grid-area: menu;
+    background-color: #EBEBEB;
+}
