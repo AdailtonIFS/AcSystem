@@ -3,8 +3,8 @@
     include('../vendor/autoload.php');
 
 
-    $controller = new App\controller\HomeController();
+    $routes = new App\controller\RoutesController();
     
-    echo $controller -> index();
+    var_dump($routes::parseUrl());
 
    
