@@ -1,10 +1,11 @@
 <?php
     include("../config/config.php");
     include('../vendor/autoload.php');
+    include('../routes/web.php');
 
 
-    $routes = new App\controller\RoutesController();
+  
+
     
-    var_dump($routes::parseUrl());
 
    
