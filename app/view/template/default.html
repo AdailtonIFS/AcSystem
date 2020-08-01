@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="Public/css/style.css">
+    <link rel="stylesheet" href="vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body>
+    <header class="header">
+        <nav class="navbar">
+            
+        </nav>
+    </header>
+
+        <div id="menu">
+            <ul id="menu-option">
+                <li>
+                   <a href="/AirConditioning/home">
+                       Home
+                    </a>
+                </li>
+                <li>
+                    <a href="#">
+                        Professores
+                    </a> 
+                </li>
+                <li>
+                    <a href="/AirConditioning/laboratorios">
+                        Laboratórios
+                    </a> 
+                </li>
+                <li>
+                    <a href="#">
+                        Ocorrências
+                    </a>
+                </li>
+            </ul>
+        </div> 
+        <div id="main">
+        {% block content %}
+        
+        {% endblock %}
+        </div>
+
+        <script src="AirConditioning/../vendor/components/jquery/jquery.min.js"></script>
+        <script src="AirConditioning/../vendor/tilt/tilt.jquery.min.js"></script>
+        <script >
+            $('.js-tilt').tilt({
+                scale: 1.2
+            })
+        </script>
+</body>
+</html>

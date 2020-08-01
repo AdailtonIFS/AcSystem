@@ -6,6 +6,7 @@
 
     class Labs
     {
+        #This function is to get data from the database
         public function GetLabs()
         {
             $conn = Connect::getConn();

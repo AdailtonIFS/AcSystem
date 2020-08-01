@@ -11,7 +11,6 @@ define('DIRPAGE', "http://{$_SERVER['HTTP_HOST']}/{$internalFolder}");
 define('DIRREQ', "{$_SERVER['DOCUMENT_ROOT']}{$bar}{$internalFolder}");
 
 #database
-
 define('DBHOST','localhost');
 define('DBNAME','airconditioning');
 define('DBUSER','root');

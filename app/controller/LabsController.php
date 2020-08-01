@@ -10,7 +10,11 @@
         }
 
         public function index(){
-            echo "oi";
+            $loader = new \Twig\Loader\FilesystemLoader('../app/view');
+            $twig = new \Twig\Environment($loader);
+            $template = $twig -> load('labs.html');
+
+           echo  $template->render();
         }
 
         
