@@ -44,306 +44,44 @@
         "homepage": "http://jquery.com"
     },
     {
-        "name": "doctrine/inflector",
-        "version": "v1.1.0",
-        "version_normalized": "1.1.0.0",
+        "name": "symfony/polyfill-ctype",
+        "version": "v1.18.0",
+        "version_normalized": "1.18.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/doctrine/inflector.git",
-            "reference": "90b2128806bfde671b6952ab8bea493942c1fdae"
+            "url": "https://github.com/symfony/polyfill-ctype.git",
+            "reference": "1c302646f6efc070cd46856e600e5e0684d6b454"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/doctrine/inflector/zipball/90b2128806bfde671b6952ab8bea493942c1fdae",
-            "reference": "90b2128806bfde671b6952ab8bea493942c1fdae",
+            "url": "https://api.github.com/repos/symfony/polyfill-ctype/zipball/1c302646f6efc070cd46856e600e5e0684d6b454",
+            "reference": "1c302646f6efc070cd46856e600e5e0684d6b454",
             "shasum": ""
         },
         "require": {
-            "php": ">=5.3.2"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "4.*"
-        },
-        "time": "2015-11-06T14:35:42+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.1.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-0": {
-                "Doctrine\\Common\\Inflector\\": "lib/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Roman Borschel",
-                "email": "roman@code-factory.org"
-            },
-            {
-                "name": "Benjamin Eberlei",
-                "email": "kontakt@beberlei.de"
-            },
-            {
-                "name": "Guilherme Blanco",
-                "email": "guilhermeblanco@gmail.com"
-            },
-            {
-                "name": "Jonathan Wage",
-                "email": "jonwage@gmail.com"
-            },
-            {
-                "name": "Johannes Schmitt",
-                "email": "schmittjoh@gmail.com"
-            }
-        ],
-        "description": "Common String Manipulations with regard to casing and singular/plural rules.",
-        "homepage": "http://www.doctrine-project.org",
-        "keywords": [
-            "inflection",
-            "pluralize",
-            "singularize",
-            "string"
-        ]
-    },
-    {
-        "name": "illuminate/container",
-        "version": "v5.4.36",
-        "version_normalized": "5.4.36.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/container.git",
-            "reference": "c5b8a02a34a52c307f16922334c355c5eef725a6"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/container/zipball/c5b8a02a34a52c307f16922334c355c5eef725a6",
-            "reference": "c5b8a02a34a52c307f16922334c355c5eef725a6",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.4.*",
-            "php": ">=5.6.4"
-        },
-        "time": "2017-05-24T14:15:53+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.4-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Container\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylor@laravel.com"
-            }
-        ],
-        "description": "The Illuminate Container package.",
-        "homepage": "https://laravel.com"
-    },
-    {
-        "name": "illuminate/contracts",
-        "version": "v5.4.36",
-        "version_normalized": "5.4.36.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/contracts.git",
-            "reference": "67f642e018f3e95fb0b2ebffc206c3200391b1ab"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/contracts/zipball/67f642e018f3e95fb0b2ebffc206c3200391b1ab",
-            "reference": "67f642e018f3e95fb0b2ebffc206c3200391b1ab",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.6.4"
-        },
-        "time": "2017-08-26T23:56:53+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.4-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Contracts\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylor@laravel.com"
-            }
-        ],
-        "description": "The Illuminate Contracts package.",
-        "homepage": "https://laravel.com"
-    },
-    {
-        "name": "illuminate/events",
-        "version": "v5.4.36",
-        "version_normalized": "5.4.36.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/events.git",
-            "reference": "ebdca3b0305e9fc954afb9e422c4559482cd11e6"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/events/zipball/ebdca3b0305e9fc954afb9e422c4559482cd11e6",
-            "reference": "ebdca3b0305e9fc954afb9e422c4559482cd11e6",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/container": "5.4.*",
-            "illuminate/contracts": "5.4.*",
-            "illuminate/support": "5.4.*",
-            "php": ">=5.6.4"
-        },
-        "time": "2017-05-02T12:57:00+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.4-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Events\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylor@laravel.com"
-            }
-        ],
-        "description": "The Illuminate Events package.",
-        "homepage": "https://laravel.com"
-    },
-    {
-        "name": "illuminate/filesystem",
-        "version": "v5.4.36",
-        "version_normalized": "5.4.36.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/filesystem.git",
-            "reference": "b800a1423d06869ee5c2768eee123917f12b693e"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/filesystem/zipball/b800a1423d06869ee5c2768eee123917f12b693e",
-            "reference": "b800a1423d06869ee5c2768eee123917f12b693e",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/contracts": "5.4.*",
-            "illuminate/support": "5.4.*",
-            "php": ">=5.6.4",
-            "symfony/finder": "~3.2"
+            "php": ">=5.3.3"
         },
         "suggest": {
-            "league/flysystem": "Required to use the Flysystem local and FTP drivers (~1.0).",
-            "league/flysystem-aws-s3-v3": "Required to use the Flysystem S3 driver (~1.0).",
-            "league/flysystem-rackspace": "Required to use the Flysystem Rackspace driver (~1.0)."
+            "ext-ctype": "For best performance"
         },
-        "time": "2017-08-02T21:58:00+00:00",
+        "time": "2020-07-14T12:35:20+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "5.4-dev"
+                "dev-master": "1.18-dev"
+            },
+            "thanks": {
+                "name": "symfony/polyfill",
+                "url": "https://github.com/symfony/polyfill"
             }
         },
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Illuminate\\Filesystem\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylor@laravel.com"
-            }
-        ],
-        "description": "The Illuminate Filesystem package.",
-        "homepage": "https://laravel.com"
-    },
-    {
-        "name": "illuminate/support",
-        "version": "v5.4.36",
-        "version_normalized": "5.4.36.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/support.git",
-            "reference": "feab1d1495fd6d38970bd6c83586ba2ace8f299a"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/support/zipball/feab1d1495fd6d38970bd6c83586ba2ace8f299a",
-            "reference": "feab1d1495fd6d38970bd6c83586ba2ace8f299a",
-            "shasum": ""
-        },
-        "require": {
-            "doctrine/inflector": "~1.1",
-            "ext-mbstring": "*",
-            "illuminate/contracts": "5.4.*",
-            "paragonie/random_compat": "~1.4|~2.0",
-            "php": ">=5.6.4"
-        },
-        "replace": {
-            "tightenco/collect": "self.version"
-        },
-        "suggest": {
-            "illuminate/filesystem": "Required to use the composer class (5.2.*).",
-            "symfony/process": "Required to use the composer class (~3.2).",
-            "symfony/var-dumper": "Required to use the dd function (~3.2)."
-        },
-        "time": "2017-08-15T13:25:41+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.4-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\Support\\": ""
+                "Symfony\\Polyfill\\Ctype\\": ""
             },
             "files": [
-                "helpers.php"
+                "bootstrap.php"
             ]
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -352,270 +90,22 @@
         ],
         "authors": [
             {
-                "name": "Taylor Otwell",
-                "email": "taylor@laravel.com"
-            }
-        ],
-        "description": "The Illuminate Support package.",
-        "homepage": "https://laravel.com"
-    },
-    {
-        "name": "illuminate/view",
-        "version": "v5.4.36",
-        "version_normalized": "5.4.36.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/illuminate/view.git",
-            "reference": "785f41f8f01653dc830c5c89eb0f25c311af7615"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/illuminate/view/zipball/785f41f8f01653dc830c5c89eb0f25c311af7615",
-            "reference": "785f41f8f01653dc830c5c89eb0f25c311af7615",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/container": "5.4.*",
-            "illuminate/contracts": "5.4.*",
-            "illuminate/events": "5.4.*",
-            "illuminate/filesystem": "5.4.*",
-            "illuminate/support": "5.4.*",
-            "php": ">=5.6.4",
-            "symfony/debug": "~3.2"
-        },
-        "time": "2017-08-05T12:41:58+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "5.4-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Illuminate\\View\\": ""
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Taylor Otwell",
-                "email": "taylor@laravel.com"
-            }
-        ],
-        "description": "The Illuminate View package.",
-        "homepage": "https://laravel.com"
-    },
-    {
-        "name": "jenssegers/blade",
-        "version": "v1.1.0",
-        "version_normalized": "1.1.0.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/jenssegers/blade.git",
-            "reference": "59ba2cc4767b2ee81fdd9bad571a93c619a8dd52"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/jenssegers/blade/zipball/59ba2cc4767b2ee81fdd9bad571a93c619a8dd52",
-            "reference": "59ba2cc4767b2ee81fdd9bad571a93c619a8dd52",
-            "shasum": ""
-        },
-        "require": {
-            "illuminate/view": "^5.1"
-        },
-        "require-dev": {
-            "mockery/mockery": "^0.9",
-            "phpunit/phpunit": "^4.0|^5.0",
-            "satooshi/php-coveralls": "^1.0"
-        },
-        "time": "2016-08-23T11:51:53+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Jenssegers\\Blade\\": "src/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Jens Segers",
-                "homepage": "https://jenssegers.com"
-            }
-        ],
-        "description": "The standalone version of Laravel's Blade templating engine for use outside of Laravel.",
-        "keywords": [
-            "blade",
-            "laravel",
-            "render",
-            "template",
-            "view"
-        ]
-    },
-    {
-        "name": "paragonie/random_compat",
-        "version": "v2.0.18",
-        "version_normalized": "2.0.18.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/paragonie/random_compat.git",
-            "reference": "0a58ef6e3146256cc3dc7cc393927bcc7d1b72db"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/paragonie/random_compat/zipball/0a58ef6e3146256cc3dc7cc393927bcc7d1b72db",
-            "reference": "0a58ef6e3146256cc3dc7cc393927bcc7d1b72db",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.2.0"
-        },
-        "require-dev": {
-            "phpunit/phpunit": "4.*|5.*"
-        },
-        "suggest": {
-            "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
-        },
-        "time": "2019-01-03T20:59:08+00:00",
-        "type": "library",
-        "installation-source": "dist",
-        "autoload": {
-            "files": [
-                "lib/random.php"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Paragon Initiative Enterprises",
-                "email": "security@paragonie.com",
-                "homepage": "https://paragonie.com"
-            }
-        ],
-        "description": "PHP 5.x polyfill for random_bytes() and random_int() from PHP 7",
-        "keywords": [
-            "csprng",
-            "polyfill",
-            "pseudorandom",
-            "random"
-        ]
-    },
-    {
-        "name": "psr/log",
-        "version": "1.1.3",
-        "version_normalized": "1.1.3.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/php-fig/log.git",
-            "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/php-fig/log/zipball/0f73288fd15629204f9d42b7055f72dacbe811fc",
-            "reference": "0f73288fd15629204f9d42b7055f72dacbe811fc",
-            "shasum": ""
-        },
-        "require": {
-            "php": ">=5.3.0"
-        },
-        "time": "2020-03-23T09:12:05+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "1.1.x-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Psr\\Log\\": "Psr/Log/"
-            }
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "PHP-FIG",
-                "homepage": "http://www.php-fig.org/"
-            }
-        ],
-        "description": "Common interface for logging libraries",
-        "homepage": "https://github.com/php-fig/log",
-        "keywords": [
-            "log",
-            "psr",
-            "psr-3"
-        ]
-    },
-    {
-        "name": "symfony/debug",
-        "version": "v3.4.43",
-        "version_normalized": "3.4.43.0",
-        "source": {
-            "type": "git",
-            "url": "https://github.com/symfony/debug.git",
-            "reference": "7ce874f4432d8b11cc45a80cc5130a6e2609728d"
-        },
-        "dist": {
-            "type": "zip",
-            "url": "https://api.github.com/repos/symfony/debug/zipball/7ce874f4432d8b11cc45a80cc5130a6e2609728d",
-            "reference": "7ce874f4432d8b11cc45a80cc5130a6e2609728d",
-            "shasum": ""
-        },
-        "require": {
-            "php": "^5.5.9|>=7.0.8",
-            "psr/log": "~1.0"
-        },
-        "conflict": {
-            "symfony/http-kernel": ">=2.3,<2.3.24|~2.4.0|>=2.5,<2.5.9|>=2.6,<2.6.2"
-        },
-        "require-dev": {
-            "symfony/http-kernel": "~2.8|~3.0|~4.0"
-        },
-        "time": "2020-07-16T09:41:49+00:00",
-        "type": "library",
-        "extra": {
-            "branch-alias": {
-                "dev-master": "3.4-dev"
-            }
-        },
-        "installation-source": "dist",
-        "autoload": {
-            "psr-4": {
-                "Symfony\\Component\\Debug\\": ""
-            },
-            "exclude-from-classmap": [
-                "/Tests/"
-            ]
-        },
-        "notification-url": "https://packagist.org/downloads/",
-        "license": [
-            "MIT"
-        ],
-        "authors": [
-            {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
+                "name": "Gert de Pagter",
+                "email": "BackEndTea@gmail.com"
             },
             {
                 "name": "Symfony Community",
                 "homepage": "https://symfony.com/contributors"
             }
         ],
-        "description": "Symfony Debug Component",
+        "description": "Symfony polyfill for ctype functions",
         "homepage": "https://symfony.com",
+        "keywords": [
+            "compatibility",
+            "ctype",
+            "polyfill",
+            "portable"
+        ],
         "funding": [
             {
                 "url": "https://symfony.com/sponsor",
@@ -632,37 +122,44 @@
         ]
     },
     {
-        "name": "symfony/finder",
-        "version": "v3.4.43",
-        "version_normalized": "3.4.43.0",
+        "name": "symfony/polyfill-mbstring",
+        "version": "v1.18.0",
+        "version_normalized": "1.18.0.0",
         "source": {
             "type": "git",
-            "url": "https://github.com/symfony/finder.git",
-            "reference": "5ec813ccafa8164ef21757e8c725d3a57da59200"
+            "url": "https://github.com/symfony/polyfill-mbstring.git",
+            "reference": "a6977d63bf9a0ad4c65cd352709e230876f9904a"
         },
         "dist": {
             "type": "zip",
-            "url": "https://api.github.com/repos/symfony/finder/zipball/5ec813ccafa8164ef21757e8c725d3a57da59200",
-            "reference": "5ec813ccafa8164ef21757e8c725d3a57da59200",
+            "url": "https://api.github.com/repos/symfony/polyfill-mbstring/zipball/a6977d63bf9a0ad4c65cd352709e230876f9904a",
+            "reference": "a6977d63bf9a0ad4c65cd352709e230876f9904a",
             "shasum": ""
         },
         "require": {
-            "php": "^5.5.9|>=7.0.8"
+            "php": ">=5.3.3"
         },
-        "time": "2020-02-14T07:34:21+00:00",
+        "suggest": {
+            "ext-mbstring": "For best performance"
+        },
+        "time": "2020-07-14T12:35:20+00:00",
         "type": "library",
         "extra": {
             "branch-alias": {
-                "dev-master": "3.4-dev"
+                "dev-master": "1.18-dev"
+            },
+            "thanks": {
+                "name": "symfony/polyfill",
+                "url": "https://github.com/symfony/polyfill"
             }
         },
         "installation-source": "dist",
         "autoload": {
             "psr-4": {
-                "Symfony\\Component\\Finder\\": ""
+                "Symfony\\Polyfill\\Mbstring\\": ""
             },
-            "exclude-from-classmap": [
-                "/Tests/"
+            "files": [
+                "bootstrap.php"
             ]
         },
         "notification-url": "https://packagist.org/downloads/",
@@ -671,16 +168,23 @@
         ],
         "authors": [
             {
-                "name": "Fabien Potencier",
-                "email": "fabien@symfony.com"
+                "name": "Nicolas Grekas",
+                "email": "p@tchwork.com"
             },
             {
                 "name": "Symfony Community",
                 "homepage": "https://symfony.com/contributors"
             }
         ],
-        "description": "Symfony Finder Component",
+        "description": "Symfony polyfill for the Mbstring extension",
         "homepage": "https://symfony.com",
+        "keywords": [
+            "compatibility",
+            "mbstring",
+            "polyfill",
+            "portable",
+            "shim"
+        ],
         "funding": [
             {
                 "url": "https://symfony.com/sponsor",
@@ -752,6 +256,92 @@
             {
                 "url": "https://opencollective.com/bootstrap",
                 "type": "open_collective"
+            }
+        ]
+    },
+    {
+        "name": "twig/twig",
+        "version": "v3.0.4",
+        "version_normalized": "3.0.4.0",
+        "source": {
+            "type": "git",
+            "url": "https://github.com/twigphp/Twig.git",
+            "reference": "582bdbdc173027ebfba3c93dc750a40b8f9ebc02"
+        },
+        "dist": {
+            "type": "zip",
+            "url": "https://api.github.com/repos/twigphp/Twig/zipball/582bdbdc173027ebfba3c93dc750a40b8f9ebc02",
+            "reference": "582bdbdc173027ebfba3c93dc750a40b8f9ebc02",
+            "shasum": ""
+        },
+        "require": {
+            "php": ">=7.2.5",
+            "symfony/polyfill-ctype": "^1.8",
+            "symfony/polyfill-mbstring": "^1.3"
+        },
+        "require-dev": {
+            "psr/container": "^1.0",
+            "symfony/phpunit-bridge": "^4.4.9|^5.0.9"
+        },
+        "time": "2020-07-05T13:18:14+00:00",
+        "type": "library",
+        "extra": {
+            "branch-alias": {
+                "dev-master": "3.0-dev"
+            }
+        },
+        "installation-source": "dist",
+        "autoload": {
+            "psr-4": {
+                "Twig\\": "src/"
+            }
+        },
+        "notification-url": "https://packagist.org/downloads/",
+        "license": [
+            "BSD-3-Clause"
+        ],
+        "authors": [
+            {
+                "name": "Fabien Potencier",
+                "email": "fabien@symfony.com",
+                "homepage": "http://fabien.potencier.org",
+                "role": "Lead Developer"
+            },
+            {
+                "name": "Twig Team",
+                "role": "Contributors"
+            },
+            {
+                "name": "Armin Ronacher",
+                "email": "armin.ronacher@active-4.com",
+                "role": "Project Founder"
+            }
+        ],
+        "description": "Twig, the flexible, fast, and secure template language for PHP",
+        "homepage": "https://twig.symfony.com",
+        "keywords": [
+            "templating"
+        ],
+        "funding": [
+            {
+                "url": "https://certification.symfony.com/",
+                "type": "custom"
+            },
+            {
+                "url": "https://live.symfony.com/",
+                "type": "custom"
+            },
+            {
+                "url": "https://symfony.com/cloud/",
+                "type": "custom"
+            },
+            {
+                "url": "https://github.com/fabpot",
+                "type": "github"
+            },
+            {
+                "url": "https://tidelift.com/funding/github/packagist/twig/twig",
+                "type": "tidelift"
             }
         ]
     }

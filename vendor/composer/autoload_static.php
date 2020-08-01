@@ -7,32 +7,19 @@ namespace Composer\Autoload;
 class ComposerStaticInit838ff073029bff62bed38027173cb78e
 {
     public static $files = array (
-        '5255c38a0faeba867671b61dfda6d864' => __DIR__ . '/..' . '/paragonie/random_compat/lib/random.php',
-        '72579e7bd17821bb1321b87411366eae' => __DIR__ . '/..' . '/illuminate/support/helpers.php',
+        '320cde22f66dd4f5d3fd621d3e88b98f' => __DIR__ . '/..' . '/symfony/polyfill-ctype/bootstrap.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
     );
 
     public static $prefixLengthsPsr4 = array (
+        'T' => 
+        array (
+            'Twig\\' => 5,
+        ),
         'S' => 
         array (
-            'Symfony\\Component\\Finder\\' => 25,
-            'Symfony\\Component\\Debug\\' => 24,
-        ),
-        'P' => 
-        array (
-            'Psr\\Log\\' => 8,
-        ),
-        'J' => 
-        array (
-            'Jenssegers\\Blade\\' => 17,
-        ),
-        'I' => 
-        array (
-            'Illuminate\\View\\' => 16,
-            'Illuminate\\Support\\' => 19,
-            'Illuminate\\Filesystem\\' => 22,
-            'Illuminate\\Events\\' => 18,
-            'Illuminate\\Contracts\\' => 21,
-            'Illuminate\\Container\\' => 21,
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
+            'Symfony\\Polyfill\\Ctype\\' => 23,
         ),
         'A' => 
         array (
@@ -41,59 +28,21 @@ class ComposerStaticInit838ff073029bff62bed38027173cb78e
     );
 
     public static $prefixDirsPsr4 = array (
-        'Symfony\\Component\\Finder\\' => 
+        'Twig\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/finder',
+            0 => __DIR__ . '/..' . '/twig/twig/src',
         ),
-        'Symfony\\Component\\Debug\\' => 
+        'Symfony\\Polyfill\\Mbstring\\' => 
         array (
-            0 => __DIR__ . '/..' . '/symfony/debug',
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
         ),
-        'Psr\\Log\\' => 
+        'Symfony\\Polyfill\\Ctype\\' => 
         array (
-            0 => __DIR__ . '/..' . '/psr/log/Psr/Log',
-        ),
-        'Jenssegers\\Blade\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/jenssegers/blade/src',
-        ),
-        'Illuminate\\View\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/view',
-        ),
-        'Illuminate\\Support\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/support',
-        ),
-        'Illuminate\\Filesystem\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/filesystem',
-        ),
-        'Illuminate\\Events\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/events',
-        ),
-        'Illuminate\\Contracts\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/contracts',
-        ),
-        'Illuminate\\Container\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/illuminate/container',
+            0 => __DIR__ . '/..' . '/symfony/polyfill-ctype',
         ),
         'App\\' => 
         array (
             0 => __DIR__ . '/../..' . '/app',
-        ),
-    );
-
-    public static $prefixesPsr0 = array (
-        'D' => 
-        array (
-            'Doctrine\\Common\\Inflector\\' => 
-            array (
-                0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
-            ),
         ),
     );
 
@@ -102,7 +51,6 @@ class ComposerStaticInit838ff073029bff62bed38027173cb78e
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit838ff073029bff62bed38027173cb78e::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit838ff073029bff62bed38027173cb78e::$prefixDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInit838ff073029bff62bed38027173cb78e::$prefixesPsr0;
 
         }, null, ClassLoader::class);
     }

@@ -6,15 +6,8 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'Symfony\\Component\\Finder\\' => array($vendorDir . '/symfony/finder'),
-    'Symfony\\Component\\Debug\\' => array($vendorDir . '/symfony/debug'),
-    'Psr\\Log\\' => array($vendorDir . '/psr/log/Psr/Log'),
-    'Jenssegers\\Blade\\' => array($vendorDir . '/jenssegers/blade/src'),
-    'Illuminate\\View\\' => array($vendorDir . '/illuminate/view'),
-    'Illuminate\\Support\\' => array($vendorDir . '/illuminate/support'),
-    'Illuminate\\Filesystem\\' => array($vendorDir . '/illuminate/filesystem'),
-    'Illuminate\\Events\\' => array($vendorDir . '/illuminate/events'),
-    'Illuminate\\Contracts\\' => array($vendorDir . '/illuminate/contracts'),
-    'Illuminate\\Container\\' => array($vendorDir . '/illuminate/container'),
+    'Twig\\' => array($vendorDir . '/twig/twig/src'),
+    'Symfony\\Polyfill\\Mbstring\\' => array($vendorDir . '/symfony/polyfill-mbstring'),
+    'Symfony\\Polyfill\\Ctype\\' => array($vendorDir . '/symfony/polyfill-ctype'),
     'App\\' => array($baseDir . '/app'),
 );
