@@ -15,7 +15,7 @@
     "require": {
         "twbs/bootstrap": "^4.5",
         "components/jquery": "^3.5",
-        "jenssegers/blade": "^1.1"
+        "twig/twig": "^3.0"
     },
     "autoload": {
         "psr-4": {

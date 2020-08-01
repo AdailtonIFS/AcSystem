@@ -3,7 +3,7 @@
     namespace app\controller;
 
     
-    class HomeController{
+    class LabsController{
 
         public function __construct(){
 

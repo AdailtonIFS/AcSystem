@@ -13,6 +13,6 @@ define('DIRREQ', "{$_SERVER['DOCUMENT_ROOT']}{$bar}{$internalFolder}");
 #database
 
 define('DBHOST','localhost');
-define('DBNAME','AirCondicioning');
+define('DBNAME','airconditioning');
 define('DBUSER','root');
 define('DBPASSWORD','');
