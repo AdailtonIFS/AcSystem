@@ -1,7 +1,7 @@
 <?php
 
     #my namespace
-    namespace app\model;
+    namespace App\model;
     #importing the PDO Class
     use PDO;
     #Importing the PDO Exception Class

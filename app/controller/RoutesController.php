@@ -1,13 +1,14 @@
 <?php   
 
-    namespace app\controller;
+    namespace App\controller;
 
     class RoutesController
     {   
         #setting up an Array with my URL: 
         public static function parseUrl($par=null)
         {
-            $url=explode('/',rtrim($_GET['url']));#tratando a Url
+            #tratando a Url
+            $url=explode('/',rtrim($_GET['url']));
 
             if(!is_null($par)){
                 #checking if the parameter is in the url: 
@@ -16,12 +17,10 @@
                 }else{
                     return false;
                 }
-
             }else{
                 return $url;
             }
         }
-
         #creating my route system
         public function getRoute($request, $action)
         {
