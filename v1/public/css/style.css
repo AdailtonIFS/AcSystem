@@ -1,0 +1,54 @@
+* {
+    box-sizing: border-box;
+}
+
+@font-face {
+    font-family: 'Lato', sans-serif;
+    src: url('http://localhost/AirConditioning/public/fonts/Lato-Thin.ttf');/*Para os demais navegadores*/;
+    font-weight: normal;
+    font-style: normal;
+}
+
+body, html{
+    height: 100%;
+  }
+  
+
+header{
+    height: 50px;
+    background-color: #ffffff;
+}
+#main {
+    grid-area: main;
+    min-height: calc (100vh - 100px);
+    background-color: #F1F1F1;
+    margin: 0px;
+    padding: 40px;
+    border-style: solid;
+    border-width: 1px 1px 1px 0px;
+}
+
+#oi{
+    padding: 0px;
+}
+#menu #sidebar-header {
+    padding: 0.875rem 1.25rem;
+    font-size: 1.2rem;
+}
+#menu #sidebar-header img {
+    width: 50px;
+    height: 50px;
+}
+#menu{
+    grid-area: menu;
+    background-color: #436069;
+    border: solid black 1px;
+    height: 100vh;
+}
+#menu > #links a{
+   font-family: 'Lato', sans-serif;
+}
+
+#table_id_wrapper{
+    margin: 20px;
+}

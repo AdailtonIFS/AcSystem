@@ -1,0 +1,25 @@
+{
+    "name": "airconditioning/php",
+    "description": "PHP System to manage the use of air conditioners at the Federal Institute of Sergipe.",
+    "type": "project",
+    "authors": [{
+            "name": "Adailton Moura",
+            "email": "adailtonmouradasilvasantos@gmail.com"
+        },
+        {
+            "name": "Bruno Silva",
+            "email": "apenasumbruno@gmail.com"
+        }
+    ],
+    "require": {
+        "twbs/bootstrap": "^4.5",
+        "components/jquery": "^3.5",
+        "twig/twig": "^3.0",
+        "datatables/datatables": "^1.10"
+    },
+    "autoload": {
+        "psr-4": {
+            "App\\": "app/"
+        }
+    }
+}
