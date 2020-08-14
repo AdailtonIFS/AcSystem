@@ -22,7 +22,8 @@
         "fruitcake/laravel-cors": "^1.0",
         "guzzlehttp/guzzle": "^6.3",
         "laravel/framework": "^7.0",
-        "laravel/tinker": "^2.0"
+        "laravel/tinker": "^2.0",
+        "yajra/laravel-datatables-oracle": "~9.0"
     },
     "require-dev": {
         "components/jquery": "^3.5",
@@ -32,7 +33,9 @@
         "nunomaduro/collision": "^4.1",
         "oscarafdev/migrations-generator": "^2.0",
         "phpunit/phpunit": "^8.5",
-        "twbs/bootstrap": "^4.5"
+        "twbs/bootstrap": "^4.5",
+        "datatables/datatables": "^1.10"
+
     },
     "config": {
         "optimize-autoloader": true,

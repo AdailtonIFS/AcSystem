@@ -13,16 +13,16 @@ class CreateUsersTable extends Migration
      */
     public function up()
     {
-        Schema::create('usuario', function (Blueprint $table) {
+        Schema::create('users', function (Blueprint $table) {
 
-			$table->integer('Matricula')->unsigned()->primary();
-			$table->integer('Categoria_Cod_Categoria')->unsigned();
-			$table->string('Nome', 40);
-			$table->string('Senha', 20);
-            $table->char('Status_Usuario', 1);
+			$table->integer('registration')->unsigned()->primary();
+			$table->integer('category_id')->unsigned();
+			$table->string('name', 40);
+			$table->string('password', 255);
+            $table->char('status_user', 1);
             $table->timestamps();
 
-            $table->foreign('Categoria_Cod_Categoria')->references('Cod_Categoria')->on('categoria');
+            $table->foreign('category_id')->references('id')->on('categories');
 
         });
     }
@@ -34,6 +34,6 @@ class CreateUsersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('usuarios');
+        Schema::dropIfExists('users');
     }
 }

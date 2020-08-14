@@ -13,17 +13,17 @@ class CreateOccourrencesTable extends Migration
      */
     public function up()
     {
-        Schema::create('registro_ocorrencia', function (Blueprint $table) {
-			$table->increments('Cod_Registro');
-			$table->integer('Usuario_Matricula')->unsigned();
-			$table->integer('Laboratorio_Num_Laboratorio')->unsigned();
-			$table->date('Data_registro');
-			$table->time('Horario_registro');
-			$table->integer('ocorrencia')->unsigned();
-            $table->string('observacao', 200)->nullable();
+        Schema::create('occurrences', function (Blueprint $table) {
+			$table->increments('id');
+			$table->integer('user_registration')->unsigned();
+			$table->integer('id_laboratory')->unsigned();
+			$table->date('date');
+			$table->time('hour');
+			$table->integer('occurrence')->unsigned();
+            $table->string('observation', 200)->nullable();
             $table->timestamps();
-            $table->foreign('Usuario_Matricula')->references('Matricula')->on('usuario');
-            $table->foreign('Laboratorio_Num_Laboratorio')->references('Num_Laboratorio')->on('laboratorio');
+            $table->foreign('user_registration')->references('registration')->on('users');
+            $table->foreign('id_laboratory')->references('id')->on('laboratories');
 
         });
     }

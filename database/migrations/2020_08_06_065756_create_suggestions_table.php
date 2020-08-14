@@ -13,13 +13,13 @@ class CreateSuggestionsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sugestoes_ocorrencias', function (Blueprint $table) {
-            $table->increments('cod_Sugestao');
-			$table->integer('Usuario_Matricula')->unsigned();
-			$table->string('Descricao', 400);
+        Schema::create('suggestions', function (Blueprint $table) {
+            $table->increments('id');
+			$table->integer('user_registration')->unsigned();
+			$table->text('description');
             $table->timestamps();
 
-            $table->foreign('Usuario_Matricula')->references('Matricula')->on('usuario');
+            $table->foreign('user_registration')->references('registration')->on('users');
 
         });
     }

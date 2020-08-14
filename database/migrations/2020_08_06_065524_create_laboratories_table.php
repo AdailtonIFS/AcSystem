@@ -13,10 +13,10 @@ class CreateLaboratoriesTable extends Migration
      */
     public function up()
     {
-        Schema::create('laboratorio', function (Blueprint $table) {
-            $table->integer('Num_Laboratorio')->unsigned()->primary();
-			$table->string('Descricao', 20);
-			$table->integer('Status_Ar_Condicionado')->unsigned();
+        Schema::create('laboratories', function (Blueprint $table) {
+            $table->integer('id')->unsigned()->primary();
+			$table->string('description', 60)->nullable();
+			$table->integer('status')->unsigned();
             $table->timestamps();
         });
     }
@@ -28,6 +28,6 @@ class CreateLaboratoriesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('laboratorios');
+        Schema::dropIfExists('laboratories');
     }
 }

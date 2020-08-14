@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\LabsRequest;
 use App\Labs;
-use Illuminate\Http\Request;
 
 class LabsController extends Controller
 {
@@ -14,7 +14,8 @@ class LabsController extends Controller
      */
     public function index()
     {
-        return view('labs');
+        $labs = Labs::all();
+        return view('labs')->with(compact('labs'));
     }
 
     /**
@@ -24,18 +25,23 @@ class LabsController extends Controller
      */
     public function create()
     {
-        //
+        return view('create');
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\LabsRequest $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(LabsRequest $request)
     {
-        //
+        $labs = new Labs();
+        $labs->id = $request->id;
+        $labs->description = $request->description;
+        $labs->status = 0;
+        $labs->save();
+        return redirect()->route('labs.index');
     }
 
     /**
@@ -56,22 +62,30 @@ class LabsController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function edit(Labs $labs)
-    {
-        //
+    {   
+        return view('edit', ['labs'=> $labs]);
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param  App\Http\Requests\LabsRequest $request
      * @param  \App\Labs  $labs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Labs $labs)
+    public function update(LabsRequest $request, Labs $labs)
     {
-        //
+        $labs->id = $request->id;
+        $labs->description = $request->description;
+        $labs->status = $request->status;
+        $labs->save();
+        return redirect()->route('labs.index');
     }
 
+    public function delete(Labs $labs)
+    {   
+        return view('delete', ['labs'=> $labs]);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -80,6 +94,7 @@ class LabsController extends Controller
      */
     public function destroy(Labs $labs)
     {
-        //
+        $labs -> delete();
+        return redirect()->route('labs.index');
     }
 }
