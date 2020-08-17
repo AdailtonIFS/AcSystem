@@ -15,7 +15,7 @@ class CreateLaboratoriesTable extends Migration
     {
         Schema::create('laboratories', function (Blueprint $table) {
             $table->integer('id')->unsigned()->primary();
-			$table->string('description', 60)->nullable();
+			$table->string('description', 60);
 			$table->integer('status')->unsigned();
             $table->timestamps();
         });

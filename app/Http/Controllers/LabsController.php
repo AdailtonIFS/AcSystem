@@ -15,7 +15,7 @@ class LabsController extends Controller
     public function index()
     {
         $labs = Labs::all();
-        return view('labs')->with(compact('labs'));
+        return view('admin.laboratories.labs')->with(compact('labs'));
     }
 
     /**
@@ -25,7 +25,7 @@ class LabsController extends Controller
      */
     public function create()
     {
-        return view('create');
+        return view('admin.laboratories.create');
     }
 
     /**
@@ -63,7 +63,7 @@ class LabsController extends Controller
      */
     public function edit(Labs $labs)
     {   
-        return view('edit', ['labs'=> $labs]);
+        return view('admin.laboratories.edit', ['labs'=> $labs]);
     }
 
     /**
@@ -84,7 +84,7 @@ class LabsController extends Controller
 
     public function delete(Labs $labs)
     {   
-        return view('delete', ['labs'=> $labs]);
+        return view('admin.laboratories.delete', ['labs'=> $labs]);
     }
     /**
      * Remove the specified resource from storage.

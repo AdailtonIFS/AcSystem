@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html class="h-100" lang="pt-br">
     
 <head>
 
@@ -7,35 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link  href="{{ asset('/css/style.css') }}" rel="stylesheet">
-    <link rel="stylesheet" href="http://localhost/AirConditioning/vendor/twbs/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet"  href="{{ url(mix('/css/style.css')) }}" >
+    <link rel="stylesheet" href="{{url(mix('/css/bootstrap.css'))}}">
     <link rel="stylesheet" href="http://localhost/AirConditioning/vendor/datatables/datatables/media/css/dataTables.bootstrap.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <title>@yield('title')</title>
 
 </head>
 
-<body>
-
+<body class="h-100" >
+    {{-- div principal --}}
     <div class="container-fluid">
+        {{-- row for grid system BOOTSTRAP --}}
         <div class="row">
+            {{-- first column --}}
             <div class="mr-0 p-0 col-2">
-                <div id="menu" class="shadow-sm">
-                    <div id="sidebar-header" class="list-group d-flex align-items-center justify-content-center border-bottom border-dark">
-                        
+                {{-- div menu --}}
+                <div id="menu" class="shadow-sm bg-maincolor">
+                    {{-- header menu --}}
+                    <div id="sidebar-header" class="list-group d-flex align-items-center justify-content-center border-bottom border-dark" style="font-size: 1rem;height: 150px;">
+                        {{-- div items --}}
                         <div class="align-items-center ">
+
                             <div class="d-flex justify-content-center">
                                 <img src="{{asset('/img/profile.png')}}" style="width: 40px; height:40px;">
                             </div>
-                                <div class="d-flex justify-content-center">
-                                    <h5 class="text-white" style="font-family:'Roboto', sans-serif;">Adailton Moura</h5>
-                                </div>
-                                <div class="d-flex justify-content-center">
-                                    <h5 class="text-white" style="font-family:'Roboto', sans-serif;">2018300655</h5>
-                                </div>
+                    
+                            <div class="d-flex justify-content-center">
+                                <h5 class="text-white" style="font-family:'Roboto', sans-serif;">Adailton Moura</h5>
                             </div>
-                        
+
+                            <div class="d-flex justify-content-center">
+                                <h5 class="text-white" style="font-family:'Roboto', sans-serif;">2018300655</h5>
+                            </div>
+
+                        </div>
+                        {{-- div items final --}}
                     </div>
+                    {{-- header menu final --}}
 
 
                     <div id="links" class="list-group d-flex align-items-center justify-content-center">
@@ -63,41 +72,44 @@
                                 Logout
                             </a>
                     </div>
+
                 </div>
+                {{-- div menu final --}}
             </div>
+            {{-- first column final --}}
+
+
 
 
             <div class="mr-0 p-0 col-10  d-flex justify-content-center">
-                    <div class="container overflow-auto">
-                        <div class="container shadow-sm title d-flex align-items-center justify-content-start align-items-center">
-                                <div class="d-flex flex-row ">
-                                    <div class="d-flex align-items-center justify-content-start align-items-center">
-                                        <img src="{{asset('/img/search.png')}}" alt="" style="width: 40px; height:40px; margin-left:20px;">
-                                    </div>
-                                    <div class="d-flex flex-column align-items-center justify-content-end align-items-center">
-                                        <p class="h4 text-secondary" style="margin-left: 20px">Laboratórios, Status etc.</p>
-                                    </div>
-                                </div>
-                        </div>
-                        <div id="cont" class="container">
+                        {{-- Container --}}
+
+                        <div id="cont" class="container mt-5">
                             @yield('content')
                         </div>
-                    </div>
             </div>
+
         </div>
-
-        
+        {{-- div row final --}}
     </div>
+    {{-- div principal final --}}
 
-    <script src="http://localhost/AirConditioning/vendor/components/jquery/jquery.min.js"></script>
-    <script src="http://localhost/AirConditioning/vendor/twbs/bootstrap/dist/js/bootstrap.min.js"></script>
+
+
+
+    <script src="{{url(mix('/js/jquery.js'))}}"></script>
+    <script src="{{url(mix('/js/bootstrap.js'))}}"></script>
     <script src="http://localhost/AirConditioning/vendor/datatables/datatables/media/js/jquery.dataTables.min.js"></script>
 
     <script>
-       $(document).ready(function() {
+        
+    $(document).ready(function() {
     $('#table_id').DataTable({			
     "autowidth": false,
   
+
+
+    
     "language": {
             "sEmptyTable": "Nenhum registro encontrado",
             "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
