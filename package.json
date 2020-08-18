@@ -20,6 +20,7 @@
     },
     "dependencies": {
         "bootstrap": "^4.5.2",
+        "datatables.net-bs4": "^1.10.21",
         "jquery": "^3.5.1"
     }
 }

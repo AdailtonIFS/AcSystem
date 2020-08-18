@@ -11,5 +11,20 @@ const mix = require('laravel-mix');
  |
  */
 
-mix.js('resources/js/app.js', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css');
+mix
+ 
+    .sass('resources/sass/style.scss', 'public/css/bootstrap.css')
+
+    .styles('resources/css/style.css', 'public/css/style.css')
+
+    .styles('node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css', 'public/css/dataTables.bootstrap4.css')
+
+    .scripts('node_modules/jquery/dist/jquery.min.js', 'public/js/jquery.js')
+
+    .scripts('node_modules/bootstrap/dist/js/bootstrap.bundle.js', 'public/js/bootstrap.js')
+
+    .scripts('node_modules/datatables.net/js/jquery.dataTables.min.js', 'public/js/dataTables.js')
+    .scripts('node_modules/datatables.net-bs4/js/dataTables.bootstrap4.min.js', 'public/js/dataTables.bootstrap4.js')
+
+    .version();
+;

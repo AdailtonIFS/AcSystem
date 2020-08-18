@@ -7,9 +7,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet"  href="{{ url(mix('/css/style.css')) }}" >
     <link rel="stylesheet" href="{{url(mix('/css/bootstrap.css'))}}">
-    <link rel="stylesheet" href="http://localhost/AirConditioning/vendor/datatables/datatables/media/css/dataTables.bootstrap.min.css">
+    <link rel="stylesheet" href="{{url(mix('/css/dataTables.bootstrap4.css'))}}">
+    <link rel="stylesheet"  href="{{ url(mix('/css/style.css')) }}" >
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <title>@yield('title')</title>
 
@@ -23,7 +23,7 @@
             {{-- first column --}}
             <div class="mr-0 p-0 col-2">
                 {{-- div menu --}}
-                <div id="menu" class="shadow-sm bg-maincolor">
+                <div id="menu" class="sticky-top shadow-sm bg-maincolor">
                     {{-- header menu --}}
                     <div id="sidebar-header" class="list-group d-flex align-items-center justify-content-center border-bottom border-dark" style="font-size: 1rem;height: 150px;">
                         {{-- div items --}}
@@ -83,8 +83,7 @@
 
             <div class="mr-0 p-0 col-10  d-flex justify-content-center">
                         {{-- Container --}}
-
-                        <div id="cont" class="container mt-5">
+                        <div class="container mt-5">
                             @yield('content')
                         </div>
             </div>
@@ -99,7 +98,8 @@
 
     <script src="{{url(mix('/js/jquery.js'))}}"></script>
     <script src="{{url(mix('/js/bootstrap.js'))}}"></script>
-    <script src="http://localhost/AirConditioning/vendor/datatables/datatables/media/js/jquery.dataTables.min.js"></script>
+    <script src="{{url(mix('/js/dataTables.js'))}}"></script>
+    <script src="{{url(mix('/js/dataTables.bootstrap4.js'))}}"></script>
 
     <script>
         
