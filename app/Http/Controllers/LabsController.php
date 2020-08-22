@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LabsRequest;
+
+use Yajra\Datatables\Datatables;
+
 use App\Labs;
 
 class LabsController extends Controller
@@ -15,17 +18,40 @@ class LabsController extends Controller
     public function index()
     {
         $labs = Labs::all();
-        return view('admin.laboratories.labs')->with(compact('labs'));
+        return view('admin.laboratories.labs',compact('labs'));
     }
 
     /**
-     * Show the form for creating a new resource.
+     * Show the json data.
      *
      * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('admin.laboratories.create');
+        $labs = Labs::all();
+        foreach ($labs as $lab) {
+            if ($lab['status'] == 0) {
+                    $lab['status'] = 'Desativado';
+            }else{
+                $lab['status'] = 'Ativado';
+            }
+        }
+        return Datatables::of($labs)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                        $btn = 
+                        '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Editar" class="edit btn btn-sucess btn-sm openEditLabModal">
+                            Editar
+                        </a>';
+
+                        $btn = $btn.
+                        ' | <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Deletar" class="btn text-white btn-danger  btn-sm deleteLab">
+                            Excluir
+                        </a>';
+                        return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
     }
 
     /**
@@ -36,34 +62,26 @@ class LabsController extends Controller
      */
     public function store(LabsRequest $request)
     {
+
         $labs = new Labs();
         $labs->id = $request->id;
         $labs->description = $request->description;
         $labs->status = 0;
         $labs->save();
-        return redirect()->route('labs.index');
+
+        return response()->json(['success'=>'Laboratório Cadastrado com Sucesso']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Labs  $labs
+     * @param  id
      * @return \Illuminate\Http\Response
      */
-    public function show(Labs $labs)
+    public function show($id)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Labs  $labs
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Labs $labs)
-    {   
-        return view('admin.laboratories.edit', ['labs'=> $labs]);
+        $data = Labs::find($id);
+        return response()->json($data);
     }
 
     /**
@@ -79,7 +97,8 @@ class LabsController extends Controller
         $labs->description = $request->description;
         $labs->status = $request->status;
         $labs->save();
-        return redirect()->route('labs.index');
+
+        return response()->json(['success'=>'Laboratório Editado com Sucesso']);
     }
 
     public function delete(Labs $labs)
@@ -89,12 +108,12 @@ class LabsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Labs  $labs
+     * @param  id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Labs $labs)
+    public function destroy($id)
     {
-        $labs -> delete();
-        return redirect()->route('labs.index');
+        $labs = Labs::find($id)->delete();
+        return response()->json(['success'=>'Laboratório Excluído com Sucesso']);
     }
 }

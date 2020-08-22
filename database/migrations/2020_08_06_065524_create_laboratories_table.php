@@ -17,7 +17,6 @@ class CreateLaboratoriesTable extends Migration
             $table->integer('id')->unsigned()->primary();
 			$table->string('description', 60);
 			$table->integer('status')->unsigned();
-            $table->timestamps();
         });
     }
 

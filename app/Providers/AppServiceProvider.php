@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Route::resourceVerbs([
-            'create' => 'cadastro',
+            'create' => 'pegarDados',
             'edit' => 'editar' 
         ]);
     }

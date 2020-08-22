@@ -6,29 +6,109 @@
 
 @section('content')
 
+    <div class="row">
+        <div class="col-6">
+            <h2>Laboratórios</h2>
+        </div>
+        <div class="col-6 d-flex justify-content-end">
+            <a class="btn btn-maincolor" onclick="openModal(event,'addLabModal');" href="#" role="button">Novo Usuário</a>
+        </div>
+    </div>
+
+    <hr class="mb-3">
+
     <table id="table_id" class="table table-light shadow-sm">
         <thead>
             <tr>
-                <th class="text-center">Laboratório</th>
-                <th class="text-center">Descrição</th>
-                <th class="text-center">Status</th>
-                <th class="text-center">Editar</th>
-                <th class="text-center">Excluir</th>
+                <th class="text-center" name='id'>Numéro</th>
+                <th class="text-center" name='description'>Descrição</th>
+                <th class="text-center" name='status'>Status</th>
+                <th class="text-center" name='action'>Ações</th>
             </tr>
             </thead>
-            <tbody>
-                @foreach ($labs as $lab) 
-                    <tr>
-                        <td class="text-center"> {{$lab->id}}</td>
-                        <td class="text-center">{{$lab->description}}</td>
-                        <td class="text-center">@if($lab->status==0)Desativado @else Ativado @endif</td>
-                        <td class="text-center"><a href="{{route('labs.edit',['labs'=> $lab->id])}}"  class="btn btn-primary text-white">Editar</a></td>
-                        <td class="text-center"><a href="{{route('labs.delete',['labs'=> $lab->id])}}"  class="btn btn-danger text-white">Excluir</a></td>
-                    </tr>
-                @endforeach
+            <tbody id="bodytable">
+ 
             </tbody>
-            <caption>            
-                <a name="" id="" class="btn btn-maincolor" href="{{route('labs.create')}}" role="button">Cadastrar</a>
-            </caption>
+            
         </table>
+        
+        
+        <div class="modal fade" id="addLabModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+ 
+                <form id="labForm" autocomplete="off">
+
+                        <div class="form-group">
+                            <h3 class="text-center">Novo Laboratório</h3>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="numLab" class="col-form-label">Laboratório:</label>
+                            <input type="text" class="form-control" name="id" id="id"required>
+                        
+                            <div id="idError" class="alert alert-danger d-none">
+                                
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="description" class="col-form-label">Descrição:</label>
+                            <textarea class="form-control" name="description" id="description" required></textarea>
+                            <div id="descriptionError" class="alert alert-danger d-none">
+                            </div>
+                        </div>
+
+                        <button onclick="closeModal(event,'addLabModal');" id="cancel" class="btn btn-danger">Cancelar</button>
+                        <button id="addLab" class="btn btn-maincolor">Cadastrar</button>
+                    </form>
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+
+
+          <div class="modal fade" id="editLabModal" tabindex="-1" role="dialog" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                    <form id="editForm" autocomplete="off" >
+            
+                        <div class="form-group">
+                            <h3>Editar Laboratório:</h3>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="numLab" class="col-form-label">Laboratório:</label>
+                            <input type="text" class="form-control" name="idEdit" id="idEdit" required readonly>
+                            <div id="idError" class="alert alert-danger d-none">
+                            </div>
+                        </div>
+                        <div class="form-group">
+
+                            <label for="description" class="col-form-label">Descrição:</label>
+                            <textarea class="form-control" name="descriptionEdit" id="descriptionEdit" required></textarea>
+                            <div id="descriptionError" class="alert alert-danger d-none">
+                            </div>
+                        </div>
+            
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select multiple class="form-control" name='status' id="status">
+                                <option value="1">Ativado</option>
+                                <option value="0">Desativado</option>
+                            </select>
+                          </div>
+            
+                        <button class="btn btn-primary editLab">Confirmar</button>
+                    </form>
+
+                </div>
+              </div>
+            </div>
+          </div>
+
 @endsection

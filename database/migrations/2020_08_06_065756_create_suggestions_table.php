@@ -17,7 +17,6 @@ class CreateSuggestionsTable extends Migration
             $table->increments('id');
 			$table->integer('user_registration')->unsigned();
 			$table->text('description');
-            $table->timestamps();
 
             $table->foreign('user_registration')->references('registration')->on('users');
 

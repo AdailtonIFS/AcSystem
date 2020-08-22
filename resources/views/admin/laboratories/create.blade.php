@@ -17,7 +17,7 @@
                     <label for="numLab" class="col-form-label">Laboratório:</label>
                 <input type="text" class="form-control @error('id') is-invalid @enderror" name="id" id="id" value="{{ old('id') }}" required>
                     @error('id')
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger d-none">
                         {{$message}}
                     </div>
                     @enderror
@@ -30,7 +30,7 @@
             <textarea class="form-control @error('description') is-invalid @enderror" name="description" id="description" required>{{ old('description') }}</textarea>
 
                     @error('description')
-                    <div class="alert alert-danger">
+                    <div class="alert alert-danger d-none">
                         {{$message}}
                     </div>
                     @enderror

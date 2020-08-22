@@ -7,9 +7,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <link rel="stylesheet" href="{{url(mix('/css/bootstrap.css'))}}">
-    <link rel="stylesheet" href="{{url(mix('/css/dataTables.bootstrap4.css'))}}">
+    <link rel="stylesheet" href="{{ url(mix('/css/bootstrap.css')) }}">
+    <link rel="stylesheet" href="{{ url(mix('/css/dataTables.bootstrap4.css')) }}">
+    <link rel="stylesheet" href="{{ url(mix('/css/sweetalert2.css')) }}">
     <link rel="stylesheet"  href="{{ url(mix('/css/style.css')) }}" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <title>@yield('title')</title>
 
@@ -96,96 +98,15 @@
 
 
 
-    <script src="{{url(mix('/js/jquery.js'))}}"></script>
-    <script src="{{url(mix('/js/bootstrap.js'))}}"></script>
-    <script src="{{url(mix('/js/dataTables.js'))}}"></script>
-    <script src="{{url(mix('/js/dataTables.bootstrap4.js'))}}"></script>
-
-    <script>
-        
-    $(document).ready(function() {
-    $('#table_id').DataTable({			
-    "autowidth": false,
-  
-
+    <script src="{{ url(mix('/js/jquery.js')) }}"></script>
+    <script src="{{ url(mix('/js/bootstrap.js')) }}"></script>
+    <script src="{{ url(mix('/js/dataTables.js')) }}"></script>
+    <script src="{{ url(mix('/js/dataTables.bootstrap4.js')) }}"></script>
+    <script src="{{ url(mix('/js/sweetalert2.js')) }}"></script>
+    <script src="{{ url(mix('/js/laboratories.js')) }}"></script>
 
     
-    "language": {
-            "sEmptyTable": "Nenhum registro encontrado",
-            "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
-            "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
-            "sInfoFiltered": "(Filtrados de _MAX_ registros)",
-            "sInfoPostFix": "",
-            "sInfoThousands": ".",
-            "sLengthMenu": "_MENU_ resultados por página",
-            "sLoadingRecords": "Carregando...",
-            "sProcessing": "Processando...",
-            "sZeroRecords": "Nenhum registro encontrado",
-            "sSearch": "Pesquisar",
-            "oPaginate": {
-                "sNext": "Próximo",
-                "sPrevious": "Anterior",
-                "sFirst": "Primeiro",
-                "sLast": "Último"
-            },
-            "oAria": {
-                "sSortAscending": ": Ordenar colunas de forma ascendente",
-                "sSortDescending": ": Ordenar colunas de forma descendente"
-            }
-        },
-        //Set column definition initialisation properties.
-        "columnDefs": [
-            {
-                "targets": [-1], //last column
-                "orderable": false, //set not orderable
-            },
-        ],
-    });
-} );
-    </script>
 
-{{-- 
-
-    <script type="text/javascript">
-
-            $.ajaxSetup({
-                headers: {
-                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                }
-            });
-        function addLab() {
-                $('#cadastrarLab').modal('show');
-        }
-        
-        $('#formLab').submit(function(e){
-
-            e.preventDefault();
-            
-            console.log( $( this ).serialize() );
-                $.ajax({
-                   
-                    url:"{{ route('labs.store') }}",
-                    type:"post",
-                    data:$( this ).serialize(),
-                    dataType: "json",
-                    success: function (data) {
-                        console.log(data);
-                        $('#cadastrarLab').modal('hide');
-                    },
-                    error: function (request, status, error) {
-                        console.log(request.responseText);
-                    }
-                });    
-        });
-
-        $('#veroneLab').click(function (e) { 
-            e.preventDefault();
-            $('#verLab').modal('show');
-
-        });
-
-       
-    </script>    --}}
 
 </body>
 

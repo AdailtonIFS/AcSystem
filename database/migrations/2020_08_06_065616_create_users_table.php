@@ -20,7 +20,6 @@ class CreateUsersTable extends Migration
 			$table->string('name', 40);
 			$table->string('password', 255);
             $table->char('status_user', 1);
-            $table->timestamps();
 
             $table->foreign('category_id')->references('id')->on('categories');
 

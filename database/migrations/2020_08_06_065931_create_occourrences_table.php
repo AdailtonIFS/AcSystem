@@ -21,7 +21,6 @@ class CreateOccourrencesTable extends Migration
 			$table->time('hour');
 			$table->integer('occurrence')->unsigned();
             $table->string('observation', 200)->nullable();
-            $table->timestamps();
             $table->foreign('user_registration')->references('registration')->on('users');
             $table->foreign('id_laboratory')->references('id')->on('laboratories');
 
