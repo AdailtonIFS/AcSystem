@@ -19,7 +19,7 @@ class CreateUsersTable extends Migration
 			$table->integer('category_id')->unsigned();
 			$table->string('name', 40);
 			$table->string('password', 255);
-            $table->char('status_user', 1);
+            $table->char('status', 1);
 
             $table->foreign('category_id')->references('id')->on('categories');
 

@@ -3,19 +3,21 @@
 }
 #menu{
     min-height:100vh;
-    border-radius:0 30px 0 0
+}
+#menu #links{
+    min-height: calc( 100vh - 100px );
 }
 .page-item.active .page-link {
-    background-color: #6165F7;
-    border-color: #6165F7;
+    background-color: #684FFA;
+    border-color: #684FFA;
 }  
 
 .form-control:focus {
-    border-color: #6165F7;
-    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #6165F7;
+    border-color: #684FFA;
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px #684FFA;
 }
 
 .page-link {
-    color: #6165f7;
+    color: #684FFA;
 
 }

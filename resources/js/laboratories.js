@@ -115,7 +115,7 @@
                e.preventDefault();
 
                var id  = $( this ).data("id");
-               let _url = `/laboratorios/${id}`;
+               let _url = `laboratorios/${id}`;
                
                    $.ajax({
                     url: _url,
@@ -151,7 +151,7 @@
 
                var id = $('#id').val();
                var description = $('#description').val();
-               let _url = `/laboratorios`;
+               let _url = `laboratorios`;
                let _token   = $('meta[name="csrf-token"]').attr('content');
                    $.ajax({
                        url: _url,

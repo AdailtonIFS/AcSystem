@@ -1,0 +1,40 @@
+{"draw":0,
+"recordsTotal":2,
+"recordsFiltered":2,
+"data":[{
+    "id":5,
+    "description":"5",
+    "status":"Desativado",
+    "action":"<a href=\"javascript:void(0)\" data-toggle=\"tooltip\"  data-id=\"5\" data-original-title=\"Editar\" class=\"edit btn btn-sucess btn-sm openEditLabModal\">\r\n                            Editar\r\n                        <\/a> | <a href=\"javascript:void(0)\" data-toggle=\"tooltip\"  data-id=\"5\" data-original-title=\"Deletar\" class=\"btn text-white btn-danger  btn-sm deleteLab\">\r\n                            Excluir\r\n                        <\/a>",
+    "DT_RowIndex":1
+    },
+    {
+        "id":6,
+        "description":"6",
+        "status":"Desativado",
+        "action":"<a href=\"javascript:void(0)\" data-toggle=\"tooltip\"  data-id=\"6\" data-original-title=\"Editar\" class=\"edit btn btn-sucess btn-sm openEditLabModal\">\r\n                            Editar\r\n                        <\/a> | <a href=\"javascript:void(0)\" data-toggle=\"tooltip\"  data-id=\"6\" data-original-title=\"Deletar\" class=\"btn text-white btn-danger  btn-sm deleteLab\">\r\n                            Excluir\r\n                        <\/a>",
+        "DT_RowIndex":2
+        }],
+        "input":[]
+}
+
+
+{"draw":0,
+"recordsTotal":2,
+"recordsFiltered":2,
+"data":[{
+    "registration":2018300655,
+    "name":"Adailton Moura",
+    "status":"Desativado",
+    "description":"professor",
+    "action":"<a href=\"javascript:void(0)\" data-toggle=\"tooltip\"  data-id=\"2018300655\" data-original-title=\"Editar\" class=\"edit btn btn-sucess btn-sm openEditLabModal\">Editar<\/a> | <a href=\"javascript:void(0)\" data-toggle=\"tooltip\"  data-id=\"2018300655\" data-original-title=\"Deletar\" class=\"btn text-white btn-danger  btn-sm deleteLab\">\n            Excluir\n        <\/a>",
+    "DT_RowIndex":1}
+    ,{
+        "registration":2018300656,
+        "name":"Adailton Moura da Silva",
+        "status":"Ativado",
+        "description":"professor",
+        "action":"<a href=\"javascript:void(0)\" data-toggle=\"tooltip\"  data-id=\"2018300656\" data-original-title=\"Editar\" class=\"edit btn btn-sucess btn-sm openEditLabModal\">Editar<\/a> | <a href=\"javascript:void(0)\" data-toggle=\"tooltip\"  data-id=\"2018300656\" data-original-title=\"Deletar\" class=\"btn text-white btn-danger  btn-sm deleteLab\">\n            Excluir\n        <\/a>",
+        "DT_RowIndex":2
+        }],
+        "input":[]}

@@ -32,6 +32,7 @@ mix
     .scripts('node_modules/sweetalert2/dist/sweetalert2.all.min.js', 'public/js/sweetalert2.js')
 
     .scripts('resources/js/laboratories.js', 'public/js/laboratories.js')
+    .scripts('resources/views/admin/users/js/users.js', 'public/js/users.js')
     
 
     .version();

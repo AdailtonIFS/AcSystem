@@ -1,0 +1,14 @@
+<?php
+
+namespace App;
+
+use Illuminate\Database\Eloquent\Model;
+
+class User extends Model
+{
+    public $timestamps = false;
+    protected $table = 'users';
+    public $fillable = ['registration','category_id','name','password','status_user'];
+
+
+}

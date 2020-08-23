@@ -18,7 +18,7 @@ class LabsController extends Controller
     public function index()
     {
         $labs = Labs::all();
-        return view('admin.laboratories.labs',compact('labs'));
+        return view('admin.laboratories.labs',['labs'=>$labs]);
     }
 
     /**

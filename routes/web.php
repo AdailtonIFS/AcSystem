@@ -17,3 +17,4 @@ Route::get('/', 'HomeController@index' )->name('home');
 Route::get('/home', 'HomeController@index' )->name('home');
 
 Route::resource('laboratorios', 'LabsController')->names('labs')->parameters(['laboratorios'=>'labs']);
+Route::resource('usuarios', 'UserController')->names('user')->parameters(['usuarios'=>'user']);
