@@ -21,3 +21,6 @@
     color: #684FFA;
 
 }
+th, td{
+    vertical-align: middle !important; /* alinha verticalmente */
+}

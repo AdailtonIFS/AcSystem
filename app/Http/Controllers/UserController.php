@@ -66,7 +66,14 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $users = new User();
+        $users->registration = $request->registration;
+        $users->name = $request->name;
+        $users->category_id = $request->category;
+        $users->password = 0;
+        $users->status = $request->status;
+        $users->save();
+        return response()->json(['success' => 'Cadastrado com sucesso']);
     }
 
     /**
@@ -75,9 +82,9 @@ class UserController extends Controller
      * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($registration)
+    public function show()
     { 
-  
+       
     }
 
     /**

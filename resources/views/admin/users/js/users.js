@@ -1,3 +1,8 @@
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
 var table = $('#tableUsers').DataTable({
                     
     processing : true,
@@ -41,13 +46,50 @@ var table = $('#tableUsers').DataTable({
                 "sSortDescending": ": Ordenar colunas de forma descendente"
             }
         },
-          //Set column definition initialisation properties.
+          //set column definition initialisation properties.
           "columnDefs": [
               {
                   "targets": '_all',
                   "orderable": false, //set not orderable
-                  "className": "dt-center",
+                  "className": "text-center",
                 },
           ],
          
-      });
+});
+
+    $('.addUser').click(function (e) {
+
+        e.preventDefault();
+        $.ajax({
+            type: "GET",
+            url: "categorias/pegarDados",
+            success: function (response) {
+                $.each(response, function(key, data) {
+                    $('#category').append($("<option></option>").attr("value", data.id).text(data.description));
+                });
+            }
+        });
+        $('#modalAddUser').modal('show')
+    })
+
+    $('#createNewUser').click(function (){
+        $( this ).attr('disabled','disabled').text('Cadastrando...');
+
+        let _token   = $('meta[name="csrf-token"]').attr('content');
+
+        var data =$('#newUser').serialize()+'&_token='+_token;
+
+        console.log(data);
+
+        $.ajax({
+
+            type: "POST",
+            url: "usuarios",
+            data: data,
+            success: function (response) {
+                alert(response.success)
+            },error: function(response){
+                alert('não foi')
+            }
+        });
+    })

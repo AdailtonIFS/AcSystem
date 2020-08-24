@@ -8,7 +8,7 @@ class User extends Model
 {
     public $timestamps = false;
     protected $table = 'users';
-    public $fillable = ['registration','category_id','name','password','status_user'];
+    public $fillable = ['registration','category_id','name','password','status'];
 
 
 }

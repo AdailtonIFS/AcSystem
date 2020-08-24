@@ -53,7 +53,7 @@
                                 Home
                             </a>
 
-                            <a href="usuarios/2018300655" class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
+                            <a href="{{route('user.index')}}" class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
                                 <img src="{{asset('/img/teacher.png')}}" alt="Usuários" style="width: 30px; height:30px;margin-right:9px;">
                                 Usuários
                             </a>
