@@ -8,6 +8,7 @@
     "/js/dataTables.js": "/js/dataTables.js?id=99c119409ce894291318",
     "/js/dataTables.bootstrap4.js": "/js/dataTables.bootstrap4.js?id=846c6a07e9cc25d68566",
     "/js/sweetalert2.js": "/js/sweetalert2.js?id=600ebc5ddecb9e859491",
-    "/js/laboratories.js": "/js/laboratories.js?id=a38cebf49cdd9f4e04f9",
-    "/js/users.js": "/js/users.js?id=76767e3de27023993443"
+    "/js/laboratories.js": "/js/laboratories.js?id=de13289ee3851c225f2c",
+    "/js/users.js": "/js/users.js?id=588441087c624f8d7156",
+    "/js/category.js": "/js/category.js?id=07de33cce56490d754b2"
 }

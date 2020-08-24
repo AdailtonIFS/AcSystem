@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Category;
+
+use Yajra\Datatables\Datatables;
+
 use Illuminate\Http\Request;
 
 class CategoryController extends Controller
@@ -14,7 +17,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.category.category');
     }
 
     /**
@@ -25,7 +28,23 @@ class CategoryController extends Controller
     public function create()
     {
         $category = Category::all();
-        return response()->json($category);
+
+        return Datatables::of($category)
+                ->addIndexColumn()
+                ->addColumn('action', function($row){
+                        $btn = 
+                        '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Editar" class="edit btn btn-sucess btn-sm openEditCategoryModal">
+                            Editar
+                        </a>';
+
+                        $btn = $btn.
+                        ' | <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Deletar" class="btn text-white btn-danger  btn-sm deleteCategory">
+                            Excluir
+                        </a>';
+                        return $btn;
+                })
+                ->rawColumns(['action'])
+                ->make(true);
     }
 
     /**
@@ -36,7 +55,13 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+         $categoria = new Category();
+         $categoria->id = $request->id;
+         $categoria->description = $request->description;
+         $categoria->save();
+
+         return response()->json(['success'=>'Categoria Cadastrada com Sucesso']);
+        dd($request);
     }
 
     /**
@@ -45,21 +70,12 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function show(Category $category)
+    public function show($id)
     {
-        
+        $data = Category::find($id);
+        return response()->json($data);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Category $category)
-    {
-        //
-    }
 
     /**
      * Update the specified resource in storage.
@@ -70,7 +86,12 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        //
+        $categoria = new Category();
+        $categoria->id = $request->id;
+        $categoria->description = $request->description;
+        $categoria->save();
+
+        return response()->json(['success'=>'Categoria Editada com Sucesso']);
     }
 
     /**
@@ -79,8 +100,10 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Category $category)
+    
+    public function destroy($id)
     {
-        //
+        $category = Category::find($id)->delete();
+        return response()->json(['success'=>'Categoria Excluída com Sucesso']);
     }
 }
