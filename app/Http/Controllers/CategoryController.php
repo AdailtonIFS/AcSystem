@@ -86,10 +86,9 @@ class CategoryController extends Controller
      */
     public function update(Request $request, Category $category)
     {
-        $categoria = new Category();
-        $categoria->id = $request->id;
-        $categoria->description = $request->description;
-        $categoria->save();
+        $category->id = $request->id;
+        $category->description = $request->description;
+        $category->save();
 
         return response()->json(['success'=>'Categoria Editada com Sucesso']);
     }

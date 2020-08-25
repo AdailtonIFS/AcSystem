@@ -9,7 +9,6 @@
                 processing: true,
                 serverSide: true,
                 info: false,
-                responsive: true,
 
                 ajax: {
                     "url": "/laboratorios/pegarDados"
@@ -50,7 +49,6 @@
                 "columnDefs": [{
                     "targets": '_all',
                     "className": "text-center",
-                    "orderable": false, //set not orderable
                 }, ],
 
 

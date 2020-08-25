@@ -8,8 +8,6 @@ var table = $('#tableUsers').DataTable({
     processing : true,
     serverSide: true,
     info:false,
-    responsive: true,
-
     ajax : {
         "url" : "/usuarios/pegarDados"
     },
@@ -50,7 +48,6 @@ var table = $('#tableUsers').DataTable({
           "columnDefs": [
               {
                   "targets": '_all',
-                  "orderable": false, //set not orderable
                   "className": "text-center",
                 },
           ],
@@ -64,12 +61,24 @@ var table = $('#tableUsers').DataTable({
             type: "GET",
             url: "categorias/pegarDados",
             success: function (response) {
-                $.each(response, function(key, data) {
-                    $('#category').append($("<option></option>").attr("value", data.id).text(data.description));
-                });
+                if($.isEmptyObject(response.data) == false){
+                    $.each(response.data, function(key, data) {
+                        $('#category').append($("<option></option>").attr("value", data.id).text(data.description));
+                    });
+                    $('#modalAddUser').modal('show')
+                }else{
+                    Swal.fire(
+                        'Por favor, cadastre as categorias!',
+                        '',
+                        'warning'
+                    )
+                }
             }
         });
-        $('#modalAddUser').modal('show')
+    })
+
+    $('#cancelNewUser').click(function (e) {
+        $ ('#category').empty().append('<option value="error">Escolha a categoria</option>');
     })
 
     $('#createNewUser').click(function (){
@@ -87,9 +96,71 @@ var table = $('#tableUsers').DataTable({
             url: "usuarios",
             data: data,
             success: function (response) {
-                alert(response.success)
+            table.draw();
+            $('#modalAddUser').modal('hide');
+            $('#createNewUser').removeAttr('disabled', 'disabled').text('Cadastrar');
+            $('#category').empty().append('<option value="error">Escolha a categoria</option>');
+            $('#newUser').trigger('reset');
+
+            Swal.fire(
+                'Cadastrado!',
+                response.success,
+                'success'
+            )
             },error: function(response){
                 alert('não foi')
             }
         });
     })
+
+
+
+    $('body').on('click', '.deleteUser', function() {
+
+        var id = $(this).data("id");
+        let _url = `usuarios/${id}`;
+    
+        $.ajax({
+            url: _url,
+            type: "GET",
+            success: function(response) {
+                if (response) {
+                    Swal.fire({
+                        position: 'top',
+                        title: 'Tem certeza que deseja excluir a categoria?',
+                        html: 'Matrícula:   ' + response[0].registration + '</br>' +
+                            'Nome:   ' + response[0].name,
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Deletar'
+    
+                    }).then((result) => {
+                        if (result.value) {
+    
+                            let _token = $('meta[name="csrf-token"]').attr('content');
+    
+                            $.ajax({
+                                type: "DELETE",
+                                url: `usuarios/${id}`,
+                                data: {
+                                    _token: _token
+                                },
+                                success: function(response) {
+                                    table.draw();
+    
+                                    Swal.fire({
+                                        position: 'top',
+                                        title: 'Excluido!',
+                                        text: response.success,
+                                        icon: 'success'
+                                    })
+                                },
+                            })
+                        }
+                    })
+                }
+            }
+        })
+    });

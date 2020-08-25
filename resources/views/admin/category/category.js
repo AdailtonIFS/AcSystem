@@ -4,11 +4,9 @@ $.ajaxSetup({
     }
 });
 var table = $('#tableCategory').DataTable({
-
     processing: true,
     serverSide: true,
     info: false,
-    responsive: true,
 
     ajax: {
         "url": "categorias/pegarDados"
@@ -47,14 +45,12 @@ var table = $('#tableCategory').DataTable({
     //set column definition initialisation properties.
     "columnDefs": [{
         "targets": '_all',
-        "orderable": false, //set not orderable
         "className": "text-center",
     }, ],
 
 });
 
 $('.addCategory').click(function(e) {
-
     e.preventDefault();
 
     $('#modalAddCategory').modal('show')
@@ -156,7 +152,6 @@ $('body').on('click', '.openEditCategoryModal', function(e) {
         url: _url,
         type: "GET",
         success: function(response) {
-
             if (response) {
 
                 $('#modalEditCategory').modal('show');
@@ -164,7 +159,6 @@ $('body').on('click', '.openEditCategoryModal', function(e) {
                 $('#descriptionEdit').val(response.description);
 
             }
-
         }
     })
 });
@@ -192,6 +186,7 @@ $('#ButtonEditCategory').click(function() {
             description: description,
             token: _token
         },
+        dataType: "JSON",
 
         success: function(response) {
             if (response) {
@@ -208,9 +203,13 @@ $('#ButtonEditCategory').click(function() {
             }
 
         },
+        error: function(requestObject, error, errorThrown) {
+            console.log(error);
+            console.log(errorThrown);
+            console.log(requestObject);
+
+        }
 
 
     })
-
-
 });

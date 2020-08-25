@@ -11,6 +11,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <link rel="stylesheet" href="{{ url(mix('/css/bootstrap.css')) }}">
     <link rel="stylesheet" href="{{ url(mix('/css/dataTables.bootstrap4.css')) }}">
+    <link rel="stylesheet" href="{{ url(mix('/css/responsive.bootstrap4.css')) }}">
     <link rel="stylesheet" href="{{ url(mix('/css/sweetalert2.css')) }}">
     <link rel="stylesheet"  href="{{ url(mix('/css/style.css')) }}" >
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
@@ -106,6 +107,8 @@
     <script src="{{ url(mix('/js/bootstrap.js')) }}"></script>
     <script src="{{ url(mix('/js/dataTables.js')) }}"></script>
     <script src="{{ url(mix('/js/dataTables.bootstrap4.js')) }}"></script>
+    <script src="{{ url(mix('/js/dataTables.responsive.js')) }}"></script>
+    <script src="{{ url(mix('/js/responsive.bootstrap4.js')) }}"></script>
     <script src="{{ url(mix('/js/sweetalert2.js')) }}"></script>
     @yield('scripts')
 

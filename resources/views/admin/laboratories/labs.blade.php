@@ -18,7 +18,7 @@
     
     <hr class="mb-3">
     
-    <table id="table_id" class="table table-light shadow-sm">
+    <table id="table_id" class="table table-light shadow-sm dt-responsive nowrap">
         <thead>
             <tr>
                 <th class="text-center" name='id'>Número</th>
@@ -30,11 +30,10 @@
         <tbody id="bodytable">
             
         </tbody>
-        
     </table>
         
     
-        <div class="modal fade" id="addLabModal" tabindex="-1" role="dialog" aria-hidden="true">
+        <div class="modal fade" data-backdrop="static" id="addLabModal" tabindex="-1" role="dialog" aria-hidden="true">
             <div class="modal-dialog" role="document">
                 <div class="modal-content">
                     <div class="modal-body">
@@ -72,7 +71,7 @@
           </div>
           
           
-          <div class="modal fade" id="editLabModal" tabindex="-1" role="dialog" aria-hidden="true">
+          <div class="modal fade" id="editLabModal"  data-backdrop="static" tabindex="-1" role="dialog" aria-hidden="true">
               <div class="modal-dialog" role="document">
               <div class="modal-content">
                   <div class="modal-body">

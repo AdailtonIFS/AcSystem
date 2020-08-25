@@ -10,6 +10,8 @@ use Illuminate\Support\Facades\DB;
 
 use Yajra\Datatables\Datatables;
 
+use Illuminate\Support\Str;
+
 class UserController extends Controller
 {
     /**
@@ -48,7 +50,7 @@ class UserController extends Controller
                 $user->status = 'Ativado';
             }
             $user->action = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$user->registration.'" data-original-title="Editar" class="edit btn btn-sucess btn-sm openEditLabModal">Editar</a>';
-            $user->action = $user->action.' | <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$user->registration.'" data-original-title="Deletar" class="btn text-white btn-danger  btn-sm deleteLab">
+            $user->action = $user->action.' | <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$user->registration.'" data-original-title="Deletar" class="btn text-white btn-danger  btn-sm deleteUser">
             Excluir
         </a>';
         }
@@ -70,7 +72,7 @@ class UserController extends Controller
         $users->registration = $request->registration;
         $users->name = $request->name;
         $users->category_id = $request->category;
-        $users->password = 0;
+        $users->password = Str::random(8);
         $users->status = $request->status;
         $users->save();
         return response()->json(['success' => 'Cadastrado com sucesso']);
@@ -82,9 +84,18 @@ class UserController extends Controller
      * @param  $id
      * @return \Illuminate\Http\Response
      */
-    public function show()
-    { 
-       
+    public function show($registration)
+
+    {   
+        $data = DB::table('users')
+        ->select([
+            'users.registration',
+            'users.name',
+        ])
+        ->where('registration','=',$registration)
+        ->get();
+
+        return response()->json($data);
     }
 
     /**
@@ -114,8 +125,9 @@ class UserController extends Controller
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy($registration)
     {
-        //
+        DB::table('users')->where('registration','=',$registration)->delete();
+        return response()->json(['success'=>'Usuário Excluído com Sucesso']);
     }
 }

@@ -19,12 +19,12 @@
 
 <hr class="mb-3">
 
-<table id="tableCategory" class="table table-light shadow-sm">
+<table id="tableCategory" class="table table-light shadow-sm dt-responsive nowrap" style="width: 100%">
     <thead>
         <tr>
-            <th class="text-center" name='id'>ID</th>
-            <th class="text-center" name='description'>Descrição</th>
-            <th class="text-center" name='action'>Ações</th>
+            <th class="text-center" scope="col" name='id'>ID</th>
+            <th class="text-center" scope="col" name='description'>Descrição</th>
+            <th class="text-center" scope="col" name='action'>Ações</th>
         </tr>
     </thead>
     <tbody id="bodytable">
@@ -33,7 +33,40 @@
     
 </table>
 
-<div class="modal" id="modalEditCategory" tabindex="-1" role="dialog">
+<div class="modal" data-backdrop="static" id="modalAddCategory" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title">Cadastrando categoria</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+            <form id="newCategory" autocomplete="off">
+
+                <div class="form-group">
+                    <label for="category">ID</label>
+                    <input type="text" name="id" id="id" class="form-control">
+                </div> 
+                <div class="form-group">
+                    <label for="category">Descrição</label>
+                    <input type="text" name="description" id="description" class="form-control">
+                </div> 
+
+
+            </form>
+        </div>
+        <div class="modal-footer d-flex justify-content-center">
+            <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
+            <button type="button" class="btn btn-sucess" id="createNewCategory">Cadastrar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+<div class="modal" data-backdrop="static" id="modalEditCategory" tabindex="-1" role="dialog">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
