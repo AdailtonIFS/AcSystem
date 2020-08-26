@@ -41,9 +41,9 @@ mix
 
 
 //my scripts
-.scripts('resources/js/laboratories.js', 'public/js/laboratories.js')
+.scripts('resources/views/admin/laboratories/js/laboratories.js', 'public/js/laboratories.js')
 .scripts('resources/views/admin/users/js/users.js', 'public/js/users.js')
-.scripts('resources/views/admin/category/category.js', 'public/js/category.js')
+.scripts('resources/views/admin/category/js/category.js', 'public/js/category.js')
 
 
 .version();

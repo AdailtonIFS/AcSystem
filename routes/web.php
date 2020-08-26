@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', 'HomeController@index' )->name('home');
 Route::get('/home', 'HomeController@index' )->name('home');
+Route::get('/laboratorios','ViewController@adminLabs')->name('view.admin');
 
-Route::resource('laboratorios', 'LabsController')->names('labs')->parameters(['laboratorios'=>'labs']);
 Route::resource('usuarios', 'UserController')->names('user')->parameters(['usuarios'=>'user']);
 Route::resource('categorias', 'CategoryController')->names('category')->parameters(['categorias'=>'category']);

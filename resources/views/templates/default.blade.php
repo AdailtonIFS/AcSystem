@@ -64,7 +64,7 @@
                                 Categorias
                             </a>
 
-                            <a href="{{route('labs.index')}}" class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
+                            <a href="{{route('view.admin')}}" class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
                                 <img src="{{asset('/img/computer.png')}}" alt="Laboratórios" style="width: 30px; height:30px;margin-right:9px;"> 
                                 Laboratórios
                             </a>
