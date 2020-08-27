@@ -9,7 +9,7 @@ var table = $('#tableUsers').DataTable({
     serverSide: true,
     info:false,
     ajax : {
-        "url" : "/usuarios/pegarDados"
+        "url" : "api/users"
     },
     "columns" : [ 
         {data: 'registration', name: 'registration'},
@@ -44,22 +44,19 @@ var table = $('#tableUsers').DataTable({
                 "sSortDescending": ": Ordenar colunas de forma descendente"
             }
         },
-          //set column definition initialisation properties.
-          "columnDefs": [
-              {
-                  "targets": '_all',
-                  "className": "text-center",
+        //set column definition initialisation properties.
+        "columnDefs": [
+            {
+                "targets": '_all',
+                "className": "text-center",
                 },
-          ],
-         
+        ],
 });
-
     $('.addUser').click(function (e) {
-
         e.preventDefault();
         $.ajax({
             type: "GET",
-            url: "categorias/pegarDados",
+            url: "api/categories",
             success: function (response) {
                 if($.isEmptyObject(response.data) == false){
                     $.each(response.data, function(key, data) {
@@ -83,17 +80,12 @@ var table = $('#tableUsers').DataTable({
 
     $('#createNewUser').click(function (){
         $( this ).attr('disabled','disabled').text('Cadastrando...');
-
         let _token   = $('meta[name="csrf-token"]').attr('content');
-
         var data =$('#newUser').serialize()+'&_token='+_token;
-
         console.log(data);
-
         $.ajax({
-
             type: "POST",
-            url: "usuarios",
+            url: "api/users",
             data: data,
             success: function (response) {
             table.draw();
@@ -101,7 +93,6 @@ var table = $('#tableUsers').DataTable({
             $('#createNewUser').removeAttr('disabled', 'disabled').text('Cadastrar');
             $('#category').empty().append('<option value="error">Escolha a categoria</option>');
             $('#newUser').trigger('reset');
-
             Swal.fire(
                 'Cadastrado!',
                 response.success,
@@ -113,13 +104,9 @@ var table = $('#tableUsers').DataTable({
         });
     })
 
-
-
     $('body').on('click', '.deleteUser', function() {
-
-        var id = $(this).data("id");
-        let _url = `usuarios/${id}`;
-    
+        var registration = $(this).data("id");
+        let _url = `api/users/${registration}`;
         $.ajax({
             url: _url,
             type: "GET",
@@ -127,29 +114,24 @@ var table = $('#tableUsers').DataTable({
                 if (response) {
                     Swal.fire({
                         position: 'top',
-                        title: 'Tem certeza que deseja excluir a categoria?',
-                        html: 'Matrícula:   ' + response[0].registration + '</br>' +
-                            'Nome:   ' + response[0].name,
+                        title: 'Essa ação é irreversível',
+                        text: 'Tem certeza que deseja excluir o '+response[0].name+' de matricula '+response[0].registration,
                         icon: 'warning',
                         showCancelButton: true,
                         confirmButtonColor: '#3085d6',
                         cancelButtonColor: '#d33',
                         confirmButtonText: 'Deletar'
-    
                     }).then((result) => {
                         if (result.value) {
-    
                             let _token = $('meta[name="csrf-token"]').attr('content');
-    
                             $.ajax({
                                 type: "DELETE",
-                                url: `usuarios/${id}`,
+                                url: `api/users/${registration}`,
                                 data: {
                                     _token: _token
                                 },
                                 success: function(response) {
                                     table.draw();
-    
                                     Swal.fire({
                                         position: 'top',
                                         title: 'Excluido!',
@@ -161,6 +143,10 @@ var table = $('#tableUsers').DataTable({
                         }
                     })
                 }
+            },error: function(requestObject, error, errorThrown) {
+                console.log(error);
+                console.log(errorThrown);
+                console.log(requestObject);
             }
         })
     });

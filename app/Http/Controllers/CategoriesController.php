@@ -3,12 +3,10 @@
 namespace App\Http\Controllers;
 
 use App\Category;
-
+use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 
-use Illuminate\Http\Request;
-
-class CategoryController extends Controller
+class CategoriesController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -17,18 +15,7 @@ class CategoryController extends Controller
      */
     public function index()
     {
-        return view('admin.category.category');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
         $category = Category::all();
-
         return Datatables::of($category)
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
@@ -36,7 +23,6 @@ class CategoryController extends Controller
                         '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Editar" class="edit btn btn-sucess btn-sm openEditCategoryModal">
                             Editar
                         </a>';
-
                         $btn = $btn.
                         ' | <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Deletar" class="btn text-white btn-danger  btn-sm deleteCategory">
                             Excluir
@@ -46,7 +32,6 @@ class CategoryController extends Controller
                 ->rawColumns(['action'])
                 ->make(true);
     }
-
     /**
      * Store a newly created resource in storage.
      *
@@ -55,15 +40,12 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-         $categoria = new Category();
-         $categoria->id = $request->id;
-         $categoria->description = $request->description;
-         $categoria->save();
-
-         return response()->json(['success'=>'Categoria Cadastrada com Sucesso']);
-        dd($request);
+        $category = new Category();
+        $category->id = $request->id;
+        $category->description = $request->description;
+        $category->save();
+        return response()->json(['success'=>'Categoria Cadastrada com Sucesso']);
     }
-
     /**
      * Display the specified resource.
      *
@@ -72,11 +54,15 @@ class CategoryController extends Controller
      */
     public function show($id)
     {
-        $data = Category::find($id);
-        return response()->json($data);
+        if (Category::where('id', $id)->exists()) {
+            $category = Category::where('id',$id)->get();
+            return response()->json($category,200);
+        }else{
+            return response()->json([
+                "message" => "Categoria não encontrada"
+            ], 404);
+        }
     }
-
-
     /**
      * Update the specified resource in storage.
      *
@@ -84,25 +70,40 @@ class CategoryController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Category $category)
+    public function update(Request $request)
     {
-        $category->id = $request->id;
-        $category->description = $request->description;
-        $category->save();
-
-        return response()->json(['success'=>'Categoria Editada com Sucesso']);
+        if (Category::where('id', $request->id)->exists()) {
+            $category = Category::find($request->id);
+            $category->id = $request->id;
+            $category->description = $request->description;
+            $category->save();
+            return response()->json([
+                "message" => "Categoria editada com sucesso"
+            ], 200);
+            } else {
+            return response()->json([
+                "message" => "Categoria não encontrada"
+            ], 404);
+            }
     }
-
     /**
      * Remove the specified resource from storage.
      *
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    
     public function destroy($id)
     {
-        $category = Category::find($id)->delete();
-        return response()->json(['success'=>'Categoria Excluída com Sucesso']);
+        if(Category::where('id', $id)->exists()) {
+            Category::destroy($id);
+            return response()->json([
+            "message" => "Categoria excluída com sucesso"
+            ], 202);
+        } else {
+            return response()->json([
+            "message" => "Categoria não encontrada"
+            ], 404);
+        }
+
     }
 }

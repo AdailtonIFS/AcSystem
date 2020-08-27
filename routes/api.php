@@ -15,3 +15,5 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::apiResource('labs','LabsController');
+Route::apiResource('users','UsersController');
+Route::apiResource('categories','CategoriesController');

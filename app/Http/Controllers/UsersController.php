@@ -3,34 +3,19 @@
 namespace App\Http\Controllers;
 
 use App\User;
-
 use Illuminate\Http\Request;
-
-use Illuminate\Support\Facades\DB;
-
 use Yajra\Datatables\Datatables;
-
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
 
-class UserController extends Controller
+class UsersController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $user)
-    {
-       
-        return view('admin.users.users');
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
+    public function index()
     {
         $users = DB::table('users')
         ->join('categories', 'users.category_id', '=', 'categories.id')
@@ -75,37 +60,25 @@ class UserController extends Controller
         $users->password = Str::random(8);
         $users->status = $request->status;
         $users->save();
-        return response()->json(['success' => 'Cadastrado com sucesso']);
+        return response()->json(['success' => 'Usuário Cadastrado com sucesso']);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($registration)
-
-    {   
-        $data = DB::table('users')
-        ->select([
-            'users.registration',
-            'users.name',
-        ])
-        ->where('registration','=',$registration)
-        ->get();
-
-        return response()->json($data);
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
      * @param  \App\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function show($registration)
     {
+        if (User::where('registration', $registration)->exists()) {
+            $category = User::where('registration',$registration)->get();
+            return response()->json($category,200);
+        }else{
+            return response()->json([
+                "message" => "Categoria não encontrada"
+            ], 404);
+        }
     }
 
     /**
@@ -117,6 +90,21 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        if (User::where('registration', $request->registration)->exists()) {
+            $user = User::find($request->registration);
+            $user->registration = $request->registration;
+            $user->name = $request->name;
+            $user->category_id = $request->category;
+            $user->status = $request->status;
+            $user->save();
+            return response()->json([
+                "message" => "Usuário editado com sucesso"
+            ], 200);
+            } else {
+            return response()->json([
+                "message" => "Usuário não encontrado"
+            ], 404);
+            }
     }
 
     /**
@@ -127,7 +115,15 @@ class UserController extends Controller
      */
     public function destroy($registration)
     {
-        DB::table('users')->where('registration','=',$registration)->delete();
-        return response()->json(['success'=>'Usuário Excluído com Sucesso']);
+        if(User::where('registration', $registration)->exists()) {
+            User::where('registration',$registration)->delete();
+            return response()->json([
+            "message" => "Usuário excluído com sucesso"
+            ], 202);
+        } else {
+            return response()->json([
+            "message" => "Usuário não encontrado"
+            ], 404);
+        }
     }
 }

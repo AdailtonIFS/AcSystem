@@ -54,17 +54,17 @@
                                 Home
                             </a>
 
-                            <a href="{{route('user.index')}}" class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
+                            <a href="{{route('view.users')}}" class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
                                 <img src="{{asset('/img/teacher.png')}}" alt="Usuários" style="width: 30px; height:30px;margin-right:9px;">
                                 Usuários
                             </a>
 
-                            <a href="{{route('category.index')}}" class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none ">
+                            <a href="{{route('view.category')}}" class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none ">
                                 <img src="{{asset('/img/home.png')}}" alt="Home" style="width: 30px; height:30px;margin-right:9px;">
                                 Categorias
                             </a>
 
-                            <a href="{{route('view.admin')}}" class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
+                            <a href="{{route('view.labs')}}" class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
                                 <img src="{{asset('/img/computer.png')}}" alt="Laboratórios" style="width: 30px; height:30px;margin-right:9px;"> 
                                 Laboratórios
                             </a>

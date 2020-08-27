@@ -19,7 +19,7 @@
 
     <hr class="mb-3">
 
-    <table id="tableUsers" class="table table-light shadow-sm dt-responsive nowrap">
+    <table id="tableUsers" class="table table-light shadow-sm dt-responsive nowrap" style="width: 100%">
         <thead>
             <tr>
                 <th class="text-center" name='registration'>Matrícula</th>
