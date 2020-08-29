@@ -14,6 +14,7 @@ var table = $('#tableUsers').DataTable({
     "columns" : [ 
         {data: 'registration', name: 'registration'},
         {data: 'name', name: 'name'},
+        {data: 'email', name: 'email'},
         {data: 'status', name: 'status'},
         {data: 'description', name: 'description'},
         {data: 'action', name: 'action', orderable: false, searchable: false},
@@ -74,7 +75,7 @@ var table = $('#tableUsers').DataTable({
         });
     })
 
-    $('#cancelNewUser').click(function (e) {
+    $('#cancelNewUser','#cancelNewUser1').click(function (e) {
         $ ('#category').empty().append('<option value="error">Escolha a categoria</option>');
     })
 
@@ -98,8 +99,10 @@ var table = $('#tableUsers').DataTable({
                 response.success,
                 'success'
             )
-            },error: function(response){
-                alert('não foi')
+            },error: function(requestObject, error, errorThrown) {
+                console.log(error);
+                console.log(errorThrown);
+                console.log(requestObject);
             }
         });
     })

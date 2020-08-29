@@ -98,8 +98,10 @@ var table = $('#tableUsers').DataTable({
                 response.success,
                 'success'
             )
-            },error: function(response){
-                alert('não foi')
+            },error: function(requestObject, error, errorThrown) {
+                console.log(error);
+                console.log(errorThrown);
+                console.log(requestObject);
             }
         });
     })

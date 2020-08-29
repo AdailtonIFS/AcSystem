@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\userRegistered;
 use App\User;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -23,6 +24,7 @@ class UsersController extends Controller
             'users.registration',
             'users.name',
             'users.status',
+            'users.email',
             'categories.description'
             ])
         ->get();
@@ -34,7 +36,7 @@ class UsersController extends Controller
             }else{
                 $user->status = 'Ativado';
             }
-            $user->action = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$user->registration.'" data-original-title="Editar" class="edit btn btn-sucess btn-sm openEditLabModal">Editar</a>';
+            $user->action = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$user->registration.'" data-original-title="Editar" class="edit btn btn-success btn-sm openEditLabModal">Editar</a>';
             $user->action = $user->action.' | <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$user->registration.'" data-original-title="Deletar" class="btn text-white btn-danger  btn-sm deleteUser">
             Excluir
         </a>';
@@ -57,12 +59,12 @@ class UsersController extends Controller
         $users->registration = $request->registration;
         $users->name = $request->name;
         $users->category_id = $request->category;
-        $users->password = Str::random(8);
+        $users->email = $request->email;
+        $users->password =  Str::random(8);
         $users->status = $request->status;
         $users->save();
         return response()->json(['success' => 'Usuário Cadastrado com sucesso']);
     }
-
     /**
      * Display the specified resource.
      *

@@ -15,7 +15,6 @@ class LabsRequest extends FormRequest
     {
         return true;
     }
-
     /**
      * Get the validation rules that apply to the request.
      *
@@ -34,7 +33,6 @@ class LabsRequest extends FormRequest
             'description'=>'required',
         ];
     }
-
     public function messages()
     {
         return [

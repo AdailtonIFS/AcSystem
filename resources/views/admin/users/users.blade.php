@@ -24,6 +24,7 @@
             <tr>
                 <th class="text-center" name='registration'>Matrícula</th>
                 <th class="text-center" name='name'>Nome</th>
+                <th class="text-center" name='email'>Email</th>
                 <th class="text-center" name='status'>Status</th>
                 <th class="text-center" name='description'>Descrição</th>
                 <th class="text-center" name='action'>Ações</th>
@@ -40,7 +41,7 @@
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title">Cadastrando Usuário</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <button type="button" class="close" data-dismiss="modal" id="#cancelNewUser1" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -56,6 +57,10 @@
                     <div class="form-group">
                         <label for="category">Nome</label>
                         <input type="text" name="name" id="name" class="form-control">
+                    </div> 
+                    <div class="form-group">
+                        <label for="category">Email</label>
+                        <input type="email" name="email" id="email" class="form-control">
                     </div> 
 
                     <div class="form-group">
@@ -77,7 +82,7 @@
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button type="button" class="btn btn-danger" id="cancelNewUser" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-sucess" id="createNewUser">Cadastrar</button>
+                <button type="button" class="btn btn-success" id="createNewUser">Cadastrar</button>
             </div>
           </div>
         </div>
@@ -125,7 +130,7 @@
             </div>
             <div class="modal-footer d-flex justify-content-center">
                 <button type="button" class="btn btn-danger" id="cancelNewUser" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-sucess" id="createNewUser">Cadastrar</button>
+                <button type="button" class="btn btn-success" id="createNewUser">Cadastrar</button>
             </div>
           </div>
         </div>
