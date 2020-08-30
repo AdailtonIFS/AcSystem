@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\userRegistered;
+use App\Jobs\userRegisteredJob;
 use App\User;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
@@ -55,14 +56,15 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $users = new User();
-        $users->registration = $request->registration;
-        $users->name = $request->name;
-        $users->category_id = $request->category;
-        $users->email = $request->email;
-        $users->password =  Str::random(8);
-        $users->status = $request->status;
-        $users->save();
+        $user = new User();
+        $user->registration = $request->registration;
+        $user->name = $request->name;
+        $user->category_id = $request->category;
+        $user->email = $request->email;
+        $user->password =  Str::random(8);
+        $user->status = $request->status;
+        $user->save();
+        userRegisteredJob::dispatch($user)->delay(now()->addSeconds(15));
         return response()->json(['success' => 'Usuário Cadastrado com sucesso']);
     }
     /**

@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\userRegisteredMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,7 @@ Route::get('/home', 'HomeController@index' )->name('home');
 Route::get('/laboratorios','ViewController@adminLabs')->name('view.labs');
 Route::get('/categorias','ViewController@adminCategories')->name('view.category');
 Route::get('/usuarios','ViewController@adminUsers')->name('view.users');
+Route::get('/email', function(){
+
+        return new userRegisteredMail();
+});
