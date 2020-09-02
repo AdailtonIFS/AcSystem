@@ -72,7 +72,7 @@
                                 <img src="{{asset('/img/settings.png')}}" alt="Ocorrências" style="width: 30px; height:30px;margin-right:9px;">
                                 Ocorrências
                             </a>
-                            <a href="#" class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
+                            <a href="{{route('logout')}}" class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
                                 <img src="{{asset('/img/logout.png')}}" alt="Logout" style="width: 30px; height:30px;margin-right:9px;">
                                 Logout
                             </a>

@@ -15,4 +15,8 @@ class ViewController extends Controller
     {
         return view('admin.users.users');
     }
+    public function showLogin()
+    {
+        return view('formLogin');
+    }
 }

@@ -55,9 +55,6 @@ class LabsController extends Controller
         $labs->description = $request->description;
         $labs->status = 0;
         $labs->save();
-        if ($labs) {
-            // return
-        }
 
         return response()->json([
             'success'=>'Laboratório Cadastrado com Sucesso

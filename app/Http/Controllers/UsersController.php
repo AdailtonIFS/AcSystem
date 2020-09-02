@@ -8,6 +8,7 @@ use App\User;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UsersController extends Controller
@@ -61,10 +62,9 @@ class UsersController extends Controller
         $user->name = $request->name;
         $user->category_id = $request->category;
         $user->email = $request->email;
-        $user->password =  Str::random(8);
+        $user->password = Hash::make($request->registration);
         $user->status = $request->status;
         $user->save();
-        userRegisteredJob::dispatch($user)->delay(now()->addSeconds(15));
         return response()->json(['success' => 'Usuário Cadastrado com sucesso']);
     }
     /**
