@@ -20,15 +20,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')
-        ->join('categories', 'users.category_id', '=', 'categories.id')
-        ->select([
-            'users.registration',
-            'users.name',
-            'users.status',
-            'users.email',
-            'categories.description'
-            ])
+        $users = User::join('categories', 'users.category_id', '=', 'categories.id')
+        ->select('users.registration','users.name','users.status','users.email','categories.description')
         ->get();
 
 

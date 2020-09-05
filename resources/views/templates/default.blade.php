@@ -34,11 +34,11 @@
                         <div class="align-items-center ">
                     
                             <div class="d-flex justify-content-center">
-                                <h5 class="text-white font-weight-bold" style="font-family:'Roboto', sans-serif;">Adailton Moura</h5>
+                                <h5 class="text-white font-weight-bold" style="font-family:'Roboto', sans-serif;">{{-- {{auth()->user()->name}} --}}</h5>
                             </div>
 
                             <div class="d-flex justify-content-center">
-                                <h5 class="text-white font-weight-bold" style="font-family:'Roboto', sans-serif;">2018300655</h5>
+                                <h5 class="text-white font-weight-bold" style="font-family:'Roboto', sans-serif;">{{-- {{auth()->user()->registration}} --}}</h5>
                             </div>
 
                         </div>
