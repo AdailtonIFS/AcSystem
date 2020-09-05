@@ -24,7 +24,7 @@ class LoginController extends Controller
                 return response()->json(['message' => 'Credenciais inválidas']);
             }
         }else{
-            return response()->json(['message' => 'Erro no sistema']);
+            return response()->json(['message' => 'Usuário não-autorizado']);
         }
     }
     public function Logout(){
