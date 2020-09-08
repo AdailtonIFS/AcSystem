@@ -46,10 +46,10 @@ var table = $('#tableCategory').DataTable({
     }, ],
 });
 $('.addCategory').click(function(e) {
-    e.preventDefault();
     $('#modalAddCategory').modal('show')
 })
-$('#createNewCategory').click(function() {
+$('#createNewCategory').click(function(e) {
+    e.preventDefault();
     $(this).attr('disabled', 'disabled').text('Cadastrando...');
     let _token = $('meta[name="csrf-token"]').attr('content');
     var data = $('#newCategory').serialize() + '&_token=' + _token;
@@ -70,7 +70,15 @@ $('#createNewCategory').click(function() {
             )
         },
         error: function(response) {
-            alert('não foi')
+            $('#createNewCategory').removeAttr('disabled', 'disabled').text('Cadastrar');
+            var errors = data.responseJSON;
+            if ($.isEmptyObject(errors) == false) {
+                $.each(errors.errors, function(key, value) {
+                    var ErrorID = '#' + key + 'Error';
+                    $(ErrorID).removeClass('d-none');
+                    $(ErrorID).text(value);
+                });
+            }
         }
     });
 })
@@ -85,7 +93,7 @@ $('body').on('click', '.deleteCategory', function() {
                 Swal.fire({
                     position: 'top',
                     title: 'Essa ação é irreversível',
-                    text: 'Tem certeza que deseja excluir a categoria de '+response[0].description+'?',
+                    text: 'Tem certeza que deseja excluir a categoria de ' + response[0].description + '?',
                     icon: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#3085d6',
