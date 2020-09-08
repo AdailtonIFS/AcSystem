@@ -63,7 +63,7 @@
                     </div>
                     <div class="modal-footer d-flex justify-content-center">
                         <button type="button" class="btn btn-danger" id="cancelNewLab1" data-dismiss="modal">Cancelar</button>
-                        <button type="button" class="btn btn-sucess" id="createNewLab">Cadastrar</button>
+                        <button type="button" class="btn btn-success" id="createNewLab">Cadastrar</button>
                     </div>
                 </div>
             </div>
@@ -104,7 +104,7 @@
                         </form>
                         <div class="modal-footer d-flex justify-content-center">
                             <button type="button" class="btn btn-danger" id="cancelNewLab1" data-dismiss="modal">Cancelar</button>
-                            <button class="btn btn-sucess editLab">Confirmar</button>
+                            <button class="btn btn-success editLab">Confirmar</button>
                         </div>
                     </div>
                 </div>

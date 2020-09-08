@@ -20,7 +20,7 @@ class CategoriesController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                         $btn = 
-                        '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Editar" class="edit btn btn-sucess btn-sm openEditCategoryModal">
+                        '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Editar" class="edit btn btn-success btn-sm openEditCategoryModal">
                             Editar
                         </a>';
                         $btn = $btn.

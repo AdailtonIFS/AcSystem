@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\userRegistered;
+use App\Jobs\userRegisteredJob;
 use App\User;
 use Illuminate\Http\Request;
 use Yajra\Datatables\Datatables;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 
 class UsersController extends Controller
@@ -17,14 +20,8 @@ class UsersController extends Controller
      */
     public function index()
     {
-        $users = DB::table('users')
-        ->join('categories', 'users.category_id', '=', 'categories.id')
-        ->select([
-            'users.registration',
-            'users.name',
-            'users.status',
-            'categories.description'
-            ])
+        $users = User::join('categories', 'users.category_id', '=', 'categories.id')
+        ->select('users.registration','users.name','users.status','users.email','categories.description')
         ->get();
 
 
@@ -34,7 +31,7 @@ class UsersController extends Controller
             }else{
                 $user->status = 'Ativado';
             }
-            $user->action = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$user->registration.'" data-original-title="Editar" class="edit btn btn-sucess btn-sm openEditLabModal">Editar</a>';
+            $user->action = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$user->registration.'" data-original-title="Editar" class="edit btn btn-success btn-sm openEditLabModal">Editar</a>';
             $user->action = $user->action.' | <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$user->registration.'" data-original-title="Deletar" class="btn text-white btn-danger  btn-sm deleteUser">
             Excluir
         </a>';
@@ -53,16 +50,16 @@ class UsersController extends Controller
      */
     public function store(Request $request)
     {
-        $users = new User();
-        $users->registration = $request->registration;
-        $users->name = $request->name;
-        $users->category_id = $request->category;
-        $users->password = Str::random(8);
-        $users->status = $request->status;
-        $users->save();
+        $user = new User();
+        $user->registration = $request->registration;
+        $user->name = $request->name;
+        $user->category_id = $request->category;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->registration);
+        $user->status = $request->status;
+        $user->save();
         return response()->json(['success' => 'Usuário Cadastrado com sucesso']);
     }
-
     /**
      * Display the specified resource.
      *

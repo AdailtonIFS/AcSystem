@@ -28,7 +28,7 @@ class LabsController extends Controller
                 ->addIndexColumn()
                 ->addColumn('action', function($row){
                         $btn = 
-                        '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Editar" class="edit btn btn-sucess btn-sm openEditLabModal">
+                        '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Editar" class="edit btn btn-success btn-sm openEditLabModal">
                             Editar
                         </a>';
 

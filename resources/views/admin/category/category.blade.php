@@ -59,7 +59,7 @@
         </div>
         <div class="modal-footer d-flex justify-content-center">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-sucess" id="createNewCategory">Cadastrar</button>
+            <button type="button" class="btn btn-success" id="createNewCategory">Cadastrar</button>
         </div>
       </div>
     </div>
@@ -92,7 +92,7 @@
         </div>
         <div class="modal-footer d-flex justify-content-center">
             <button type="button" class="btn btn-danger" data-dismiss="modal">Cancelar</button>
-            <button type="button" class="btn btn-sucess" id="ButtonEditCategory">Editar</button>
+            <button type="button" class="btn btn-success" id="ButtonEditCategory">Editar</button>
         </div>
       </div>
     </div>

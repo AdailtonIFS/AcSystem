@@ -5,5 +5,5 @@
 @endsection
 
 @section('content')
-    Estamos na Home
+    estamos na home
 @endsection

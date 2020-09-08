@@ -1,8 +1,8 @@
 *{
-    box-sizing:border-box
+    box-sizing:border-box;
 }
 #menu{
-    min-height:100vh;
+    min-height:calc( 100vh - 2.7rem );
 }
 #menu #links{
     min-height: calc( 100vh - 100px );
@@ -20,7 +20,4 @@
 .page-link {
     color: #684FFA;
 
-}
-th, td{
-    vertical-align: middle !important; /* alinha verticalmente */
 }
