@@ -18,7 +18,13 @@ $('#systemLogin').click(function (e) {
         data: data,
         dataType: 'json',
         success: function (response) {
-            window.location.href = "/home";
+            console.log(response)
+            if(response.message === 'sucess'){
+                window.location.href = "/home";
+            }
+            else{
+                $('#Error').removeClass('d-none').text(response.message)
+            }
         }, error: function (request, status, data){
             console.log(request,status,data);
         }   

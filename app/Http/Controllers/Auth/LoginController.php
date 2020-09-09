@@ -15,18 +15,14 @@ class LoginController extends Controller
             'registration'=> $request->registration,
             'password'=> $request->password,
         ];
-        $userid = User::where('registration', $request->registration)->first();
-
-        if($userid->category_id == 0 || $userid->category_id == 1){
-            if(Auth::attempt($credentials)){
-                return response()->json(['message'=>'sucess']);
-            }else{
-                return response()->json(['message' => 'Credenciais inválidas']);
-            }
-        }else{
-            return response()->json(['message' => 'Usuário não-autorizado']);
+        
+                if(Auth::attempt($credentials)){
+                    return response()->json(['message'=>'sucess']);
+                }else{
+                    return response()->json(['message' => 'Credenciais inválidas']);
+                }            
         }
-    }
+
     public function Logout(){
         Auth::logout();
         return redirect()->route('login');

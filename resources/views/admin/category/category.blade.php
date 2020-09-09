@@ -44,7 +44,7 @@
         </div>
         <div class="modal-body">
             <form id="newCategory" autocomplete="off">
-
+              
                 <div class="form-group">
                     <label for="category">ID</label>
                     <input type="text" name="id" id="id" class="form-control">
@@ -53,7 +53,6 @@
                     <label for="category">Descrição</label>
                     <input type="text" name="description" id="description" class="form-control">
                 </div> 
-
 
             </form>
         </div>

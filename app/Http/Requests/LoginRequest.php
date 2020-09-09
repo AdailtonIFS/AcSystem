@@ -24,7 +24,22 @@ class LoginRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            'registration' => [
+                'required',
+                'numeric'
+            ],
+            'password' => 'required'
+            
         ];
+    }
+    
+    public function messages(){
+
+        return[
+            'registration.required' => 'Informe a matrícula.',
+            'registration.numeric' => 'As matículas são representadas por números.',
+            'password.required' => 'Informe a senha.'
+        ];
+
     }
 }
