@@ -28,10 +28,12 @@ class UsersRequest extends FormRequest
             'registration'=>[
                 'required',
                 'numeric',
-                'unique:users,id,'. $registration
+                'unique:users,registration,'. $registration
             ],
             
             'name'=>'required',
+            'email' => 'required',
+            'category'=>'required',
             'category'=>'required',
             'status'=>'required',
         ];
@@ -43,6 +45,7 @@ class UsersRequest extends FormRequest
             'registration.numeric' => 'Os matrículas são representados por números.',
             'registration.unique' => 'Esse usuário já está cadastrado',
             'name.required' => 'Informe o nome do usuário.',
+            'email.required' => 'Informe o email do usuário',
             'category.required' => 'Informe a categoria do usuário.',
             'status.required' => 'Informe o status do usuário.'
         ];

@@ -48,10 +48,12 @@
                 <div class="form-group">
                     <label for="category">ID</label>
                     <input type="text" name="id" id="id" class="form-control">
+                    <div id="idError" class="alert alert-danger d-none"></div>
                 </div> 
                 <div class="form-group">
                     <label for="category">Descrição</label>
                     <input type="text" name="description" id="description" class="form-control">
+                    <div id="descriptionError" class="alert alert-danger d-none"></div>
                 </div> 
 
             </form>
@@ -84,6 +86,7 @@
                 <div class="form-group">
                     <label for="category">Descrição</label>
                     <input type="text" name="descriptionEdit" id="descriptionEdit" class="form-control">
+                    <div id="descriptionEditError" class="alert alert-danger d-none"></div>
                 </div> 
 
 

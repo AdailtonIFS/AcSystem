@@ -46,10 +46,21 @@ var table = $('#tableCategory').DataTable({
     }, ],
 });
 $('.addCategory').click(function(e) {
-    $('#modalAddCategory').modal('show')
+    $('#modalAddCategory').modal('show');
+    if (!$('#idError').hasClass('d-none') || !$('#descriptionError').hasClass('d-none')) {     
+        $('#idError').addClass('d-none');
+        $('#descriptionError').addClass('d-none');
+    }
+    $('#newCategory').trigger('reset');
+    $('#createNewCategory').removeAttr('disabled', 'disabled').text('Cadastrar');
+
 })
 $('#createNewCategory').click(function(e) {
     e.preventDefault();
+    if (!$('#idError').hasClass('d-none') || !$('#descriptionError').hasClass('d-none')) {     
+        $('#idError').addClass('d-none');
+        $('#descriptionError').addClass('d-none');
+    }
     $(this).attr('disabled', 'disabled').text('Cadastrando...');
     let _token = $('meta[name="csrf-token"]').attr('content');
     var data = $('#newCategory').serialize() + '&_token=' + _token;
@@ -69,9 +80,10 @@ $('#createNewCategory').click(function(e) {
                 'success'
             )
         },
-        error: function(response) {
+        error: function(data) {
             $('#createNewCategory').removeAttr('disabled', 'disabled').text('Cadastrar');
             var errors = data.responseJSON;
+            console.log(errors)
             if ($.isEmptyObject(errors) == false) {
                 $.each(errors.errors, function(key, value) {
                     var ErrorID = '#' + key + 'Error';
@@ -130,7 +142,10 @@ $('body').on('click', '.deleteCategory', function() {
 $('body').on('click', '.openEditCategoryModal', function(e) {
 
     e.preventDefault();
-
+    if (!$('#descriptionEditError').hasClass('d-none')) {     
+        $('#descriptionError').addClass('d-none');
+    }
+    $('#createNewCategory').removeAttr('disabled', 'disabled').text('Cadastrar');
     var id = $(this).data("id");
     let _url = `api/categories/${id}`;
 
@@ -178,10 +193,17 @@ $('#ButtonEditCategory').click(function() {
                 )
             }
         },
-        error: function(requestObject, error, errorThrown) {
-            console.log(error);
-            console.log(errorThrown);
-            console.log(requestObject);
+        error: function(data) {
+            $('#ButtonEditCategory').removeAttr('disabled', 'disabled').text('Cadastrar');
+            var errors = data.responseJSON;
+            console.log(errors)
+            if ($.isEmptyObject(errors) == false) {
+                $.each(errors.errors, function(key, value) {
+                    var ErrorID = '#' + key + 'EditError';
+                    $(ErrorID).removeClass('d-none');
+                    $(ErrorID).text(value);
+                });
+            }
         }
     })
 });

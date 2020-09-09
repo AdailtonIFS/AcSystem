@@ -59,6 +59,9 @@ var table = $('#tableUsers').DataTable({
             type: "GET",
             url: "api/categories",
             success: function (response) {
+                
+                $ ('#category').empty().append('<option value="">Escolha a categoria</option>');
+
                 if($.isEmptyObject(response.data) == false){
                     $.each(response.data, function(key, data) {
                         $('#category').append($("<option></option>").attr("value", data.id).text(data.description));
@@ -75,10 +78,6 @@ var table = $('#tableUsers').DataTable({
         });
     })
 
-    $('#cancelNewUser','#cancelNewUser1').click(function (e) {
-        $ ('#category').empty().append('<option value="error">Escolha a categoria</option>');
-    })
-
     $('#createNewUser').click(function (){
         $( this ).attr('disabled','disabled').text('Cadastrando...');
         let _token   = $('meta[name="csrf-token"]').attr('content');
@@ -92,17 +91,26 @@ var table = $('#tableUsers').DataTable({
             table.draw();
             $('#modalAddUser').modal('hide');
             $('#createNewUser').removeAttr('disabled', 'disabled').text('Cadastrar');
-            $('#category').empty().append('<option value="error">Escolha a categoria</option>');
+            $('#category').empty().append('<option value="">Escolha a categoria</option>');
             $('#newUser').trigger('reset');
             Swal.fire(
                 'Cadastrado!',
                 response.success,
                 'success'
-            )
-            },error: function(requestObject, error, errorThrown) {
-                console.log(error);
-                console.log(errorThrown);
-                console.log(requestObject);
+                )
+            },error: function(data) {
+
+                $('#createNewUser').removeAttr('disabled', 'disabled').text('Cadastrar');
+                console.log(data);
+                var errors = data.responseJSON;
+                        if ($.isEmptyObject(errors) == false) {
+                            $.each(errors.errors, function(key, value) {
+                                var ErrorID = '#' + key + 'Error';
+                                $(ErrorID).removeClass('d-none');
+                                $(ErrorID).text(value);
+                            });
+                        }
+            
             }
         });
     })
@@ -146,6 +154,24 @@ var table = $('#tableUsers').DataTable({
                         }
                     })
                 }
+            },error: function(requestObject, error, errorThrown) {
+                console.log(error);
+                console.log(errorThrown);
+                console.log(requestObject);
+            }
+        })
+    });
+
+    $('body').on('click', '.openEditLabModal', function() {
+        $('.modalEditUser').modal('show');
+        var registration = $(this).data("id");
+        let _url = `api/users/${registration}`;
+        $.ajax({
+            url: _url,
+            type: "GET",
+            success: function(response) {
+                console.log(response)
+
             },error: function(requestObject, error, errorThrown) {
                 console.log(error);
                 console.log(errorThrown);

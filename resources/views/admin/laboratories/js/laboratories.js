@@ -47,11 +47,11 @@
                     "className": "text-center",
                 },],
             });
-            $('body').on('click', '.deleteLab', function() {
 
+            // Delete Lab Request
+            $('body').on('click', '.deleteLab', function() {
                 var id = $(this).data("id");
                 let _url = `api/labs/${id}`;
-
                 $.ajax({
                     url: _url,
                     type: "GET",
@@ -68,9 +68,7 @@
                                 confirmButtonText: 'Deletar'
                             }).then((result) => {
                                 if (result.value) {
-
                                     let _token = $('meta[name="csrf-token"]').attr('content');
-
                                     $.ajax({
                                         type: "DELETE",
                                         url: `api/labs/${id}`,
@@ -79,7 +77,6 @@
                                         },
                                         success: function(response) {
                                             table.draw();
-
                                             Swal.fire({
                                                 position: 'top',
                                                 title: 'Excluido!',
@@ -93,22 +90,23 @@
                         }
                     }
                 })
-
-
             });
 
             $('body').on('click', '.openEditLabModal', function(e) {
-
                 e.preventDefault();
+                   // Verify if the inputs have any content 
+                if (!$('#idError').hasClass('d-none') || !$('#descriptionError').hasClass('d-none')) {
+                    $('#idError').addClass('d-none')
+                    $('#descriptionError').addClass('d-none')
+                }
+                $('#labForm').trigger("reset");
 
                 var id = $(this).data("id");
                 let _url = `api/labs/${id}`;
-
                 $.ajax({
                     url: _url,
                     type: "GET",
                     success: function(response) {
-
                         if (response) {
                             $('#editLabModal').modal('show');
                             $('#idEdit').val(response[0].id);
@@ -130,6 +128,12 @@
             });
             $('.addLab').click(function(e){
                 $('#addLabModal').modal('show');
+                 // Verify if the inputs have any content 
+                if (!$('#idError').hasClass('d-none') || !$('#descriptionError').hasClass('d-none')) {
+                    $('#idError').addClass('d-none')
+                    $('#descriptionError').addClass('d-none')
+                }
+                $('#labForm').trigger("reset");
             })
             $("#createNewLab").click(function(e) {
                 e.preventDefault();
@@ -176,13 +180,7 @@
                     }
                 })
             });
-            $('#cancelNewLab, #cancelNewLab1').click(function(e){
-                if (!$('#idError').hasClass('d-none') || !$('#descriptionError').hasClass('d-none')) {
-                    $('#idError').addClass('d-none')
-                    $('#descriptionError').addClass('d-none')
-                }
-                $('#labForm').trigger("reset");
-            })
+            
 
             $('.editLab').click(function(e) {
 

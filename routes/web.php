@@ -14,10 +14,10 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('/','ViewController@showLogin')->name('login');
 Route::post('/login/todo','Auth\LoginController@Login')->name('login.todo');
-Route::middleware(['auth'])->group(function ()  {
+// Route::middleware(['auth'])->group(function ()  {
     Route::get('/home', 'HomeController@index' )->name('home');
     Route::get('/laboratorios','ViewController@adminLabs')->name('view.labs');
     Route::get('/categorias','ViewController@adminCategories')->name('view.category');
     Route::get('/usuarios','ViewController@adminUsers')->name('view.users');
     Route::get('/logout','Auth\LoginController@logout')->name('logout');
-});
+// });

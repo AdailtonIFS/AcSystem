@@ -38,103 +38,129 @@
 
     <div class="modal" data-backdrop="static" id="modalAddUser" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Cadastrando Usuário</h5>
-              <button type="button" class="close" data-dismiss="modal" id="#cancelNewUser1" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Cadastrando Usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" id="#cancelNewUser1" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="newUser" autocomplete="off">
+
+                        <div class="form-group">
+                            <label for="registration">Matrícula</label>
+                            <input type="text" name="registration" id="registration" class="form-control" aria-describedby="helpId">
+                            <small id="helpId" class="text-muted">Essa é a matrícula que a instituição disponibiliza ao usuário</small>
+                            {{-- Error div --}}
+                            <div id="registrationError" <div class="alert alert-danger d-none"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Nome</label>
+                            <input type="text" name="name" id="name" class="form-control">
+                            {{-- Error div --}}
+                            <div id="nameError" <div class="alert alert-danger d-none"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Email</label>
+                            <input type="email" name="email" id="email" class="form-control">
+                            {{-- Error div --}}
+                            <div id="emailError" <div class="alert alert-danger d-none"></div>
+                        </div> 
+
+                        <div class="form-group">
+                            <label for="category">Categorias:</label>
+                            <select class="form-control" name="category" id="category" aria-describedby="helpId">
+                                <option value="">Escolha a categoria</option>
+                            </select>
+                            <small id="helpId" class="text-muted">Esse é o papel que o usuário desempenha na instituição</small>
+                            {{-- Error div --}}
+                            <div id="categoryError" <div class="alert alert-danger d-none"></div>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select multiple class="form-control" name="status" id="status">
+                                <option value="1">Ativado</option>
+                                <option value="0">Desativado</option>
+                            </select>
+                            {{-- Error div --}}
+                            <div id="statusError" <div class="alert alert-danger d-none"></div>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-danger" id="cancelNewUser" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="createNewUser">Cadastrar</button>
+                </div>
+
             </div>
-            <div class="modal-body">
-                <form id="newUser" autocomplete="off">
-
-                    <div class="form-group">
-                      <label for="registration">Matrícula</label>
-                      <input type="text" name="registration" id="registration" class="form-control" aria-describedby="helpId">
-                      <small id="helpId" class="text-muted">Essa é a matrícula que a instituição disponibiliza ao usuário</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="category">Nome</label>
-                        <input type="text" name="name" id="name" class="form-control">
-                    </div> 
-                    <div class="form-group">
-                        <label for="category">Email</label>
-                        <input type="email" name="email" id="email" class="form-control">
-                    </div> 
-
-                    <div class="form-group">
-                      <label for="category">Categorias:</label>
-                      <select class="form-control" name="category" id="category" aria-describedby="helpId">
-                        <option value="error">Escolha a categoria</option>
-                      </select>
-                      <small id="helpId" class="text-muted">Esse é o papel que o usuário desempenha na instituição</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select multiple class="form-control" name="status" id="status">
-                        <option value="1">Ativado</option>
-                        <option value="0">Desativado</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-danger" id="cancelNewUser" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success" id="createNewUser">Cadastrar</button>
-            </div>
-          </div>
         </div>
-      </div>
-      
-    <div class="modal" data-backdrop="static" id="modalAddUser" tabindex="-1" role="dialog">
+    </div>
+
+{{-- Modal Edit --}}
+
+    <div class="modal" data-backdrop="static" id="modalEditUser" tabindex="-1" role="dialog">
         <div class="modal-dialog" role="document">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h5 class="modal-title">Cadastrando Usuário</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <h5 class="modal-title">Editando Usuário</h5>
+                    <button type="button" class="close" data-dismiss="modal" id="#cancelNewUser1" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+
+                <div class="modal-body">
+                    <form id="newUser" autocomplete="off">
+
+                        <div class="form-group">
+                            <label for="registration">Matrícula</label>
+                            <input type="text" name="registration" id="registration" class="form-control" aria-describedby="helpId" readonly>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Nome</label>
+                            <input type="text" name="name" id="name" class="form-control">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="category">Email</label>
+                            <input type="email" name="email" id="email" class="form-control">
+                        </div> 
+
+                        <div class="form-group">
+                            <label for="category">Categorias:</label>
+                            <select class="form-control" name="category" id="category" aria-describedby="helpId">
+                                <option value="">Escolha a categoria</option>
+                            </select>
+                            <small id="helpId" class="text-muted">Esse é o papel que o usuário desempenha na instituição</small>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status">Status</label>
+                            <select multiple class="form-control" name="status" id="status">
+                                <option value="1">Ativado</option>
+                                <option value="0">Desativado</option>
+                            </select>
+                        </div>
+                    </form>
+                </div>
+
+                <div class="modal-footer d-flex justify-content-center">
+                    <button type="button" class="btn btn-danger" id="cancelNewUser" data-dismiss="modal">Cancelar</button>
+                    <button type="button" class="btn btn-success" id="createNewUser">Cadastrar</button>
+                </div>
+
             </div>
-            <div class="modal-body">
-                <form id="newUser" autocomplete="off">
-
-                    <div class="form-group">
-                      <label for="registration">Matrícula</label>
-                      <input type="text" name="registration" id="registration" class="form-control" aria-describedby="helpId">
-                      <small id="helpId" class="text-muted">Essa é a matrícula que a instituição disponibiliza ao usuário</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="category">Nome</label>
-                        <input type="text" name="name" id="name" class="form-control">
-                    </div> 
-
-                    <div class="form-group">
-                      <label for="category">Categorias:</label>
-                      <select class="form-control" name="category" id="category" aria-describedby="helpId">
-                        <option value="error">Escolha a categoria</option>
-                      </select>
-                      <small id="helpId" class="text-muted">Esse é o papel que o usuário desempenha na instituição</small>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="status">Status</label>
-                        <select multiple class="form-control" name="status" id="status">
-                        <option value="1">Ativado</option>
-                        <option value="0">Desativado</option>
-                        </select>
-                    </div>
-                </form>
-            </div>
-            <div class="modal-footer d-flex justify-content-center">
-                <button type="button" class="btn btn-danger" id="cancelNewUser" data-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-success" id="createNewUser">Cadastrar</button>
-            </div>
-          </div>
         </div>
-      </div>
+    </div>
+
 @endsection
 
 @section('scripts')
