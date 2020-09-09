@@ -18,10 +18,12 @@
                 <label for="registration">Matrícula</label>
                 <input type="text" class="form-control" name="registration" id="registration" placeholder="">
             </div>
+            <div id="registrationError" class="alert alert-danger d-none"></div>
             <div class="form-group">
                 <label for="password">Senha</label>
                 <input type="password" class="form-control" name="password" id="password" placeholder="">
             </div>
+            <div id="passwordError" class="alert alert-danger d-none"></div>
             <button type="button" name="systemLogin" id="systemLogin" class="btn btn-maincolor">Entrar</button>
         </form>
     </div>

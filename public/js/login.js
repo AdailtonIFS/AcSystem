@@ -18,15 +18,26 @@ $('#systemLogin').click(function (e) {
         data: data,
         dataType: 'json',
         success: function (response) {
-            console.log(response)
+            $('#registrationError').addClass('d-none').html('');
+            $('#passwordError').addClass('d-none').html('');
             if(response.message === 'sucess'){
                 window.location.href = "/home";
             }
             else{
                 $('#Error').removeClass('d-none').text(response.message)
             }
-        }, error: function (request, status, data){
-            console.log(request,status,data);
+        }, error: function (data){
+                $('#registrationError').addClass('d-none').html('');
+                $('#passwordError').addClass('d-none').html('');
+                var errors = data.responseJSON;
+                console.log(errors);
+                if ($.isEmptyObject(errors) == false) {
+                    $.each(errors.errors, function(key, value) {
+                        var ErrorID = '#' + key + 'Error';
+                        $(ErrorID).removeClass('d-none');
+                        $(ErrorID).text(value);
+                    });
+                }
         }   
     });
 });
