@@ -55,31 +55,32 @@
                             <input type="text" name="registration" id="registration" class="form-control" aria-describedby="helpId">
                             <small id="helpId" class="text-muted">Essa é a matrícula que a instituição disponibiliza ao usuário</small>
                             {{-- Error div --}}
-                            <div id="registrationError" <div class="alert alert-danger d-none"></div>
+                            <div id="registrationError" class="alert alert-danger d-none"></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="category">Nome</label>
+                            <label for="name">Nome</label>
                             <input type="text" name="name" id="name" class="form-control">
                             {{-- Error div --}}
-                            <div id="nameError" <div class="alert alert-danger d-none"></div>
+                            <div id="nameError" class="alert alert-danger d-none"></div>
                         </div>
 
                         <div class="form-group">
-                            <label for="category">Email</label>
+                            <label for="email">Email</label>
                             <input type="email" name="email" id="email" class="form-control">
                             {{-- Error div --}}
-                            <div id="emailError" <div class="alert alert-danger d-none"></div>
+                            <div id="emailError" class="alert alert-danger d-none"></div>
                         </div> 
 
                         <div class="form-group">
                             <label for="category">Categorias:</label>
-                            <select class="form-control" name="category" id="category" aria-describedby="helpId">
-                                <option value="">Escolha a categoria</option>
-                            </select>
+                            <input list="category" value="Escolha a categoria" class="col-sm-6 custom-select custom-select-sm">
+                            <datalist id="category">
+                                
+                            </datalist>
                             <small id="helpId" class="text-muted">Esse é o papel que o usuário desempenha na instituição</small>
                             {{-- Error div --}}
-                            <div id="categoryError" <div class="alert alert-danger d-none"></div>
+                            <div id="categoryError" class="alert alert-danger d-none"></div>
                         </div>
 
                         <div class="form-group">
@@ -89,7 +90,7 @@
                                 <option value="0">Desativado</option>
                             </select>
                             {{-- Error div --}}
-                            <div id="statusError" <div class="alert alert-danger d-none"></div>
+                            <div id="statusError" class="alert alert-danger d-none"></div>
                         </div>
                     </form>
                 </div>
