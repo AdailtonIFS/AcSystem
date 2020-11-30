@@ -15,8 +15,18 @@ class ViewController extends Controller
     {
         return view('admin.users.users');
     }
+
+    public function adminSchedules()
+    {
+        return view('admin.schedules.schedules');
+    }
     public function showLogin()
     {
         return view('formLogin');
+    }
+
+    public function adminOccurrences()
+    {
+        return view('admin.occurrences.occurrences');
     }
 }

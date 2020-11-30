@@ -17,4 +17,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token'
     ];
+
+    public function occurrences(){
+        return $this->hasMany(Occurrence::class, 'user_registration', 'registration');
+    }
+    public function category(){
+        return $this->hasOne(Category::class, 'id', 'category_id');
+    }
+
 }

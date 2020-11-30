@@ -10,20 +10,22 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function Login(LoginRequest $request){
+    public function Login(LoginRequest $request)
+    {
         $credentials = [
-            'registration'=> $request->registration,
-            'password'=> $request->password,
+            'registration' => $request->registration,
+            'password' => $request->password,
         ];
-        
-                if(Auth::attempt($credentials)){
-                    return response()->json(['message'=>'sucess']);
-                }else{
-                    return response()->json(['message' => 'Credenciais inválidas']);
-                }            
-        }
 
-    public function Logout(){
+        if (Auth::attempt($credentials)) {
+            return redirect('home');
+        } else {
+            return view('formLogin')->with();
+        }
+    }
+
+    public function Logout()
+    {
         Auth::logout();
         return redirect()->route('login');
     }

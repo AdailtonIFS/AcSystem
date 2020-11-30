@@ -1,1 +1,0 @@
-"SQLSTATE[42S22]: Column not found: 1054 Unknown column 'id' in 'where clause' (SQL: select count(*) as aggregate from `users` where `registration` = 31231213121 and `id` <> users)"

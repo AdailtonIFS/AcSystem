@@ -44,6 +44,7 @@ mix
 .scripts('resources/views/admin/laboratories/js/laboratories.js', 'public/js/laboratories.js')
 .scripts('resources/views/admin/users/js/users.js', 'public/js/users.js')
 .scripts('resources/views/admin/category/js/category.js', 'public/js/category.js')
+.scripts('resources/views/admin/occurrences/js/occurrences.js', 'public/js/occurrences.js')
 .scripts('resources/js/login.js', 'public/js/login.js')
 
 

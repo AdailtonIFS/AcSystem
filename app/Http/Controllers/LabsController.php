@@ -3,9 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\LabsRequest;
-use App\Labs;
+use App\Laboratory;
 use Illuminate\Http\Request;
-use Yajra\Datatables\Datatables;
 
 class LabsController extends Controller
 {
@@ -16,36 +15,24 @@ class LabsController extends Controller
      */
     public function index()
     {
-        $labs = Labs::all();
-        foreach ($labs as $lab) {
-            if ($lab['status'] == 0) {
-                    $lab['status'] = 'Desativado';
-            }else{
-                $lab['status'] = 'Ativado';
-            }
-        }
-        return Datatables::of($labs)
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-                        $btn = 
-                        '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Editar" class="edit btn btn-success btn-sm openEditLabModal">
-                            Editar
-                        </a>';
+        $laboratories = Laboratory::select('id', 'description', 'status')
+            ->when(!empty(request()->get('name')), function ($query) {
+                $data = request()->get('name');
+                return $query->where('description', 'LIKE', "%$data%");
+            })
+            ->when(!is_null(request()->get('status')), function ($query) {
+                return $query->where('status', '=', request()->get('status'));
+            })
+            ->orderBy('description', 'asc')
+            ->get();
 
-                        $btn = $btn.
-                        ' | <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Deletar" class="btn text-white btn-danger  btn-sm deleteLab">
-                            Excluir
-                        </a>';
-                        return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+        return view('admin.laboratories.labs')->with('laboratories', $laboratories);
     }
 
     /**
      * Store a newly created resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
+     * @param \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
     public function store(LabsRequest $request)
@@ -56,71 +43,67 @@ class LabsController extends Controller
         $labs->status = 0;
         $labs->save();
 
-        return response()->json([
-            'success'=>'Laboratório Cadastrado com Sucesso
-        '],201);
+        return redirect()->route('labs.index');
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  \App\Labs  $labs
+     * @param \App\Labs $labs
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Laboratory $labs)
     {
-        if (Labs::where('id', $id)->exists()) {
-            $labs = Labs::where('id',$id)->get();
-            return response()->json($labs,200);
-        }else{
-            return response()->json([
-                "message" => "Laboratório não encontrado"
-            ], 404);
+        try {
+            $occurrences = $labs->occurrences()->get();
+            if ($occurrences) {
+                foreach ($occurrences as $occurrence) {
+                    $user = $occurrence->user()->first();
+                }
+            }
+
+            return view('admin.laboratories.show')
+                ->with('laboratory', $labs)
+                ->with('occurrences', $occurrences ?? '')
+                ->with('user', $user);
+
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
+
+    public function edit(Laboratory $labs)
+    {
+        try {
+            return view('admin.laboratories.edit')
+                ->with('laboratory', $labs);
+        } catch (\Exception $e) {
+            return $e->getMessage();
         }
     }
 
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Labs  $labs
+     * @param \Illuminate\Http\Request $request
+     * @param \App\Labs $labs
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request)
+    public function update(Request $request, Laboratory $labs)
     {
-        if (Labs::where('id', $request->id)->exists()) {
-            $labs = Labs::find($request->id);
-            $labs->description = $request->description;
-            $labs->status = $request->status;
-            $labs->save();
-            return response()->json([
-                "message" => "Laboratório editado com sucesso"
-            ], 200);
-            } else {
-            return response()->json([
-                "message" => "Laboratório não encontrado"
-            ], 404);
-            }
+        $labs->description = $request->description;
+        $labs->status = $request->status ?? 0;
+        $labs->save();
+        return redirect()->route('labs.index');
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Labs  $labs
+     * @param \App\Labs $labs
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Laboratory $labs)
     {
-        if(Labs::where('id', $id)->exists()) {
-            $labs = Labs::find($id);
-            $labs->delete();
-            return response()->json([
-            "message" => "Laboratório excluído com sucesso"
-            ], 202);
-        } else {
-            return response()->json([
-            "message" => "Laboratório não encontrado"
-            ], 404);
-        }
     }
 }

@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests\CategoryRequest;
-use Yajra\Datatables\Datatables;
+use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
 {
@@ -15,53 +15,43 @@ class CategoriesController extends Controller
      */
     public function index()
     {
-        $category = Category::all();
-        return Datatables::of($category)
-                ->addIndexColumn()
-                ->addColumn('action', function($row){
-                        $btn = 
-                        '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Editar" class="edit btn btn-success btn-sm openEditCategoryModal">
-                            Editar
-                        </a>';
-                        $btn = $btn.
-                        ' | <a href="javascript:void(0)" data-toggle="tooltip"  data-id="'.$row->id.'" data-original-title="Deletar" class="btn text-white btn-danger  btn-sm deleteCategory">
-                            Excluir
-                        </a>';
-                        return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
+        $categories = Category::all();
+        return view('admin.category.index')->with('categories', $categories);
     }
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return view
+     */
+    public function create()
+    {
+        return view('admin.category.create');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
      * @param  \App\Http\Category  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(CategoryRequest $request)
+    public function store(Request $request)
     {
         $category = new Category();
         $category->id = $request->id;
         $category->description = $request->description;
         $category->save();
-        return response()->json(['success'=>'Categoria Cadastrada com Sucesso']);
+        return redirect()->route('categories.index');
     }
     /**
      * Display the specified resource.
      *
      * @param  \App\Category  $category
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\View\View
      */
-    public function show($id)
+    public function show(Category $category)
     {
-        if (Category::where('id', $id)->exists()) {
-            $category = Category::where('id',$id)->get();
-            return response()->json($category,200);
-        }else{
-            return response()->json([
-                "message" => "Categoria não encontrada"
-            ], 404);
-        }
+        $users = $category->users()->get();
+        return view('admin.category.show')->with('category', $category)->with('users', $users);
     }
     /**
      * Update the specified resource in storage.
