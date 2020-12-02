@@ -1,7 +1,7 @@
 @extends('templates.default')
 
 @section('title')
-    Usuários
+    Laborátorios
 @endsection
 
 @section('content')

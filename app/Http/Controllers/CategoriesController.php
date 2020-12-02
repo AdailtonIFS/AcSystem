@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Category;
 use App\Http\Requests\CategoryRequest;
+use App\Occurrence;
 use Illuminate\Http\Request;
 
 class CategoriesController extends Controller
@@ -53,6 +54,15 @@ class CategoriesController extends Controller
         $users = $category->users()->get();
         return view('admin.category.show')->with('category', $category)->with('users', $users);
     }
+    public function edit(Category $category)
+    {
+        try {
+            return view('admin.category.edit')
+                ->with('category', $category);
+        } catch (\Exception $e) {
+            return $e->getMessage();
+        }
+    }
     /**
      * Update the specified resource in storage.
      *
@@ -60,21 +70,13 @@ class CategoriesController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function update(CategoryRequest $request)
+    public function update(Request $request, Category $category)
     {
-        if (Category::where('id', $request->id)->exists()) {
-            $category = Category::find($request->id);
-            $category->id = $request->id;
-            $category->description = $request->description;
-            $category->save();
-            return response()->json([
-                "message" => "Categoria editada com sucesso"
-            ], 200);
-            } else {
-            return response()->json([
-                "message" => "Categoria não encontrada"
-            ], 404);
-            }
+        $category->id = $request->id;
+        $category->description = $request->description;
+        $category->save();
+
+        return redirect()->route('categories.edit', ['category' => $category]);
     }
     /**
      * Remove the specified resource from storage.
@@ -82,18 +84,9 @@ class CategoriesController extends Controller
      * @param  \App\Category  $category
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Category $category)
     {
-        if(Category::where('id', $id)->exists()) {
-            Category::destroy($id);
-            return response()->json([
-            "message" => "Categoria excluída com sucesso"
-            ], 202);
-        } else {
-            return response()->json([
-            "message" => "Categoria não encontrada"
-            ], 404);
-        }
 
     }
+
 }

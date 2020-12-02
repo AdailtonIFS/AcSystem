@@ -2,14 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Users\UpdateUserRequest;
 use App\User;
 use App\Category;
-use App\Occurrence;
-use App\Jobs\userRegistered;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
-use function PHPUnit\Framework\isNull;
 
 class UsersController extends Controller
 {

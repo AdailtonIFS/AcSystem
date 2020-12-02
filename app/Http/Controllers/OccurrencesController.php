@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Requests\Occurrences\StoreOccurrenceRequest;
+use App\Laboratory;
 use App\Occurrence;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Yajra\DataTables\DataTables;
 
 class OccurrencesController extends Controller
 {
@@ -17,106 +17,91 @@ class OccurrencesController extends Controller
      */
     public function index()
     {
-
-        $occurrences = Occurrence::join('users', 'occurrences.user_registration', '=', 'users.registration')
-            ->select('occurrences.id', 'users.name', 'occurrences.date', 'occurrences.hour','occurrences.occurrence', 'occurrences.observation')
-            ->get();
-
-
-        foreach ($occurrences as $occurrence) {
-
-            $occurrence->action = '<a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $occurrence->id . '" data-original-title="Editar" class="edit btn btn-success btn-sm openEditLabModal">Editar</a>';
-            $occurrence->action = $occurrence->action . ' | <a href="javascript:void(0)" data-toggle="tooltip"  data-id="' . $occurrence->id . '" data-original-title="Deletar" class="btn text-white btn-danger  btn-sm deleteOccurrence">
-            Excluir
-        </a>';
+        $occurrences = Occurrence::all();
+        foreach ($occurrences as $occurrence){
+            $user = $occurrence->user()->first();
+            $laboratory = $occurrence->laboratory()->first();
+            $occurrence->user_name = $user->name;
+            $occurrence->user_registration = $user->registration;
+            $occurrence->laboratory_id = $laboratory->id;
+            $occurrence->laboratory_description = $laboratory->description;
         }
+        return view('admin.occurrences.index')
+            ->with('occurrences', $occurrences);
+    }
 
-        return Datatables::of($occurrences)
-            ->addIndexColumn()
-            ->toJson();
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return view
+     */
+    public function create()
+    {
+        $laboratories = Laboratory::all();
+        return view('admin.occurrences.create')
+            ->with('laboratories', $laboratories);
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function store(StoreOccurrenceRequest $storeOccurrenceRequest)
+    public function store(Request $request)
     {
-        dd(\auth()->user());
         $occurrence = new Occurrence();
         $occurrence->user_registration = Auth::user()->registration;
-        $occurrence->laboratory_id = $storeOccurrenceRequest->laboratory_id;
-        $occurrence->date = isset($storeOccurrenceRequest->date) ? $storeOccurrenceRequest->date->format('Y-m-d') : now()->format('Y-m-d');
-        $occurrence->hour = isset($storeOccurrenceRequest->hour) ? $storeOccurrenceRequest->date->format('H:i:s') : now()->format('H:i:s');
-        $occurrence->occurrence = $storeOccurrenceRequest->occurrence;
-        $occurrence->observation = $storeOccurrenceRequest->observation;
+        $occurrence->laboratory_id = $request->laboratory_id;
+        $occurrence->date = isset($request->date) ? $request->date : now()->format('Y-m-d');
+        $occurrence->hour = isset($request->hour) ? $request->hour : now()->format('H:i:s');
+        $occurrence->occurrence = $request->occurrence;
+        $occurrence->observation = $request->observation;
         $occurrence->save();
-        return response()->json(['success' => 'Ocorrência Cadastrada com sucesso']);
-    }
+        return redirect()->route('occurrences.index');
+   }
 
     /**
      * Display the specified resource.
      *
-     * @param \App\User $user
+     * @param \App\Occurrence $occurrence
      * @return \Illuminate\Http\Response
      */
-    public function show($registration)
+    public function show(Occurrence $occurrence)
     {
-        if (User::where('registration', $registration)->exists()) {
-            $category = User::where('registration', $registration)->get();
-            return response()->json($category, 200);
-        } else {
-            return response()->json([
-                "message" => "Categoria não encontrada"
-            ], 404);
-        }
+        return view('admin.occurrences.index');
     }
 
+    public function edit(Occurrence $occurrence)
+    {
+        try {
+            $laboratories = Laboratory::all();
+            $user = $occurrence->user()->first();
+            return view('admin.occurrences.edit ')
+                ->with('occurrence', $occurrence)
+                ->with('laboratories', $laboratories)
+                ->with('user', $user);
+        }catch (\Exception $e){
+
+        }
+
+    }
     /**
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\User $user
-     * @return \Illuminate\Http\Response
+     * @param \App\Occurrence $occurrence
+     * @return \Illuminate\Http\RedirectResponse
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, Occurrence $occurrence)
     {
-        if (User::where('registration', $request->registration)->exists()) {
-            $user = User::find($request->registration);
-            $user->registration = $request->registration;
-            $user->name = $request->name;
-            $user->category_id = $request->category;
-            $user->status = $request->status;
-            $user->save();
-            return response()->json([
-                "message" => "Usuário editado com sucesso"
-            ], 200);
-        } else {
-            return response()->json([
-                "message" => "Usuário não encontrado"
-            ], 404);
-        }
+        $occurrence->laboratory_id = $request->laboratory_id;
+        $occurrence->date = $request->date;
+        $occurrence->hour = $request->hour;
+        $occurrence->occurrence = $request->occurrence;
+        $occurrence->observation = $request->observation;
+        $occurrence->save();
+        return redirect()->route('occurrences.index');
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param \App\User $user
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($registration)
-    {
-        if (User::where('registration', $registration)->exists()) {
-            User::where('registration', $registration)->delete();
-            return response()->json([
-                "message" => "Usuário excluído com sucesso"
-            ], 202);
-        } else {
-            return response()->json([
-                "message" => "Usuário não encontrado"
-            ], 404);
-        }
-    }
 }

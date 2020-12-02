@@ -20,7 +20,7 @@ class LoginController extends Controller
         if (Auth::attempt($credentials)) {
             return redirect('home');
         } else {
-            return view('formLogin')->with();
+            return view('formLogin')->with('message', 'Credenciais Inválidas');
         }
     }
 

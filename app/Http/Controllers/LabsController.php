@@ -29,6 +29,10 @@ class LabsController extends Controller
         return view('admin.laboratories.labs')->with('laboratories', $laboratories);
     }
 
+    public function create()
+    {
+        return view('admin.laboratories.create');
+    }
     /**
      * Store a newly created resource in storage.
      *
@@ -37,7 +41,7 @@ class LabsController extends Controller
      */
     public function store(LabsRequest $request)
     {
-        $labs = new Labs();
+        $labs = new Laboratory();
         $labs->id = $request->id;
         $labs->description = $request->description;
         $labs->status = 0;
@@ -49,7 +53,7 @@ class LabsController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param \App\Labs $labs
+     * @param \App\Laboratory $labs
      * @return \Illuminate\Http\Response
      */
     public function show(Laboratory $labs)
@@ -86,7 +90,7 @@ class LabsController extends Controller
      * Update the specified resource in storage.
      *
      * @param \Illuminate\Http\Request $request
-     * @param \App\Labs $labs
+     * @param \App\Laboratory $labs
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Laboratory $labs)
@@ -100,7 +104,7 @@ class LabsController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param \App\Labs $labs
+     * @param \App\Laboratory $labs
      * @return \Illuminate\Http\Response
      */
     public function destroy(Laboratory $labs)

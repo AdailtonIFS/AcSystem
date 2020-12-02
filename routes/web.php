@@ -54,22 +54,24 @@ Route::group(['middleware' => 'auth', 'prefix' => 'categorias'], function () {
     Route::delete('/{category}', 'CategoriesController@delete')->name('categories.delete');
 });
 
-/*Route::group(['middleware' => 'auth', 'prefix' => 'ocorrencias'], function () {
+Route::group(['middleware' => 'auth', 'prefix' => 'ocorrencias'], function () {
     // Busca as ocorrências.
-    Route::get('/', 'OccurrencesController@index' )->name('occurrences.index');
+    Route::get('/', 'OccurrencesController@index')->name('occurrences.index');
     // Busca a view para cadastrar um ocorrência.
     Route::get('/cadastrar', 'OccurrencesController@create')->name('occurrences.create');
     // Cadastra uma ocorrência
     Route::post('/', 'OccurrencesController@store')->name('occurrences.store');
     // Busca uma ocorrência especifico
-    Route::get('/{id}', 'OccurrencesController@show')->name('occurrences.show');
+    Route::get('/{occurrence}', 'OccurrencesController@show')->name('occurrences.show');
     // Busca a view para editar uma ocorrência.
-    Route::get('/editar/{id}', 'OccurrencesController@edit')->name('occurrences.edit');
-    // Edita um usuário.
-    Route::put('/{id}', 'OccurrencesController@update')->name('occurrences.update');
-    // Delete um usuário
-    Route::delete('/{id}', 'OccurrencesController@delete')->name('occurrences.delete');
-});*/
+    Route::get('/editar/{occurrence}', 'OccurrencesController@edit')->name('occurrences.edit');
+    // Edita uma ocorrência.
+    Route::put('/{occurrence}', 'OccurrencesController@update')->name('occurrences.update');
+    // Retorna a view de formulários
+    Route::get('/deletar/{occurrence}', 'OccurrencesController@delete')->name('occurrences.delete');
+    // Deleta uma ocorrência.
+    Route::delete('/{occurrence}', 'OccurrencesController@destroy')->name('occurrences.destroy');
+});
 
 Route::group(['middleware' => 'auth', 'prefix' => 'laboratorios'], function () {
     // Busca os laboratórios.
