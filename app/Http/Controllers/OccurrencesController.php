@@ -101,11 +101,14 @@ class OccurrencesController extends Controller
      */
     public function show(Occurrence $occurrence)
     {
+        $this->authorize('update-occurrence', [$occurrence]);
+
         return view('admin.occurrences.show')->with('occurrence', $occurrence);
     }
 
     public function edit(Occurrence $occurrence)
     {
+        $this->authorize('update-occurrence', [$occurrence]);
         try {
             $laboratories = Laboratory::all();
             $user = $occurrence->user()->first();
