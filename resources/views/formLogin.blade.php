@@ -13,14 +13,19 @@
             <h3>Seja bem vindo a área administrativa do</h3>
             <img src="{{asset('img/ACSystem.svg')}}" class="mb-2" alt="ACSystem">
             <hr class="text-danger">
-            @if(session()->get('message'))
+            @if(isset($message))
                 <div class="alert alert-danger" role="alert">
-                    <p class="m-0 text-black">{{session()->get('message')}}</p>
+                    <p class="m-0 text-black">{{$message ?? ''}}</p>
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger" role="alert">
+                    <p class="m-0 text-black">{{$errors->all()[0] ?? ''}}</p>
                 </div>
             @endif
             <div class="form-group  w-75 m-4">
                 <label for="registration">Matrícula</label>
-                <input type="text" class="form-control" name="registration" id="registration" placeholder="">
+                <input type="text" class="form-control" name="registration" id="registration" placeholder="" value="{{old('registration')}}">
             </div>
             <div class="form-group   w-75 m-4">
                 <label for="password">Senha</label>

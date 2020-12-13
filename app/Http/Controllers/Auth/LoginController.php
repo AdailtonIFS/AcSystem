@@ -10,18 +10,25 @@ use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
-    public function Login(LoginRequest $request)
+    public function Login(Request $request)
     {
+        $request->validate([
+            'registration' => 'required',
+            'password' => 'required',
+        ],[
+            'registration.required' => 'Por favor preencha todos os campos e tente novamente.',
+            'password.required' => 'Por favor preencha todos os campos e tente novamente.'
+        ]);
         $credentials = [
             'registration' => $request->registration,
             'password' => $request->password,
-            'status' => 1,
         ];
 
         if (Auth::attempt($credentials)) {
-            if (\auth()->user()->status){
+            if (\auth()->user()->status == 1){
                 return redirect('home');
             }else{
+                Auth::logout();
                 return view('formLogin')->with('message', 'Você não é um usuário ativo no sistema. Para sanar as dúvidas procure sua coordenação.');
             }
         } else {
