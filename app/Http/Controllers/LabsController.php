@@ -138,6 +138,9 @@ class LabsController extends Controller
         if (count($labs->occurrences()->get()) > 0){
             return view('admin.laboratories.delete')->with('laboratory', $labs)->with('error', 'Não é possível excluir esse laboratório, pois existem ocorrências cadastrados nele!');
         }
+        if (count($labs->schedules()->get()) > 0){
+            return view('admin.laboratories.delete')->with('laboratory', $labs)->with('error', 'Não é possível excluir esse laboratório, pois existem horários cadastrados nele!');
+        }
         $labs::destroy($labs->id);
         return redirect()->route('labs.index')->with('message', 'Laboratório Excluído com Sucesso!');
     }

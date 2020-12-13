@@ -8,12 +8,16 @@
 </head>
 <body class="h-100" style="background: #F6F6F6" >
     <div class="container pt-5 d-flex flex-column justify-content-center h-100 align-items-center">
-        <form id="formLogin" method="POST" action='{{route('login.todo')}}' class=" rounded bg-white d-flex flex-column justify-content-center align-items-center w-75 h-75">
+        <form id="formLogin" method="POST" action='{{route('login.todo')}}' class=" rounded shadow-sm bg-white d-flex flex-column justify-content-center align-items-center w-75 h-75">
             @csrf
             <h3>Seja bem vindo a área administrativa do</h3>
             <img src="{{asset('img/ACSystem.svg')}}" class="mb-2" alt="ACSystem">
             <hr class="text-danger">
-
+            @if(session()->get('message'))
+                <div class="alert alert-danger" role="alert">
+                    <p class="m-0 text-black">{{session()->get('message')}}</p>
+                </div>
+            @endif
             <div class="form-group  w-75 m-4">
                 <label for="registration">Matrícula</label>
                 <input type="text" class="form-control" name="registration" id="registration" placeholder="">
