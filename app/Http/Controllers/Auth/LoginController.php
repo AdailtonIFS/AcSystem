@@ -15,12 +15,17 @@ class LoginController extends Controller
         $credentials = [
             'registration' => $request->registration,
             'password' => $request->password,
+            'status' => 1,
         ];
 
         if (Auth::attempt($credentials)) {
-            return redirect('home');
+            if (\auth()->user()->status){
+                return redirect('home');
+            }else{
+                return view('formLogin')->with('message', 'Você não é um usuário ativo no sistema. Para sanar as dúvidas procure sua coordenação.');
+            }
         } else {
-            return view('formLogin')->with('message', 'Credenciais Inválidas');
+            return view('formLogin')->with('message', 'Login ou senha incorretos');
         }
     }
 

@@ -8,10 +8,14 @@ class Laboratory extends Model
 {
     public $timestamps = false;
     protected $table = 'laboratories';
-    public $fillable = ['id','description','status'];
+    protected $fillable = ['id','description','status'];
 
     public function occurrences()
     {
         return $this->hasMany(Occurrence::class, 'laboratory_id', 'id');
+    }
+    public function schedules()
+    {
+        return $this->hasMany(Schedule::class, 'laboratory_id', 'id');
     }
 }
