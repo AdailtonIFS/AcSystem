@@ -108,7 +108,7 @@ class OccurrencesController extends Controller
 
     public function edit(Occurrence $occurrence)
     {
-        $this->authorize('update-occurrence', [$occurrence]);
+        $this->authorize('update-occurrence', [$occurrence]); a
         try {
             $laboratories = Laboratory::all();
             $user = $occurrence->user()->first();
