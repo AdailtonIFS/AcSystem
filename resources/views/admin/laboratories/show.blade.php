@@ -62,7 +62,7 @@
                                 <td>{{$occurrence->observation ?? 'Sem Observação'}}</td>
                                 @can('isAdmin')
                                     <td>
-                                        <a href="{{route('occurrence.edit', ['occurrence' => $occurrence->id])}}">Editar</a>
+                                        <a href="{{route('occurrences.edit', ['occurrence' => $occurrence->id])}}">Editar</a>
                                     </td>
                                 @endcan
                             </tr>
