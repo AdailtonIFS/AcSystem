@@ -52,7 +52,7 @@
                     @foreach($occurrences as $occurrence)
                             <tr class="text-center">
                                 <td>
-                                    <a @can('isAdmin')href="{{route('occurrences.show'), ['occurrence', $occurrence->id]}}"@endcan>{{$occurrence->occurrence}}</a>
+                                    <a @can('isAdmin')href="{{route('occurrences.show', ['occurrence', $occurrence->id])}}"@endcan>{{$occurrence->occurrence}}</a>
                                 </td>
                                 <td>
                                     <a @can('isAdmin')href="{{route('users.show', ['user' => $user->registration])}}"@endcan>{{$user->name}}</a>
