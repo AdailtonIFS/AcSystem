@@ -37,11 +37,16 @@
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
-                    <input required value="{{$user->email}}" type="text" class="form-control"
+                    <input required value="{{$user->email}}" type="email" class="form-control"
                            id="email" name="email">
                     @if(session()->get('error'))
                     <div class="alert alert-danger">{{ session()->get('error') }}</div>
                     @endif
+                </div>
+                <div class="form-group">
+                    <label for="email">Senha: (Preencha apenas se quiser alterar)</label>
+                    <input type="password" class="form-control"
+                           id="password" name="password">
                 </div>
                 <div class="form-group">
                     <label for="status">Status:</label>
