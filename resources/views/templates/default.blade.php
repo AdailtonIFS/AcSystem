@@ -32,7 +32,6 @@
                      style="font-size: 1rem;height: 100px;">
                     {{-- div items --}}
                     <div class="align-items-center ">
-
                         <div class="d-flex justify-content-center">
                             <h5 class="text-white font-weight-bold"
                                 style="font-family:'Roboto', sans-serif;">{{auth()->user()->name}}</h5>
@@ -52,18 +51,22 @@
                              style="width: 30px; height:30px;margin-right:9px;">
                         Home
                     </a>
-                    <a href="{{route('users.index')}}"
-                       class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
-                        <img src="{{asset('/img/teacher.png')}}" alt="Usuários"
-                             style="width: 30px; height:30px;margin-right:9px;">
-                        Usuários
-                    </a>
-                    <a href="{{route('categories.index')}}"
-                       class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none ">
-                        <img src="{{asset('/img/home.png')}}" alt="Home"
-                             style="width: 30px; height:30px;margin-right:9px;">
-                        Categorias
-                    </a>
+                    @can('isAdmin')
+                        <a href="{{route('users.index')}}"
+                           class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
+                            <img src="{{asset('/img/teacher.png')}}" alt="Usuários"
+                                 style="width: 30px; height:30px;margin-right:9px;">
+                            Usuários
+                        </a>
+                    @endcan
+                    @can('isAdmin')
+                        <a href="{{route('categories.index')}}"
+                           class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none ">
+                            <img src="{{asset('/img/home.png')}}" alt="Home"
+                                 style="width: 30px; height:30px;margin-right:9px;">
+                            Categorias
+                        </a>
+                    @endcan
                     <a href="{{route('labs.index')}}"
                        class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
                         <img src="{{asset('/img/computer.png')}}" alt="Laboratórios"
@@ -88,7 +91,6 @@
                              style="width: 30px; height:30px;margin-right:9px;">
                         Logout
                     </a>
-
                 </div>
             </div>
             {{-- div menu final --}}

@@ -34,24 +34,28 @@ Route::group(['middleware' => 'auth', 'prefix' => 'usuarios'], function () {
     // Edita um usuário.
     Route::put('/{user}', 'UsersController@update')->name('users.update');
     // Delete um usuário
-    Route::delete('/{user}', 'UsersController@delete')->name('users.delete');
+    Route::get('/{user}/excluir', 'UsersController@delete')->name('users.delete');
+    // Busca a view para deletar um usuário.
+    Route::delete('/{user}', 'UsersController@destroy')->name('users.destroy');
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'categorias'], function () {
     // Busca as categorias.
     Route::get('/', 'CategoriesController@index')->name('categories.index');
-    // Busca a view para cadastrar um usuário.
+    // Busca a view para cadastrar uma categoria.
     Route::get('/cadastrar', 'CategoriesController@create')->name('categories.create');
-    // Cadastra um usuário
+    // Cadastra um categoria
     Route::post('/', 'CategoriesController@store')->name('categories.store');
-    // Busca um usuário especifico
+    // Busca um categoria especifico
     Route::get('/{category}', 'CategoriesController@show')->name('categories.show');
-    // Busca a view para editar um usuário.
+    // Busca a view para editar um categoria.
     Route::get('/{category}/editar', 'CategoriesController@edit')->name('categories.edit');
-    // Edita um usuário.
+    // Edita um categoria.
     Route::put('/{category}', 'CategoriesController@update')->name('categories.update');
-    // Delete um usuário
-    Route::delete('/{category}', 'CategoriesController@delete')->name('categories.delete');
+    // Busca a view para deletar um categoria.
+    Route::get('/{category}/excluir', 'CategoriesController@delete')->name('categories.delete');
+    // Deleta uma categoria.
+    Route::delete('/{category}', 'CategoriesController@destroy')->name('categories.destroy');
 });
 
 Route::group(['middleware' => 'auth', 'prefix' => 'ocorrencias'], function () {
@@ -67,25 +71,34 @@ Route::group(['middleware' => 'auth', 'prefix' => 'ocorrencias'], function () {
     Route::get('/editar/{occurrence}', 'OccurrencesController@edit')->name('occurrences.edit');
     // Edita uma ocorrência.
     Route::put('/{occurrence}', 'OccurrencesController@update')->name('occurrences.update');
-    // Retorna a view de formulários
+    // Retorna a view de para deletar uma ocorrência
     Route::get('/deletar/{occurrence}', 'OccurrencesController@delete')->name('occurrences.delete');
     // Deleta uma ocorrência.
     Route::delete('/{occurrence}', 'OccurrencesController@destroy')->name('occurrences.destroy');
+
 });
+Route::group(['middleware' => 'auth', 'prefix' => 'relatorios'], function () {
+    Route::get('/', 'RelatorioController@index')->name('relatorio.index');
+    Route::post('/', 'RelatorioController@store')->name('relatorio.store');
+    Route::get('/{relatorio}', 'RelatorioController@show')->name('relatorio.show');
+});
+
 
 Route::group(['middleware' => 'auth', 'prefix' => 'laboratorios'], function () {
     // Busca os laboratórios.
     Route::get('/', 'LabsController@index')->name('labs.index');
-    // Busca a view para cadastrar um usuário.
+    // Busca a view para cadastrar um laboratório.
     Route::get('/cadastrar', 'LabsController@create')->name('labs.create');
-    // Cadastra um usuário
+    // Cadastra um laboratório
     Route::post('/', 'LabsController@store')->name('labs.store');
-    // Busca um usuário especifico*/
+    // Busca um laboratório especifico
     Route::get('/{labs}', 'LabsController@show')->name('labs.show');
-    // Busca a view para editar um usuário.
-    Route::get('/editar/{labs}', 'LabsController@edit')->name('labs.edit');
-    // Edita um usuário.
+    // Busca a view para editar um laboratório.
+    Route::get('/{labs}/editar', 'LabsController@edit')->name('labs.edit');
+    // Edita um laboratório.
     Route::put('/{labs}', 'LabsController@update')->name('labs.update');
-    // Delete um usuário
-    Route::delete('/{labs}', 'LabsController@delete')->name('labs.delete');
+    // Busca a view que delete um laboratório
+    Route::get('/{labs}/excluir', 'LabsController@delete')->name('labs.delete');
+    // Delete um laboratório
+    Route::delete('/{labs}', 'LabsController@destroy')->name('labs.destroy');
 });

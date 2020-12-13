@@ -38,26 +38,35 @@
             </div>
         </form>
         <hr class="mb-3">
-
-
+        @if(session()->get('message'))
+            <div class="alert alert-success" role="alert">
+                <p class="m-0 text-black">{{session()->get('message')}}</p>
+            </div>
+        @endif
         <table id="tableUsers" class="table table-light shadow-sm dt-responsive nowrap" style="width: 100%">
             <thead>
             <tr>
                 <th class="text-center" name='name'>Nome</th>
                 <th class="text-center" name='status'>Status</th>
-                <th class="text-center" name='action'>Ações</th>
+                @can('isAdmin')
+                    <th class="text-center" name='action'>Ações</th>@endcan
             </tr>
             </thead>
             <tbody id="bodytable">
             @if($laboratories)
                 @foreach($laboratories as $laboratory)
                     <tr class="text-center">
-                        <td><a href="{{route('labs.show', ['labs' => $laboratory->id])}}">{{$laboratory->description}}</a></td>
+                        <td>
+                            <a href="{{route('labs.show', ['labs' => $laboratory->id])}}">{{$laboratory->description}}</a>
+                        </td>
                         <td><input disabled="disabled" type="checkbox" value=""
                                    name="status" {{ $laboratory->status == 1 ? 'checked' : '' }}></td>
-                        <td>
-                            <a href="{{route('labs.edit', ['labs' => $laboratory->id])}}">Editar</a>
-                        </td>
+                        @can('isAdmin')
+                            <td>
+                                <a href="{{route('labs.edit', ['labs' => $laboratory->id])}}">Editar</a> |
+                                <a href="{{route('labs.delete', ['labs' => $laboratory->id])}}">Excluir</a>
+                            </td>
+                        @endcan
                     </tr>
                 @endforeach
             @else

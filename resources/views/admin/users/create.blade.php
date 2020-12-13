@@ -21,32 +21,45 @@
                 <div class="form-group">
                     <label for="registration">Matrícula:</label>
                     <input required type="text" class="form-control"
-                           id="registration" name="registration">
+                           id="registration" name="registration" value="{{old('registration')}}">
+                    @error('registration')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="name">Nome:</label>
                     <input required type="text" class="form-control"
-                           id="name" name="name">
+                           id="name" name="name" value="{{old('name')}}">
+                    @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input required type="text" class="form-control"
-                           id="email" name="email">
+                           id="email" name="email" value="{{old('email')}}">
+                    @error('email')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="status">Status:</label>
                     <input type="checkbox" value="1"
-                           name="status">
+                           name="status" @if(old('status') == 1) checked @endif>
                 </div>
                 <div class="form-group">
                     <label for="category_id">Categoria:</label>
                     <select name="category_id" id="category_id" class="form-control">
-                        @if($categories)
+                    <option value="" selected>Escolha uma categoria</option>
+                    @if($categories)
                             @foreach($categories as $category)
-                                <option value="{{$category->id}}">{{$category->description}}</option>
+                                <option @if(old('category_id') == $category->id) checked @endif value="{{$category->id}}">{{$category->description}}</option>
                             @endforeach
                         @endif
                     </select>
+                    @error('category_id')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-maincolor cursor-pointer active">Cadastrar</button>
             </form>

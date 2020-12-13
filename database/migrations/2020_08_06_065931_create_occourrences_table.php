@@ -15,12 +15,11 @@ class CreateOccourrencesTable extends Migration
     {
         Schema::create('occurrences', function (Blueprint $table) {
 			$table->increments('id');
-			$table->integer('user_registration')->unsigned();
+			$table->bigInteger('user_registration')->unsigned();
 			$table->integer('laboratory_id')->unsigned();
 			$table->date('date');
 			$table->time('hour');
-			$table->integer('occurrence')->unsigned();
-            $table->string('observation', 200)->nullable();
+            $table->string('occurrence', 200)->nullable();
             $table->foreign('user_registration')->references('registration')->on('users');
             $table->foreign('laboratory_id')->references('id')->on('laboratories');
 

@@ -9,7 +9,7 @@ class Occurrence extends Model
 {
     public $timestamps = false;
     protected $table = 'occurrences';
-    public $fillable = ['id','user_registration','laboratory_id','date','hour','occurrence','observation'];
+    protected $fillable = ['id','user_registration','laboratory_id','date','hour','occurrence','observation'];
 
     public function laboratory()
     {

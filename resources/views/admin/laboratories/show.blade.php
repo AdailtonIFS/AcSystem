@@ -42,7 +42,9 @@
                     <th class="text-center" name='date'>Data</th>
                     <th class="text-center" name='hour'>Hora</th>
                     <th class="text-center" name='observation'>Observações</th>
-                    <th class="text-center" name='actions'>Ações</th>
+                    @can('isAdmin')
+                        <th class="text-center" name='actions'>Ações</th>
+                    @endcan
                 </tr>
                 </thead>
                 <tbody id="bodytable">
@@ -50,17 +52,19 @@
                     @foreach($occurrences as $occurrence)
                             <tr class="text-center">
                                 <td>
-                                    <a href="#">{{$occurrence->occurrence}}</a>
+                                    <a @can('isAdmin')href="{{route('occurrences.show'), ['occurrence', $occurrence->id]}}"@endcan>{{$occurrence->occurrence}}</a>
                                 </td>
                                 <td>
-                                    <a href="{{route('users.show', ['user' => $user->registration])}}">{{$user->name}}</a>
+                                    <a @can('isAdmin')href="{{route('users.show', ['user' => $user->registration])}}"@endcan>{{$user->name}}</a>
                                 </td>
                                 <td>{{$occurrence->date}}</td>
                                 <td>{{$occurrence->hour}}</td>
                                 <td>{{$occurrence->observation ?? 'Sem Observação'}}</td>
-                                <td>
-                                    <a href="#">Editar</a>
-                                </td>
+                                @can('isAdmin')
+                                    <td>
+                                        <a href="{{route('occurrence.edit', ['occurrence' => $occurrence->id])}}">Editar</a>
+                                    </td>
+                                @endcan
                             </tr>
                     @endforeach
                 @endif

@@ -67,7 +67,7 @@
                                     <a href="{{route('labs.show', ['labs' => $laboratories->id])}}">{{$laboratories->description}}</a>
                                 </td>
                                 <td>
-                                    <a href="#">{{$occurrence->occurrence}}</a>
+                                    <a href="{{route('occurrences.show', ['occurrence' => $occurrence->id])}}">{{$occurrence->occurrence}}</a>
                                 </td>
                                 <td>{{$occurrence->date}}</td>
                                 <td>{{$occurrence->hour}}</td>

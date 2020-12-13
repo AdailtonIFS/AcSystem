@@ -16,6 +16,9 @@
         </div>
         <div>
             <hr>
+            @if(session()->get('error'))
+                <div class="alert alert-danger">{{ session()->get('error') }}</div>
+            @endif
             <form method="POST" action="{{ route('users.update',['user' => $user->registration ])  }}">
                 @csrf
                 @method('PUT')
@@ -28,11 +31,17 @@
                     <label for="name">Nome:</label>
                     <input required value="{{$user->name}}" type="text" class="form-control"
                            id="name" name="name">
+                    @error('name')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="email">Email:</label>
                     <input required value="{{$user->email}}" type="text" class="form-control"
                            id="email" name="email">
+                    @if(session()->get('error'))
+                    <div class="alert alert-danger">{{ session()->get('error') }}</div>
+                    @endif
                 </div>
                 <div class="form-group">
                     <label for="status">Status:</label>

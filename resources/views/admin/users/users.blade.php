@@ -16,7 +16,10 @@
                 <a class="btn btn-maincolor addUser" href="{{route('users.create')}}" role="button">Novo Usuário</a>
             </div>
         </div>
-
+        <hr>
+        @if(session()->get('message'))
+            <div class="alert alert-success">{{ session()->get('message') }}</div>
+        @endif
         <form action="{{route('users.index')}}" method="get" class="mt-4">
             @csrf
             <div class="row">

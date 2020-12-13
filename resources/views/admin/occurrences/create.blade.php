@@ -43,13 +43,8 @@
                     </div>
                 </div>
                 <div class="form-group">
-                    <label for="name">Ocorrência</label>
-                    <input required type="text" class="form-control"
-                           id="occurrence" name="occurrence" required>
-                </div>
-                <div class="form-group">
-                    <label for="observation" class="col-form-label">Observação:</label>
-                    <textarea class="form-control" name="observation" id="observation" required></textarea>
+                    <label for="occurrence" class="col-form-label">Ocorrência:</label>
+                    <textarea class="form-control" name="occurrence" id="occurrence" required></textarea>
                 </div>
 
                 <button type="submit" class="btn btn-maincolor cursor-pointer active">Cadastrar</button>

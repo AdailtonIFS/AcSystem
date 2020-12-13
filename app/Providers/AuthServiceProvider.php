@@ -31,5 +31,8 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('isTeacher', function ($user) {
             return $user->category_id == 2;
         });
+        Gate::define('update-occurrence', function ($user, $occurrence) {
+            return $user->registration == $occurrence->user_registration;
+        });
     }
 }

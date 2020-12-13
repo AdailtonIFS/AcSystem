@@ -49,12 +49,7 @@
                     <textarea class="form-control" name="occurrence" id="occurrence" required>{{$occurrence->occurrence}}</textarea>
                 </div>
 
-                <div class="form-group">
-                    <label for="observation" class="col-form-label">Observação:</label>
-                    <textarea class="form-control" name="observation" id="observation" required>{{$occurrence->observation}}</textarea>
-                </div>
-
-                    <button type="submit" class="btn btn-outline-secondary cursor-pointer active">Editar</button>
+                <button type="submit" class="btn btn-outline-secondary cursor-pointer active">Editar</button>
             </form>
         </div>
     </div>

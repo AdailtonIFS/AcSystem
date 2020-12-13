@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Laboratory;
 use App\Occurrence;
+use App\User;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -17,17 +18,49 @@ class OccurrencesController extends Controller
      */
     public function index()
     {
-        $occurrences = Occurrence::all();
-        foreach ($occurrences as $occurrence){
-            $user = $occurrence->user()->first();
-            $laboratory = $occurrence->laboratory()->first();
-            $occurrence->user_name = $user->name;
-            $occurrence->user_registration = $user->registration;
-            $occurrence->laboratory_id = $laboratory->id;
-            $occurrence->laboratory_description = $laboratory->description;
+        $users = User::select('registration', 'name')->get();
+        if (request()->get('all') == 'true'){
+            if ($this->authorize('isAdmin')){
+
+            $occurrences =  Occurrence::with('user:registration,name', 'laboratory:id,description')
+                ->select('id', 'user_registration', 'laboratory_id' ,'date', 'hour', 'occurrence')
+                ->when(!empty(request()->get('name')), function ($query) {
+                    $data = request()->get('name');
+                    return $query->where('occurrence', 'LIKE', "%$data%");
+                })
+                ->when(!empty(request()->get('user')), function ($query) {
+                    return $query->where('user_registration', '=', request()->get('user') );
+                })
+                ->when(!empty(request()->get('date')), function ($query) {
+                    $data = request()->get('date');
+                    return $query->whereDate('date', '=', request()->get('date') );
+                })
+                ->orderBy('id', 'asc')
+                ->get();
+            return view('admin.occurrences.index')
+                ->with('occurrences', $occurrences)
+                ->with('users', $users);
+
+            }
         }
+        $occurrences = Occurrence::with('user:registration,name', 'laboratory:id,description')
+            ->select('id', 'user_registration', 'laboratory_id' ,'date', 'hour', 'occurrence')
+            ->where('user_registration', '=' , \auth()->user()->registration)
+            ->when(!empty(request()->get('name')), function ($query) {
+                $data = request()->get('name');
+                return $query->where('occurrence', 'LIKE', "%$data%");
+            })
+            ->when(!empty(request()->get('date')), function ($query) {
+                $data = request()->get('date');
+                return $query->whereDate('date', '=', request()->get('date') );
+            })
+            ->orderBy('id', 'asc')
+            ->get();
+
+
         return view('admin.occurrences.index')
-            ->with('occurrences', $occurrences);
+            ->with('occurrences', $occurrences)
+            ->with('users', $users);
     }
 
     /**
@@ -56,7 +89,6 @@ class OccurrencesController extends Controller
         $occurrence->date = isset($request->date) ? $request->date : now()->format('Y-m-d');
         $occurrence->hour = isset($request->hour) ? $request->hour : now()->format('H:i:s');
         $occurrence->occurrence = $request->occurrence;
-        $occurrence->observation = $request->observation;
         $occurrence->save();
         return redirect()->route('occurrences.index');
    }
@@ -69,7 +101,7 @@ class OccurrencesController extends Controller
      */
     public function show(Occurrence $occurrence)
     {
-        return view('admin.occurrences.index');
+        return view('admin.occurrences.show')->with('occurrence', $occurrence);
     }
 
     public function edit(Occurrence $occurrence)
@@ -95,11 +127,12 @@ class OccurrencesController extends Controller
      */
     public function update(Request $request, Occurrence $occurrence)
     {
+        $this->authorize('update-occurrence', [$occurrence]);
+
         $occurrence->laboratory_id = $request->laboratory_id;
         $occurrence->date = $request->date;
         $occurrence->hour = $request->hour;
         $occurrence->occurrence = $request->occurrence;
-        $occurrence->observation = $request->observation;
         $occurrence->save();
         return redirect()->route('occurrences.index');
     }

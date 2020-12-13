@@ -41,13 +41,24 @@ class LabsController extends Controller
      */
     public function store(LabsRequest $request)
     {
+        $this->authorize('isAdmin');
+        $request->validate([
+            'id' => 'required|numeric|unique:laboratories,id',
+            'description' => 'required|min:1'
+        ],[
+            'id.required' => 'O id é obrigatório',
+            'id.numeric' => 'Os laboratórios são representados por numéros',
+            'id.unique' => 'Esse laboratório já está cadastrado',
+            'description.required' => 'A descrição é obrigatória'
+        ]);
+
         $labs = new Laboratory();
         $labs->id = $request->id;
         $labs->description = $request->description;
         $labs->status = 0;
         $labs->save();
 
-        return redirect()->route('labs.index');
+        return redirect()->route('labs.index')->with('message', 'Laboratório Cadastrado com Sucesso!');
     }
 
     /**
@@ -78,6 +89,7 @@ class LabsController extends Controller
 
     public function edit(Laboratory $labs)
     {
+        $this->authorize('isAdmin');
         try {
             return view('admin.laboratories.edit')
                 ->with('laboratory', $labs);
@@ -95,12 +107,24 @@ class LabsController extends Controller
      */
     public function update(Request $request, Laboratory $labs)
     {
+        $this->authorize('isAdmin');
+
+        $request->validate([
+            'description' => 'required|min:1',
+        ],[
+            'description.required' => 'A descrição é obrigatória'
+        ]);
         $labs->description = $request->description;
         $labs->status = $request->status ?? 0;
         $labs->save();
-        return redirect()->route('labs.index');
+        return redirect()->route('labs.index')->with('message', 'Laboratório Editado com Sucesso!');
     }
 
+    public function delete(Laboratory $labs)
+    {
+        $this->authorize('isAdmin');
+        return view('admin.laboratories.delete')->with('laboratory', $labs);
+    }
     /**
      * Remove the specified resource from storage.
      *
@@ -109,5 +133,12 @@ class LabsController extends Controller
      */
     public function destroy(Laboratory $labs)
     {
+        $this->authorize('isAdmin');
+
+        if (count($labs->occurrences()->get()) > 0){
+            return view('admin.laboratories.delete')->with('laboratory', $labs)->with('error', 'Não é possível excluir esse laboratório, pois existem ocorrências cadastrados nele!');
+        }
+        $labs::destroy($labs->id);
+        return redirect()->route('labs.index')->with('message', 'Laboratório Excluído com Sucesso!');
     }
 }

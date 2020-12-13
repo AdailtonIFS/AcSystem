@@ -21,12 +21,18 @@
                 <div class="form-group">
                     <label for="id">id:</label>
                     <input required type="text" class="form-control"
-                           id="id" name="id">
+                           id="id" name="id" value="{{old('id')}}">
+                    @error('id')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <div class="form-group">
                     <label for="description">Descrição:</label>
                     <input required type="text" class="form-control"
-                           id="description" name="description">
+                           id="description" name="description" value="{{old('description')}}">
+                    @error('description')
+                    <div class="alert alert-danger">{{ $message }}</div>
+                    @enderror
                 </div>
                 <button type="submit" class="btn btn-maincolor cursor-pointer active">Cadastrar</button>
             </form>
