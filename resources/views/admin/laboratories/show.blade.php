@@ -28,6 +28,26 @@
             </div>
         </div>
 
+        <table id="tableUsers" class="table table-light shadow-sm dt-responsive nowrap" style="width: 100%">
+            <thead>
+            <tr>
+                <th class="text-center" name='user'>Dia</th>
+                <th class="text-center" name='date'>Inicío</th>
+                <th class="text-center" name='hour'>Final</th>
+            </tr>
+            </thead>
+            <tbody id="bodytable">
+            @if(!empty($schedules))
+                @foreach($schedules as $schedule)
+                    <tr class="text-center">
+                        <td>{{$schedule->day}}</td>
+                        <td>{{$schedule->start}}</td>
+                        <td>{{$schedule->end}}</td>
+                    </tr>
+                @endforeach
+            @endif
+            </tbody>
+        </table>
 
         <div class="container">
             <div class="header">
@@ -41,7 +61,6 @@
                     <th class="text-center" name='user'>Usuário</th>
                     <th class="text-center" name='date'>Data</th>
                     <th class="text-center" name='hour'>Hora</th>
-                    <th class="text-center" name='observation'>Observações</th>
                     @can('isAdmin')
                         <th class="text-center" name='actions'>Ações</th>
                     @endcan
@@ -50,16 +69,15 @@
                 <tbody id="bodytable">
                 @if(!empty($occurrences))
                     @foreach($occurrences as $occurrence)
-                            <tr class="text-center">
+                        <tr class="text-center">
                                 <td>
                                     <a @can('isAdmin')href="{{route('occurrences.show', ['occurrence' => $occurrence->id])}}@endcan">{{$occurrence->occurrence}}</a>
                                 </td>
                                 <td>
-                                    <a @can('isAdmin')href="{{route('users.show', ['user' => $user->registration])}}"@endcan>{{$user->name}}</a>
+                                    <a @can('isAdmin')href="{{route('users.show', ['user' => $occurrence->user_registration])}}"@endcan>{{$occurrence->user_name}}</a>
                                 </td>
                                 <td>{{$occurrence->date}}</td>
                                 <td>{{$occurrence->hour}}</td>
-                                <td>{{$occurrence->observation ?? 'Sem Observação'}}</td>
                                 @can('isAdmin')
                                     <td>
                                         <a href="{{route('occurrences.edit', ['occurrence' => $occurrence->id])}}">Editar</a>

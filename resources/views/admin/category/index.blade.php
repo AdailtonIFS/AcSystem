@@ -45,14 +45,13 @@
                         </td>
                     </tr>
                 @endforeach
-            @else
-                <tr>
-                    <td>Nenhuma Categoria encontrada</td>
-                </tr>
             @endif
             </tbody>
 
         </table>
+        @if(count($categories) == 0)
+            <p class="d-flex justify-content-center">Nenhuma categoria encontrada</p>
+    @endif
 
 
 @endsection

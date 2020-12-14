@@ -45,52 +45,41 @@
                 </div>
                 {{-- header menu final --}}
                 <div id="links" class="list-group d-flex align-items-center bg-white">
-                    <a href="{{route('home')}}"
-                       class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none ">
-                        <img src="{{asset('/img/home.png')}}" alt="Home"
-                             style="width: 30px; height:30px;margin-right:9px;">
-                        Home
-                    </a>
-                    @can('isAdmin')
-                        <a href="{{route('users.index')}}"
-                           class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
-                            <img src="{{asset('/img/teacher.png')}}" alt="Usuários"
-                                 style="width: 30px; height:30px;margin-right:9px;">
-                            Usuários
+                    <nav class="nav flex-column">
+                        <a href="{{route('home')}}"
+                           class="nav-link @if(request()->route()->getName() == "home") text-white bg-success rounded @else text-dark @endif m-1 ">
+                            Home
                         </a>
-                    @endcan
-                    @can('isAdmin')
-                        <a href="{{route('categories.index')}}"
-                           class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none ">
-                            <img src="{{asset('/img/home.png')}}" alt="Home"
-                                 style="width: 30px; height:30px;margin-right:9px;">
-                            Categorias
+                        @can('isAdmin')
+                            <a href="{{route('users.index')}}"
+                               class="nav-link @if(request()->route()->getName() == "users.index") text-white bg-success rounded @else text-dark @endif m-1">
+                                Usuários
+                            </a>
+                        @endcan
+                        @can('isAdmin')
+                            <a href="{{route('categories.index')}}"
+                               class="nav-link @if(request()->route()->getName() == "categories.index") text-white bg-success rounded @else text-dark @endif m-1">
+                                Categorias
+                            </a>
+                        @endcan
+                        <a href="{{route('labs.index')}}"
+                           class="nav-link @if(request()->route()->getName() == "labs.index") text-white bg-success rounded @else text-dark @endif m-1">
+                            Laboratórios
                         </a>
-                    @endcan
-                    <a href="{{route('labs.index')}}"
-                       class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
-                        <img src="{{asset('/img/computer.png')}}" alt="Laboratórios"
-                             style="width: 30px; height:30px;margin-right:9px;">
-                        Laboratórios
-                    </a>
-                    <a href="#"
-                       class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
-                        <img src="{{asset('/img/settings.png')}}" alt="Ocorrências"
-                             style="width: 30px; height:30px;margin-right:9px;">
-                        Horários
-                    </a>
-                    <a href="{{route('occurrences.index')}}"
-                       class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
-                        <img src="{{asset('/img/settings.png')}}" alt="Ocorrências"
-                             style="width: 30px; height:30px;margin-right:9px;">
-                        Ocorrências
-                    </a>
-                    <a href="{{route('logout')}}"
-                       class="list-group-item d-flex justify-content-start align-items-center w-100 bg-transparent text-secondary border-0 font-weight-bold text-decoration-none">
-                        <img src="{{asset('/img/logout.png')}}" alt="Logout"
-                             style="width: 30px; height:30px;margin-right:9px;">
-                        Logout
-                    </a>
+                        <a href="{{route('schedules.index')}}"
+                           class="nav-link  @if(request()->route()->getName() == "schedules.index") text-white bg-success rounded @else text-dark @endif m-1">
+                            Horários
+                        </a>
+                        <a href="{{route('occurrences.index')}}"
+                           class="nav-link  @if(request()->route()->getName() == "occurrences.index") text-white bg-success rounded @else text-dark @endif m-1">
+                            Ocorrências
+                        </a>
+                        <a href="{{route('logout')}}"
+                           class="nav-link text-dark m-1">
+                            Logout
+                        </a>
+                    </nav>
+
                 </div>
             </div>
             {{-- div menu final --}}

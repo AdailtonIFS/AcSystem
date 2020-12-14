@@ -71,16 +71,19 @@ class LabsController extends Controller
     {
         try {
             $occurrences = $labs->occurrences()->get();
+            $schedules = $labs->schedules()->get();
             if ($occurrences) {
                 foreach ($occurrences as $occurrence) {
                     $user = $occurrence->user()->first();
+                    $occurrence->user_registration = $user->registration;
+                    $occurrence->user_name = $user->name;
                 }
             }
 
             return view('admin.laboratories.show')
                 ->with('laboratory', $labs)
                 ->with('occurrences', $occurrences ?? '')
-                ->with('user', $user);
+                ->with('schedules', $schedules ?? '');
 
         } catch (\Exception $e) {
             return $e->getMessage();

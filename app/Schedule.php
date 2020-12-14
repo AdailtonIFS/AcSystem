@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Schedule extends Model
 {
+    public $timestamps = false;
     protected $fillable = ['laboratory_id','day', 'start', 'end'];
 
     public function laboratory()

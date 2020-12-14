@@ -116,5 +116,8 @@
             @endif
             </tbody>
         </table>
+        @if(count($occurrences) == 0)
+            <p class="d-flex justify-content-center">Nenhuma ocorrência encontrada</p>
+        @endif
 
 @endsection

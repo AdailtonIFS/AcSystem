@@ -69,13 +69,13 @@
                         @endcan
                     </tr>
                 @endforeach
-            @else
-                <tr>
-                    <td>Nenhum laboratório encontrado</td>
-                </tr>
             @endif
+
             </tbody>
 
         </table>
+        @if(count($laboratories) == 0)
+            <p class="d-flex justify-content-center">Nenhum laboratório encontrado</p>
+        @endif
 
 @endsection

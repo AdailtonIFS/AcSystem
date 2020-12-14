@@ -11,26 +11,84 @@
                 <h2 class="text-maincolor font-weight-bold">Horários</h2>
             </div>
             <div class="col-6 d-flex justify-content-end">
-                <a class="btn btn-maincolor addLab font-weight-bold" href="#" role="button"></a>
+                <a class="btn btn-maincolor addLab font-weight-bold" href="{{route('schedules.create')}}" role="button">Novo</a>
             </div>
         </div>
-
         <hr class="mb-3">
+        @if(session()->get('message'))
+            <div class="alert alert-success" role="alert">
+                <p class="m-0 text-black">{{session()->get('message')}}</p>
+            </div>
+        @endif
+        <div class="d-flex justify-content-between">
+            <div class="h-100">
+                <h4>Segunda-Feira</h4>
+                <div class="container">
+                    @foreach($schedules as $schedule)
 
-        <table id="table_id" class="table table-light shadow-sm dt-responsive nowrap" style="width: 100%">
-            <thead>
-            <tr>
-                <th class="text-center" name='id'>Segunda-Feira</th>
-                <th class="text-center" name='description'>Terça-Feira</th>
-                <th class="text-center" name='status'>Quarta-Feira</th>
-                <th class="text-center" name='action'>Quinta-Feira</th>
-                <th class="text-center" name='action'>Sexta-Feira</th>
-            </tr>
-            </thead>
-            <tbody id="bodytable">
+                        @if($schedule->day  == 'Segunda-Feira')
+                            <hr>
+                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}" @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
+                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a><br>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            <div class="h-100">
+                <h3>Terça-Feira</h3>
+                <div class="container">
+                    @foreach($schedules as $schedule)
+                        @if($schedule->day  == 'Terca-Feira')
+                            <hr>
+                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}" @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
+                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            <div class="h-100">
+                <h3>Quarta-Feira</h3>
+                <div class="container">
+                    @foreach($schedules as $schedule)
+                        @if($schedule->day  == 'Quarta-Feira')
+                            <hr>
+                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}" @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
+                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a><br>
 
-            </tbody>
-        </table>
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            <div class="h-100">
+                <h3>Quinta-Feira</h3>
+                <div class="container">
+                    @foreach($schedules as $schedule)
+                        @if($schedule->day  == 'Quinta-Feira')
+                            <hr>
+                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}" @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
+                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a><br>
+
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+            <div class="h-100">
+                <h3>Sexta-Feira</h3>
+                <div class="container">
+                    @foreach($schedules as $schedule)
+                        @if($schedule->day  == 'Sexta-Feira')
+                            <hr>
+                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}" @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
+                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a><br>
+
+                        @endif
+                    @endforeach
+                </div>
+            </div>
+        </div>
+        @if(count($schedules) == 0)
+            <p class="d-flex justify-content-center mt-2">Nenhuma horário encontrado</p>
+    @endif
 
 @endsection
 

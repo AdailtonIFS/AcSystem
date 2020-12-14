@@ -102,3 +102,13 @@ Route::group(['middleware' => 'auth', 'prefix' => 'laboratorios'], function () {
     // Delete um laboratório
     Route::delete('/{labs}', 'LabsController@destroy')->name('labs.destroy');
 });
+
+Route::group(['middleware' => 'auth', 'prefix' => 'horarios'], function () {
+    // Busca os horários.
+    Route::get('/', 'SchedulesController@index')->name('schedules.index');
+    Route::get('/cadastrar', 'SchedulesController@create')->name('schedules.create');
+    Route::post('/', 'SchedulesController@store')->name('schedules.store');
+    Route::get('/{schedule}', 'SchedulesController@edit')->name('schedules.edit');
+    Route::put('/{schedule}', 'SchedulesController@update')->name('schedules.update');
+
+});
