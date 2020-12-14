@@ -10,9 +10,12 @@
             <div class="col-6">
                 <h2 class="text-maincolor font-weight-bold">Horários</h2>
             </div>
-            <div class="col-6 d-flex justify-content-end">
-                <a class="btn btn-maincolor addLab font-weight-bold" href="{{route('schedules.create')}}" role="button">Novo</a>
-            </div>
+            @can('isAdmin')
+                <div class="col-6 d-flex justify-content-end">
+                    <a class="btn btn-maincolor addLab font-weight-bold" href="{{route('schedules.create')}}"
+                       role="button">Novo</a>
+                </div>
+            @endcan
         </div>
         <hr class="mb-3">
         @if(session()->get('message'))
@@ -28,8 +31,10 @@
 
                         @if($schedule->day  == 'Segunda-Feira')
                             <hr>
-                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}" @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
-                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a><br>
+                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}"
+                               @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
+                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a>
+                            <br>
                         @endif
                     @endforeach
                 </div>
@@ -40,7 +45,8 @@
                     @foreach($schedules as $schedule)
                         @if($schedule->day  == 'Terca-Feira')
                             <hr>
-                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}" @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
+                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}"
+                               @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
                             <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a>
                         @endif
                     @endforeach
@@ -52,8 +58,10 @@
                     @foreach($schedules as $schedule)
                         @if($schedule->day  == 'Quarta-Feira')
                             <hr>
-                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}" @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
-                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a><br>
+                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}"
+                               @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
+                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a>
+                            <br>
 
                         @endif
                     @endforeach
@@ -65,8 +73,10 @@
                     @foreach($schedules as $schedule)
                         @if($schedule->day  == 'Quinta-Feira')
                             <hr>
-                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}" @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
-                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a><br>
+                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}"
+                               @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
+                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a>
+                            <br>
 
                         @endif
                     @endforeach
@@ -78,8 +88,10 @@
                     @foreach($schedules as $schedule)
                         @if($schedule->day  == 'Sexta-Feira')
                             <hr>
-                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}" @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
-                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a><br>
+                            <a @can('isAdmin') href="{{route('schedules.edit', ['schedule' => $schedule->id])}}"
+                               @endcan class="m-0">{{$schedule->start.' às '. $schedule->end}}</a><br>
+                            <a href="{{route('labs.show', ['labs' => $schedule->laboratory->id])}}">{{$schedule->laboratory->description}}</a>
+                            <br>
 
                         @endif
                     @endforeach

@@ -31,6 +31,7 @@ class LabsController extends Controller
 
     public function create()
     {
+        $this->authorize('isAdmin');
         return view('admin.laboratories.create');
     }
     /**

@@ -12,9 +12,11 @@
             <div class="col-6">
                 <h2 class="text-maincolor">Laboratórios</h2>
             </div>
-            <div class="col-6 d-flex justify-content-end">
-                <a class="btn btn-maincolor" href="{{route('labs.create')}}" role="button">Novo Laboratório</a>
-            </div>
+            @can('isAdmin')
+                <div class="col-6 d-flex justify-content-end">
+                    <a class="btn btn-maincolor" href="{{route('labs.create')}}" role="button">Novo Laboratório</a>
+                </div>
+            @endcan
         </div>
 
         <form action="{{route('labs.index')}}" method="get" class="mt-4">
@@ -76,6 +78,6 @@
         </table>
         @if(count($laboratories) == 0)
             <p class="d-flex justify-content-center">Nenhum laboratório encontrado</p>
-        @endif
+    @endif
 
 @endsection
