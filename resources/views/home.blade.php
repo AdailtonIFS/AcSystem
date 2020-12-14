@@ -13,7 +13,7 @@
             </h2>
 
         @endif
-        @if(now()->format('H') >= 12 && now()->format('i') > 1 && now()->format('H') <= 18)
+        @if(now()->format('H') >= 12 && now()->format('i') > 1 && now()->format('H') <= 18 && now()->format('i') == 0 )
             <h2 class="mb-5">
                 {{'Boa tarde ' .auth()->user()->name}}
             </h2>
