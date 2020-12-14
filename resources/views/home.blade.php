@@ -22,16 +22,17 @@
             <h2  class="mb-5">
                 {{'Boa noite ' .auth()->user()->name}}
             </h2>
-
+        @endif
+        @if(now()->format('H') >= 0 && now()->format('H') <= 5)
+            <h2  class="mb-5">
+                {{'Boa madrugada ' .auth()->user()->name . '. O que faz aqui essa hora?'}}
+            </h2>
         @endif
     </div>
     <div class="Welcome w-100 h-100 d-flex flex-column justify-content-center align-items-center ">
 
-        @if(now()->format('H') >= 0 && now()->format('H') <= 5)
-            {{'Boa noite ' .auth()->user()->name}}
-        @endif
         <h1 class="system-name text-maincolor">Seja bem vindo ao ACSystem</h1>
-
+        @can('isAdmin')
         <h3 class="mt-4">Separei as ocorrências de hoje para você</h3>
             <table id="tableUsers" class="table table-light shadow-sm dt-responsive nowrap" style="width: 100%">
                 <thead>
@@ -40,9 +41,7 @@
                     <th class="text-center" name='user'>Usuário</th>
                     <th class="text-center" name='date'>Data</th>
                     <th class="text-center" name='hour'>Hora</th>
-                    @can('isAdmin')
-                        <th class="text-center" name='actions'>Ações</th>
-                    @endcan
+
                 </tr>
                 </thead>
                 <tbody id="bodytable">
@@ -70,6 +69,7 @@
         @if(count($occurrences) == 0)
             <p>Nenhuma ocorrência por enquanto</p>
         @endif
+            @endcan
     </div>
 
 @endsection

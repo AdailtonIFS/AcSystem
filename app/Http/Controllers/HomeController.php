@@ -14,10 +14,10 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $occurrences = Occurrence::with('user:name', 'laboratory:description')
-        ->select('id', 'user_registration', 'laboratory_id', 'occurrence', 'date')
-        ->where('date', today())->get();
 
+        $occurrences = Occurrence::with('user:name', 'laboratory:description')
+            ->select('id', 'user_registration', 'laboratory_id', 'occurrence', 'date')
+            ->where('date', today())->get();
         return view('home')
             ->with('occurrences',
                 $occurrences);

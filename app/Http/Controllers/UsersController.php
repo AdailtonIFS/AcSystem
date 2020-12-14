@@ -159,7 +159,7 @@ class UsersController extends Controller
         $user->name = $request->name;
         $user->email = $request->email;
         if ($request->password){
-            $user->password = $request->password;
+            $user->password = Hash::make($request->password);
         }
         $user->category_id = $request->category_id;
         $user->status = $request->status ?? 0;
