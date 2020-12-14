@@ -49,7 +49,7 @@ class CategoriesController extends Controller
             'description' => 'required|min:1'
         ],[
             'id.required' => 'O id é obrigatório',
-            'id.number' => 'As categorias são representadas por números',
+            'id.numeric' => 'As categorias são representadas por números',
             'id.unique' => 'Essa categoria já está cadastrada',
             'description.required' => 'A descrição é obrigatória'
         ]);
