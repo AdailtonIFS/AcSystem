@@ -38,10 +38,7 @@
                 <thead>
                 <tr>
                     <th class="text-center" name='occurrence'>Ocorrência</th>
-                    <th class="text-center" name='user'>Usuário</th>
                     <th class="text-center" name='date'>Data</th>
-                    <th class="text-center" name='hour'>Hora</th>
-
                 </tr>
                 </thead>
                 <tbody id="bodytable">
