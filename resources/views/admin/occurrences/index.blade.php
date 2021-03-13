@@ -92,7 +92,7 @@
                 <th class="text-center" scope="col" name='laboratory'>Laboratório</th>
                 <th class="text-center" scope="col" name='date'>Data</th>
                 <th class="text-center" scope="col" name='hour'>Hora</th>
-                <th class="text-center" scope="col" name='action'>Ações</th>
+                <th class="text-center no-print" scope="col" name='action'>Ações</th>
             </tr>
             </thead>
             <tbody id="bodytable">
@@ -113,7 +113,7 @@
                         </td>
                         <td>{{$occurrence->date}}</td>
                         <td>{{$occurrence->hour}}</td>
-                        <td>
+                        <td class="no-print">
                             <a href="{{route('occurrences.edit', ['occurrence' => $occurrence->id])}}">Editar</a>
                         </td>
                     </tr>
