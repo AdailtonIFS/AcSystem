@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="{{ url(mix('/css/responsive.bootstrap4.css')) }}">
     <link rel="stylesheet" href="{{ url(mix('/css/sweetalert2.css')) }}">
     <link rel="stylesheet" href="{{ url(mix('/css/style.css')) }}">
+    <link rel="stylesheet" href="{{ url(mix('/css/print.css')) }}">
     <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@500&display=swap" rel="stylesheet">
     <title>@yield('title')</title>
 </head>
@@ -23,7 +24,7 @@
     {{-- row for grid system BOOTSTRAP --}}
     <div class="row">
         {{-- first column --}}
-        <div class="mr-0 p-0 col-2">
+        <div class="mr-0 p-0 col-2 no-print">
             {{-- div menu --}}
             <div id="menu" class="sticky-top shadow-sm">
                 {{-- header menu --}}
@@ -44,38 +45,38 @@
                     {{-- div items final --}}
                 </div>
                 {{-- header menu final --}}
-                <div id="links" class="list-group d-flex align-items-center bg-white">
-                    <nav class="nav flex-column">
+                <div id="links" class="list-group d-flex align-items-center bg-white mt-3">
+                    <nav class="nav flex-column w-100">
                         <a href="{{route('home')}}"
-                           class="nav-link @if(request()->route()->getName() == "home") text-white bg-success rounded @else text-dark @endif m-1 ">
+                           class="nav-link font-weight-bold @if(request()->route()->getName() == "home") text-secondary border-left-selected w-100 @else text-secondary @endif ">
                             Home
                         </a>
                         @can('isAdmin')
                             <a href="{{route('users.index')}}"
-                               class="nav-link @if(request()->route()->getName() == "users.index") text-white bg-success rounded @else text-dark @endif m-1">
+                               class="nav-link font-weight-bold @if(request()->route()->getName() == "users.index") text-secondary border-left-selected @else text-secondary @endif ">
                                 Usuários
                             </a>
                         @endcan
                         @can('isAdmin')
                             <a href="{{route('categories.index')}}"
-                               class="nav-link @if(request()->route()->getName() == "categories.index") text-white bg-success rounded @else text-dark @endif m-1">
+                               class="nav-link font-weight-bold @if(request()->route()->getName() == "categories.index") text-secondary border-left-selected @else text-secondary @endif ">
                                 Categorias
                             </a>
                         @endcan
                         <a href="{{route('labs.index')}}"
-                           class="nav-link @if(request()->route()->getName() == "labs.index") text-white bg-success rounded @else text-dark @endif m-1">
+                           class="nav-link font-weight-bold @if(request()->route()->getName() == "labs.index") text-secondary border-left-selected @else text-secondary @endif">
                             Laboratórios
                         </a>
                         <a href="{{route('schedules.index')}}"
-                           class="nav-link  @if(request()->route()->getName() == "schedules.index") text-white bg-success rounded @else text-dark @endif m-1">
+                           class="nav-link font-weight-bold  @if(request()->route()->getName() == "schedules.index") text-secondary border-left-selected @else text-secondary @endif">
                             Horários
                         </a>
                         <a href="{{route('occurrences.index')}}"
-                           class="nav-link  @if(request()->route()->getName() == "occurrences.index") text-white bg-success rounded @else text-dark @endif m-1">
+                           class="nav-link font-weight-bold  @if(request()->route()->getName() == "occurrences.index") text-secondary border-left-selected @else text-secondary @endif ">
                             Ocorrências
                         </a>
                         <a href="{{route('logout')}}"
-                           class="nav-link text-dark m-1">
+                           class="nav-link font-weight-bold text-secondary ">
                             Logout
                         </a>
                     </nav>

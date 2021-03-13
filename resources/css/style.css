@@ -10,7 +10,7 @@
 .page-item.active .page-link {
     background-color: #684FFA;
     border-color: #684FFA;
-}  
+}
 
 .form-control:focus {
     border-color: #684FFA;
@@ -20,4 +20,8 @@
 .page-link {
     color: #684FFA;
 
+}
+.border-left-selected{
+    border-left: 10px #3BB74D solid;
+    margin-left: 2px;
 }

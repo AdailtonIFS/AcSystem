@@ -1,1 +1,209 @@
-$.ajaxSetup({headers:{"X-CSRF-TOKEN":$('meta[name="csrf-token"]').attr("content")}});var table=$("#tableCategory").DataTable({processing:!0,serverSide:!0,info:!1,ajax:{url:"api/categories"},columns:[{data:"id",name:"id"},{data:"description",name:"description"},{data:"action",name:"action",orderable:!1,searchable:!1}],autowidth:!1,language:{sEmptyTable:"Nenhum registro encontrado",sInfo:"Mostrando de _START_ até _END_ de _TOTAL_ registros",sInfoEmpty:"Mostrando 0 até 0 de 0 registros",sInfoFiltered:"(Filtrados de _MAX_ registros)",sInfoPostFix:"",sInfoThousands:".",sLengthMenu:"_MENU_ resultados por página",sLoadingRecords:"Carregando...",sProcessing:"Processando...",sZeroRecords:"Nenhum registro encontrado",sSearch:"Pesquisar",oPaginate:{sNext:"Próximo",sPrevious:"Anterior",sFirst:"Primeiro",sLast:"Último"},oAria:{sSortAscending:": Ordenar colunas de forma ascendente",sSortDescending:": Ordenar colunas de forma descendente"}},columnDefs:[{targets:"_all",className:"text-center"}]});$(".addCategory").click(function(e){$("#modalAddCategory").modal("show"),$("#idError").hasClass("d-none")&&$("#descriptionError").hasClass("d-none")||($("#idError").addClass("d-none"),$("#descriptionError").addClass("d-none")),$("#newCategory").trigger("reset"),$("#createNewCategory").removeAttr("disabled","disabled").text("Cadastrar")}),$("#createNewCategory").click(function(e){e.preventDefault(),$("#idError").hasClass("d-none")&&$("#descriptionError").hasClass("d-none")||($("#idError").addClass("d-none"),$("#descriptionError").addClass("d-none")),$(this).attr("disabled","disabled").text("Cadastrando...");let t=$('meta[name="csrf-token"]').attr("content");var a=$("#newCategory").serialize()+"&_token="+t;console.log(a),$.ajax({type:"POST",url:"api/categories",data:a,success:function(e){table.draw(),$("#modalAddCategory").modal("hide"),$("#createNewCategory").removeAttr("disabled","disabled").text("Cadastrar"),$("#newCategory").trigger("reset"),Swal.fire("Cadastrado!",e.success,"success")},error:function(e){$("#createNewCategory").removeAttr("disabled","disabled").text("Cadastrar");var t=e.responseJSON;console.log(t),0==$.isEmptyObject(t)&&$.each(t.errors,function(e,t){var a="#"+e+"Error";$(a).removeClass("d-none"),$(a).text(t)})}})}),$("body").on("click",".deleteCategory",function(){var e=$(this).data("id");let t=`api/categories/${e}`;$.ajax({url:t,type:"GET",success:function(t){t&&Swal.fire({position:"top",title:"Essa ação é irreversível",text:"Tem certeza que deseja excluir a categoria de "+t[0].description+"?",icon:"warning",showCancelButton:!0,confirmButtonColor:"#3085d6",cancelButtonColor:"#d33",confirmButtonText:"Deletar"}).then(t=>{if(t.value){let t=$('meta[name="csrf-token"]').attr("content");$.ajax({type:"DELETE",url:`api/categories/${e}`,data:{_token:t},success:function(e){table.draw(),Swal.fire({position:"top",title:"Excluido!",text:e.success,icon:"success"})}})}})}})}),$("body").on("click",".openEditCategoryModal",function(e){e.preventDefault(),$("#descriptionEditError").hasClass("d-none")||$("#descriptionError").addClass("d-none"),$("#createNewCategory").removeAttr("disabled","disabled").text("Cadastrar");let t=`api/categories/${$(this).data("id")}`;$.ajax({url:t,type:"GET",success:function(e){e&&($("#idEdit").val(e[0].id),$("#descriptionEdit").val(e[0].description),$("#modalEditCategory").modal("show"))}})}),$("#ButtonEditCategory").click(function(){$(this).attr("disabled","disabled").text("Editando...");var e=$("#idEdit").val(),t=$("#descriptionEdit").val();let a=`api/categories/${e}`,r=$('meta[name="csrf-token"]').attr("content");$.ajax({url:a,type:"PUT",data:{id:e,description:t,token:r},dataType:"JSON",success:function(e){e&&(table.draw(),$("#modalEditCategory").modal("hide"),$("#ButtonEditCategory").removeAttr("disabled","disabled").text("Editar"),Swal.fire("Editado!",e.success,"success"))},error:function(e){$("#ButtonEditCategory").removeAttr("disabled","disabled").text("Cadastrar");var t=e.responseJSON;console.log(t),0==$.isEmptyObject(t)&&$.each(t.errors,function(e,t){var a="#"+e+"EditError";$(a).removeClass("d-none"),$(a).text(t)})}})});
+$.ajaxSetup({
+    headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    }
+});
+var table = $('#tableCategory').DataTable({
+    processing: true,
+    serverSide: true,
+    info: false,
+    ajax: {
+        "url": "api/categories"
+    },
+    "columns": [
+        { data: 'id', name: 'id' },
+        { data: 'description', name: 'description' },
+        { data: 'action', name: 'action', orderable: false, searchable: false },
+    ],
+    autowidth: false,
+    language: {
+        "sEmptyTable": "Nenhum registro encontrado",
+        "sInfo": "Mostrando de _START_ até _END_ de _TOTAL_ registros",
+        "sInfoEmpty": "Mostrando 0 até 0 de 0 registros",
+        "sInfoFiltered": "(Filtrados de _MAX_ registros)",
+        "sInfoPostFix": "",
+        "sInfoThousands": ".",
+        "sLengthMenu": "_MENU_ resultados por página",
+        "sLoadingRecords": "Carregando...",
+        "sProcessing": "Processando...",
+        "sZeroRecords": "Nenhum registro encontrado",
+        "sSearch": "Pesquisar",
+        "oPaginate": {
+            "sNext": "Próximo",
+            "sPrevious": "Anterior",
+            "sFirst": "Primeiro",
+            "sLast": "Último"
+        },
+        "oAria": {
+            "sSortAscending": ": Ordenar colunas de forma ascendente",
+            "sSortDescending": ": Ordenar colunas de forma descendente"
+        }
+    },
+    //set column definition initialisation properties.
+    "columnDefs": [{
+        "targets": '_all',
+        "className": "text-center",
+    }, ],
+});
+$('.addCategory').click(function(e) {
+    $('#modalAddCategory').modal('show');
+    if (!$('#idError').hasClass('d-none') || !$('#descriptionError').hasClass('d-none')) {     
+        $('#idError').addClass('d-none');
+        $('#descriptionError').addClass('d-none');
+    }
+    $('#newCategory').trigger('reset');
+    $('#createNewCategory').removeAttr('disabled', 'disabled').text('Cadastrar');
+
+})
+$('#createNewCategory').click(function(e) {
+    e.preventDefault();
+    if (!$('#idError').hasClass('d-none') || !$('#descriptionError').hasClass('d-none')) {     
+        $('#idError').addClass('d-none');
+        $('#descriptionError').addClass('d-none');
+    }
+    $(this).attr('disabled', 'disabled').text('Cadastrando...');
+    let _token = $('meta[name="csrf-token"]').attr('content');
+    var data = $('#newCategory').serialize() + '&_token=' + _token;
+    console.log(data);
+    $.ajax({
+        type: "POST",
+        url: "api/categories",
+        data: data,
+        success: function(response) {
+            table.draw();
+            $('#modalAddCategory').modal('hide');
+            $('#createNewCategory').removeAttr('disabled', 'disabled').text('Cadastrar');
+            $('#newCategory').trigger('reset');
+            Swal.fire(
+                'Cadastrado!',
+                response.success,
+                'success'
+            )
+        },
+        error: function(data) {
+            $('#createNewCategory').removeAttr('disabled', 'disabled').text('Cadastrar');
+            var errors = data.responseJSON;
+            console.log(errors)
+            if ($.isEmptyObject(errors) == false) {
+                $.each(errors.errors, function(key, value) {
+                    var ErrorID = '#' + key + 'Error';
+                    $(ErrorID).removeClass('d-none');
+                    $(ErrorID).text(value);
+                });
+            }
+        }
+    });
+})
+$('body').on('click', '.deleteCategory', function() {
+    var id = $(this).data("id");
+    let _url = `api/categories/${id}`;
+    $.ajax({
+        url: _url,
+        type: "GET",
+        success: function(response) {
+            if (response) {
+                Swal.fire({
+                    position: 'top',
+                    title: 'Essa ação é irreversível',
+                    text: 'Tem certeza que deseja excluir a categoria de ' + response[0].description + '?',
+                    icon: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Deletar'
+                }).then((result) => {
+                    if (result.value) {
+                        let _token = $('meta[name="csrf-token"]').attr('content');
+                        $.ajax({
+                            type: "DELETE",
+                            url: `api/categories/${id}`,
+                            data: {
+                                _token: _token
+                            },
+                            success: function(response) {
+                                table.draw();
+                                Swal.fire({
+                                    position: 'top',
+                                    title: 'Excluido!',
+                                    text: response.success,
+                                    icon: 'success'
+                                })
+                            }
+                        })
+                    }
+                })
+            }
+        }
+    })
+
+
+});
+
+$('body').on('click', '.openEditCategoryModal', function(e) {
+
+    e.preventDefault();
+    if (!$('#descriptionEditError').hasClass('d-none')) {     
+        $('#descriptionError').addClass('d-none');
+    }
+    $('#createNewCategory').removeAttr('disabled', 'disabled').text('Cadastrar');
+    var id = $(this).data("id");
+    let _url = `api/categories/${id}`;
+
+    $.ajax({
+        url: _url,
+        type: "GET",
+        success: function(response) {
+            if (response) {
+                $('#idEdit').val(response[0].id);
+                $('#descriptionEdit').val(response[0].description);
+                $('#modalEditCategory').modal('show');
+            }
+        }
+    })
+});
+
+$('#ButtonEditCategory').click(function() {
+
+    $(this).attr('disabled', 'disabled').text('Editando...');
+
+    var id = $('#idEdit').val();
+    var description = $('#descriptionEdit').val();
+
+    let _url = `api/categories/${id}`;
+    let _token = $('meta[name="csrf-token"]').attr('content');
+
+    $.ajax({
+        url: _url,
+        type: "PUT",
+        data: {
+            id: id,
+            description: description,
+            token: _token
+        },
+        dataType: "JSON",
+        success: function(response) {
+            if (response) {
+                table.draw();
+                $('#modalEditCategory').modal('hide');
+                $('#ButtonEditCategory').removeAttr('disabled', 'disabled').text('Editar');
+                Swal.fire(
+                    'Editado!',
+                    response.success,
+                    'success'
+                )
+            }
+        },
+        error: function(data) {
+            $('#ButtonEditCategory').removeAttr('disabled', 'disabled').text('Cadastrar');
+            var errors = data.responseJSON;
+            console.log(errors)
+            if ($.isEmptyObject(errors) == false) {
+                $.each(errors.errors, function(key, value) {
+                    var ErrorID = '#' + key + 'EditError';
+                    $(ErrorID).removeClass('d-none');
+                    $(ErrorID).text(value);
+                });
+            }
+        }
+    })
+});

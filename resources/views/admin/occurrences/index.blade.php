@@ -8,7 +8,7 @@
 
     <div class="container p-5">
 
-        <div class="row">
+        <div class="row no-print">
             <div class="col-6">
                 <h2 class="text-maincolor">{{ !request('all') ? 'Minhas Ocorrências' : 'Ocorrências'}}</h2>
             </div>
@@ -24,11 +24,13 @@
             </div>
         @endif
         <form action="{{route('occurrences.index')}}" method="get" class="mt-4">
-            <div class="row">
+            <div class="row no-print">
+
                 <div class="form-group col-md-3">
                     <label for="name">Nome</label>
                     <input type="text" class="form-control" name="name" id="name" value="{{request('name') ?? ''}}">
                 </div>
+
                 <div class="form-group col-md-3 ">
                     <label for="date">Data:</label>
                     <div class="col-10">
@@ -36,6 +38,7 @@
                                name="date" value={{request()->get('date')}}>
                     </div>
                 </div>
+
                 @can('isAdmin')
                     <div class="form-group col-md-@if(empty(request('all'))){{4}}@else{{2}}@endif">
                         <label for="status">Filtrar:</label>
@@ -45,10 +48,11 @@
                         </select>
                     </div>
                 @endcan
+
                 @can('isAdmin')
                     @if(request('all'))
                         <div class="form-group col-md-3">
-                            <label for="status">Usuários:</label>
+                            <label for="user">Usuários:</label>
                             <select name="user" id="user" class="form-control">
                                 <option value="">Escolha um usuário</option>
                                 @if($users)
@@ -62,17 +66,18 @@
                         </div>
                     @endif
                 @endcan
+
                 <div class="form-group col-md-1  text-right" style="margin-top: 30px;">
                     <button type="submit" class="btn btn-outline-secondary cursor-pointer active">Buscar</button>
                 </div>
             </div>
-            <div class="row">
+            <div class="row no-print">
                 <div class="form-group col-md-6 d-flex justify-content-end" style="margin-top: 5px;">
                     <a href="{{route('occurrences.index')}}" class="btn btn-outline-info cursor-pointer active">Limpar Filtros</a>
                 </div>
                 @can('isAdmin')
-                    <div class="form-group col-md-6 d-flex justify-content-end" style="margin-top: 5px;">
-                        <a  class="btn btn-outline-warning cursor-pointer active" href="{{route('relatorio.index')}}">Relatorio</a>
+                    <div class="form-group col-md-6 d-flex justify-content-end" >
+                        <button class="btn btn-danger" onclick="window.print()">Exportar para PDF</button>
                     </div>
                 @endcan
             </div>

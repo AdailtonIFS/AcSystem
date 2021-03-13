@@ -16,7 +16,7 @@ mix
 //my styles
 .sass('resources/sass/style.scss', 'public/css/bootstrap.css')
 .styles('resources/css/style.css', 'public/css/style.css')
-
+.styles('resources/css/print.css', 'public/css/print.css')
 //datatables styles
 .styles('node_modules/datatables.net-bs4/css/dataTables.bootstrap4.min.css', 'public/css/dataTables.bootstrap4.css')
 .styles('node_modules/datatables.net-responsive-bs4/css/responsive.bootstrap4.min.css', 'public/css/responsive.bootstrap4.css')
