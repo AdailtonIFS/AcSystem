@@ -1,7 +1,7 @@
 {
     "/css/bootstrap.css": "/css/bootstrap.css?id=2bad785b1bd7061a74e1",
-    "/css/style.css": "/css/style.css?id=8ce65bf8b5e47b2eebb4",
-    "/css/print.css": "/css/print.css?id=717c95da31c1a1b7662d",
+    "/css/style.css": "/css/style.css?id=4d7de7f8a44753f5d829",
+    "/css/print.css": "/css/print.css?id=ab282c982332794c5105",
     "/css/dataTables.bootstrap4.css": "/css/dataTables.bootstrap4.css?id=dc5ac5a7523f9f384c19",
     "/css/responsive.bootstrap4.css": "/css/responsive.bootstrap4.css?id=623e60b304685ce5cb31",
     "/css/sweetalert2.css": "/css/sweetalert2.css?id=94dfc950f19b495b21ff",
@@ -12,9 +12,9 @@
     "/js/responsive.bootstrap4.js": "/js/responsive.bootstrap4.js?id=a730f5bddecca0c8889a",
     "/js/dataTables.responsive.js": "/js/dataTables.responsive.js?id=1d0e1eb42f9921bc1cd4",
     "/js/sweetalert2.js": "/js/sweetalert2.js?id=600ebc5ddecb9e859491",
-    "/js/laboratories.js": "/js/laboratories.js?id=d76023c8ec00a96415ac",
-    "/js/users.js": "/js/users.js?id=de2134ac75d3542b4d40",
-    "/js/category.js": "/js/category.js?id=875896c8d110bf22f253",
-    "/js/occurrences.js": "/js/occurrences.js?id=175e656d35e9304b088b",
-    "/js/login.js": "/js/login.js?id=5e407c8b0cba3f99d77c"
+    "/js/laboratories.js": "/js/laboratories.js?id=d5a431cb3ca6e4fcdb78",
+    "/js/users.js": "/js/users.js?id=6f6efe21ffcc2c9a59c5",
+    "/js/category.js": "/js/category.js?id=0e70d07162295fb7cff0",
+    "/js/occurrences.js": "/js/occurrences.js?id=b58c8640ae0be2c89ac9",
+    "/js/login.js": "/js/login.js?id=d42ac641919a8a178eb4"
 }
